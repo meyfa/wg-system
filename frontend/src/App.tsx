@@ -1,9 +1,9 @@
-import React from 'react';
+import { ReactElement } from 'react'
 
-export default function App() {
+export default function App (): ReactElement {
   return (
-    <div className="App">
+    <div className='App'>
       Hello world
     </div>
-  );
+  )
 }
