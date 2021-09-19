@@ -1,0 +1,14 @@
+extends:
+- stylelint-config-standard
+
+ignoreFiles:
+- "**/*.ico"
+- "**/*.png"
+- "**/*.json"
+
+rules:
+  indentation: 2
+  max-line-length: 120
+  string-quotes: single
+  no-duplicate-selectors: true
+  color-hex-case: lower
