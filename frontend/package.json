@@ -1,9 +1,9 @@
 {
   "name": "frontend",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^12.20.25",
+    "@types/node": "^16.9.3",
     "@types/react": "^17.0.21",
     "@types/react-dom": "^17.0.9",
     "react": "^17.0.2",
@@ -32,11 +32,7 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-standard-with-typescript": "^21.0.1",
-    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.25.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "stylelint": "^13.13.1",

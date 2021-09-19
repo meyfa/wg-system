@@ -1,0 +1,36 @@
+{
+  "name": "wg-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Management system for flat sharing",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "lint-fix": "npm run lint-fix --workspaces",
+    "start": "npm run build && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meyfa/wg-system.git"
+  },
+  "author": "Fabian Meyer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meyfa/wg-system/issues"
+  },
+  "homepage": "https://github.com/meyfa/wg-system#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
