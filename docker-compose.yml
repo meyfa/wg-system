@@ -1,0 +1,23 @@
+version: '3.1'
+
+networks:
+  internal:
+
+services:
+
+  mongodb:
+    image: mongo:5
+    container_name: wg_mongodb
+    networks:
+    - internal
+
+  wg_system:
+    build: .
+    image: wg-system
+    container_name: wg_system
+    networks:
+    - internal
+    ports:
+    - '8080:8080'
+    environment:
+      MONGODB_URI: 'mongodb://wg_mongodb/wgsystem'

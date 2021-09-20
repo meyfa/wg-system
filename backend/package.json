@@ -13,5 +13,8 @@
     "@types/node": "^16.9.3",
     "rimraf": "^3.0.2",
     "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "mongoose": "^6.0.6"
   }
 }
