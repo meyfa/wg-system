@@ -1,16 +1,23 @@
-# build
-FROM node:16-alpine as build
+# dependencies
+FROM node:16-alpine as dependencies
 WORKDIR /usr/src/app
 
-# - install dependencies
 COPY package*.json ./
 COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
 RUN npm ci
 
-# - copy in app code and build it
-COPY . .
-RUN npm run build-all
+# backend and frontend are built separately to enable aggressive caching and parallelism
+
+# build the backend
+FROM dependencies as build-backend
+COPY backend ./backend
+RUN npm run build -w backend
+
+# build the frontend
+FROM dependencies as build-frontend
+COPY frontend ./frontend
+RUN npm run build -w frontend
 
 # execution
 FROM node:16-alpine
@@ -23,9 +30,9 @@ COPY frontend/package*.json ./frontend/
 RUN npm ci --production
 
 # - add the already compiled code
-COPY --from=build /usr/src/app/server.js ./
-COPY --from=build /usr/src/app/backend/build ./backend/build
-COPY --from=build /usr/src/app/frontend/build ./frontend/build
+COPY server.js ./
+COPY --from=build-backend /usr/src/app/backend/build ./backend/build
+COPY --from=build-frontend /usr/src/app/frontend/build ./frontend/build
 
 # - ports
 EXPOSE 8080
