@@ -2,9 +2,11 @@
 
 const express = require('express')
 
-const { createApiRouter } = require('./backend/build/index')
+const { init, createApiRouter } = require('./backend/build/index')
 
 async function start () {
+  init(process.env)
+
   const app = express()
 
   // the project needs to be built (`npm run build`) before these paths can work!
