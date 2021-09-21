@@ -1,0 +1,27 @@
+.NavigationBar {
+  width: 60px;
+  min-height: 100vh;
+  padding: 24px 0;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.NavigationBar a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+}
+
+.NavigationBar a.active {
+  background: #eee;
+}
+
+.NavigationBar-sep {
+  border: none;
+  height: 0;
+  margin: 16px 0;
+}
