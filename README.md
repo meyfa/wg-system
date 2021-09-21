@@ -32,12 +32,14 @@ services:
   mongodb:
     image: mongo:5
     container_name: wg_mongodb
+    restart: unless-stopped
     networks:
     - internal
 
   wg_system:
     image: meyfa/wg-system:latest
     container_name: wg_system
+    restart: unless-stopped
     networks:
     - internal
     ports:
