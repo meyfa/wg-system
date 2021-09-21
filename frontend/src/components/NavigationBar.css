@@ -1,27 +1,108 @@
 .NavigationBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+}
+
+.NavigationBar.active {
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.NavigationBar-inner {
   width: 60px;
-  min-height: 100vh;
+  height: 100%;
   padding: 24px 0;
-  text-align: center;
   background: #fff;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
 
-.NavigationBar a {
-  display: block;
-  height: 40px;
-  line-height: 40px;
-  text-align: left;
-  text-decoration: none;
-  color: inherit;
+.NavigationBar.active > .NavigationBar-inner {
+  width: 300px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.NavigationBar a.active {
-  background: #eee;
-}
+/* spacer */
 
 .NavigationBar-sep {
   border: none;
   height: 0;
   margin: 16px 0;
+}
+
+/* toggle button */
+
+.NavigationBar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0 16px;
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.NavigationBar-toggle:hover {
+  background: #eee;
+}
+
+.NavigationBar-toggle-label {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 24px;
+}
+
+.NavigationBar:not(.active) .NavigationBar-toggle-label {
+  display: none;
+}
+
+/* navigation */
+
+.NavigationBar-link {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.NavigationBar-link.active,
+.NavigationBar-link:hover,
+.NavigationBar-link:focus {
+  background: #f6f6f6;
+}
+
+.NavigationBar-link.active {
+  font-weight: bold;
+  background: #eee;
+}
+
+.NavigationBar-link-icon {
+  width: 60px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.NavigationBar:not(.active) .NavigationBar-link:not(.active) .NavigationBar-link-icon {
+  opacity: 0.6;
+}
+
+.NavigationBar-link-label {
+  display: inline-block;
+  margin-left: 8px;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.NavigationBar:not(.active) .NavigationBar-link-label {
+  display: none;
 }
