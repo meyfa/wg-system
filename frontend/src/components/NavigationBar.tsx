@@ -33,9 +33,7 @@ export default function NavigationBar (): ReactElement {
       <div className='NavigationBar-inner'>
         {/* hamburger button */}
         <button className='NavigationBar-toggle' onClick={toggle}>
-          {active
-            ? <span className='NavigationBar-toggle-label'>Navigation</span>
-            : undefined}
+          <span className='NavigationBar-toggle-label'>Navigation</span>
           <FontAwesomeIcon icon={active ? faTimes : faBars} />
         </button>
         {/* item groups */}
@@ -46,9 +44,7 @@ export default function NavigationBar (): ReactElement {
               <span className='NavigationBar-link-icon'>
                 <FontAwesomeIcon icon={item.icon} />
               </span>
-              {active
-                ? <span className='NavigationBar-link-label'>{item.label}</span>
-                : undefined}
+              <span className='NavigationBar-link-label'>{item.label}</span>
             </NavLink>
           ))
         ])}
