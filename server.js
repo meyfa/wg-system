@@ -8,6 +8,7 @@ async function start () {
   init(process.env)
 
   const app = express()
+  app.use(express.json())
 
   // the project needs to be built (`npm run build`) before these paths can work!
   app.use('/api', createApiRouter())
