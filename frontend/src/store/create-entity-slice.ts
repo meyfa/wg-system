@@ -1,4 +1,13 @@
-import { CaseReducer, Comparer, createSlice, Draft, PayloadAction, Slice, SliceCaseReducers } from '@reduxjs/toolkit'
+import {
+  CaseReducer,
+  CaseReducerActions,
+  Comparer,
+  createSlice,
+  Draft,
+  PayloadAction,
+  Slice,
+  SliceCaseReducers
+} from '@reduxjs/toolkit'
 import { Entity } from './entity'
 
 export function defaultComparer (a: Entity | Draft<Entity>, b: Entity | Draft<Entity>): number {
@@ -11,6 +20,8 @@ export interface EntitySliceReducers<T extends Entity> extends SliceCaseReducers
   updateEntity: CaseReducer<T[], PayloadAction<T>>
   deleteEntity: CaseReducer<T[], PayloadAction<string>>
 }
+
+export type EntitySliceActions<T extends Entity> = CaseReducerActions<EntitySliceReducers<T>>
 
 export function createEntitySlice<T extends Entity> (name: string, comparer: Comparer<T> = defaultComparer): Slice<T[], EntitySliceReducers<T>> {
   const comp = comparer as Comparer<T | Draft<T>>

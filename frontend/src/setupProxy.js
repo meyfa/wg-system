@@ -11,7 +11,8 @@ module.exports = function (app) {
       createProxyMiddleware({
         // forward to the backend in Docker which is running at :8080
         target: 'http://localhost:8080',
-        changeOrigin: true
+        changeOrigin: true,
+        ws: true
       })
     )
   })

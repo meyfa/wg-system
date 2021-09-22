@@ -12,7 +12,7 @@
     "build-all": "npm run build --workspaces --if-present",
     "start": "npm run build-all && npm run production",
     "production": "node server.js",
-    "dev": "npm run build-all && npm start -w frontend",
+    "dev": "npm start -w frontend",
     "lint-all": "npm run lint --workspaces --if-present",
     "lint-fix-all": "npm run lint-fix --workspaces --if-present"
   },
