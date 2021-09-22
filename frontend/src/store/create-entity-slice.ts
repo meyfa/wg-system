@@ -1,7 +1,7 @@
 import { CaseReducer, Comparer, createSlice, Draft, PayloadAction, Slice, SliceCaseReducers } from '@reduxjs/toolkit'
 import { Entity } from './entity'
 
-function defaultComparer (a: Entity, b: Entity): number {
+export function defaultComparer (a: Entity | Draft<Entity>, b: Entity | Draft<Entity>): number {
   return a._id.localeCompare(b._id)
 }
 
@@ -12,36 +12,27 @@ export interface EntitySliceReducers<T extends Entity> extends SliceCaseReducers
   deleteEntity: CaseReducer<T[], PayloadAction<string>>
 }
 
-export function createEntitySlice<T extends Entity> (name: string, comparer?: Comparer<T>): Slice<T[], EntitySliceReducers<T>> {
-  const comp = (comparer ?? defaultComparer) as Comparer<T | Draft<T>>
+export function createEntitySlice<T extends Entity> (name: string, comparer: Comparer<T> = defaultComparer): Slice<T[], EntitySliceReducers<T>> {
+  const comp = comparer as Comparer<T | Draft<T>>
+
+  const insertOrUpdate = (entities: Draft<T[]>, action: PayloadAction<T>): void => {
+    const index = entities.findIndex(e => e._id === action.payload._id)
+    if (index < 0) {
+      entities.push(action.payload as Draft<T>)
+    } else {
+      entities.splice(index, 1, action.payload as Draft<T>)
+    }
+    entities.sort(comp)
+  }
 
   return createSlice({
     name: name,
     initialState: [] as T[],
     reducers: {
-      setEntities: (entities, action) => {
-        entities.splice(0, entities.length, ...(action.payload as Draft<T[]>))
-        entities.sort(comp)
-      },
-      createEntity: (entities, action) => {
-        if (entities.every(item => item._id !== action.payload._id)) {
-          entities.push(action.payload as Draft<T>)
-          entities.sort(comp)
-        }
-      },
-      updateEntity: (entities, action) => {
-        const index = entities.findIndex(e => e._id === action.payload._id)
-        if (index >= 0) {
-          entities.splice(index, 1, action.payload as Draft<T>)
-          entities.sort(comp)
-        }
-      },
-      deleteEntity: (entities, action) => {
-        const index = entities.findIndex(e => e._id === action.payload)
-        if (index >= 0) {
-          entities.splice(index, 1)
-        }
-      }
+      setEntities: (entities, action) => [...action.payload].sort(comp),
+      createEntity: insertOrUpdate,
+      updateEntity: insertOrUpdate,
+      deleteEntity: (entities, action) => entities.filter(item => item._id !== action.payload)
     }
   })
 }
