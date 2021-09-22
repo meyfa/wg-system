@@ -1,15 +1,19 @@
-import { Request, Response, Router } from 'express'
+import { Router } from 'express'
+import { router as members } from './routes/members'
+import { createHandler } from './create-handler'
+import { NotFoundError } from './errors'
 
 export function createApiRouter (): Router {
   const router = Router()
 
-  router.get('/', (req: Request, res: Response) => res.status(200).json({}))
+  router.get('/', createHandler(() => ({ data: {} })))
 
-  router.use((req: Request, res: Response) => {
-    res.status(404).json({
-      error: 'endpoint not found'
-    })
-  })
+  router.use('/members', members)
+
+  // 404 fallback
+  router.use(createHandler(() => {
+    throw new NotFoundError('route')
+  }))
 
   return router
 }

@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
-export interface Person {
+export interface Member {
   name: string
 }
 
-export default mongoose.model('Person', new Schema<Person>({
+export default mongoose.model('Member', new Schema<Member>({
   name: {
     type: String,
     required: true
