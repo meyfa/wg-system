@@ -1,7 +1,7 @@
-import { WebsocketRequestHandler } from 'express-ws'
+import WebSocket from 'ws'
 import { register } from './events'
 
-export const handler: WebsocketRequestHandler = (ws) => {
+export const webSocketHandler = (ws: WebSocket): void => {
   const unsubscribe = register(ws)
 
   ws.on('close', unsubscribe)
