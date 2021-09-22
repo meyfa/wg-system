@@ -1,34 +1,16 @@
 import './App.css'
-import { ReactElement, useEffect } from 'react'
+import { ReactElement } from 'react'
 import NavigationBar from './components/NavigationBar'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import MembersPage from './pages/MembersPage'
 import CleaningPage from './pages/CleaningPage'
 import GarbageDisposalPage from './pages/GarbageDisposalPage'
-import { useAppDispatch } from './store/store'
-import { Member, membersActions } from './store/entities/members'
-import { Entity } from './store/entity'
-
-async function fetchEntityCollection<T extends Entity> (type: string): Promise<T[]> {
-  const response = await fetch(`/api/${type}`)
-  if (!response.ok) {
-    throw new Error('error fetching collection: ' + type)
-  }
-  const { data } = await response.json()
-  return data
-}
-
-const fetchMembers = async (): Promise<Member[]> => await fetchEntityCollection('members')
+import { membersActions } from './store/entities/members'
+import { useApiSliceBridge } from './api-slice-bridge'
 
 export default function App (): ReactElement {
-  const dispatch = useAppDispatch()
-
-  // make one initial request to load all entities
-  // TODO replace this with a socket connection once available
-  useEffect((async (): Promise<void> => {
-    dispatch(membersActions.setEntities(await fetchMembers()))
-  }) as () => void, [dispatch])
+  useApiSliceBridge('members', membersActions)
 
   return (
     <div className='App'>

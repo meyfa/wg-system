@@ -4,6 +4,7 @@ import Member from '../../models/member'
 import { BadRequestError, NotFoundError } from '../errors'
 import Joi from 'joi'
 import { Types } from 'mongoose'
+import { broadcast } from '../../websocket/events'
 
 const schema = Joi.object({
   _id: Joi.any().strip(),
@@ -20,6 +21,7 @@ router.post('/', createHandler(async (req) => {
     throw new BadRequestError(error.message)
   }
   const item = await Member.create(value)
+  broadcast('add/members', item)
   return { code: HTTP_CREATED, data: item }
 }))
 
@@ -48,6 +50,7 @@ router.put('/:id', createHandler(async (req) => {
   }
   Object.assign(item, value)
   item.save()
+  broadcast('update/members', item)
   return {}
 }))
 
@@ -59,5 +62,6 @@ router.delete('/:id', createHandler(async (req) => {
   if (item == null) {
     throw new NotFoundError()
   }
+  broadcast('remove/members', item)
   return {}
 }))
