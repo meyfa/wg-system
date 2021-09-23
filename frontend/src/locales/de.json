@@ -1,0 +1,15 @@
+{
+  "navigation": "Navigation",
+  "home": {
+    "title": "Übersicht"
+  },
+  "members": {
+    "title": "Mitbewohner"
+  },
+  "cleaning": {
+    "title": "Putzdienste"
+  },
+  "garbage": {
+    "title": "Mülldienste"
+  }
+}

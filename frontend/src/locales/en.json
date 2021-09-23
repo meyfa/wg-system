@@ -1,0 +1,15 @@
+{
+  "navigation": "Navigation",
+  "home": {
+    "title": "Overview"
+  },
+  "members": {
+    "title": "Members"
+  },
+  "cleaning": {
+    "title": "Cleaning"
+  },
+  "garbage": {
+    "title": "Garbage disposal"
+  }
+}
