@@ -2,6 +2,11 @@ import { ReactElement } from 'react'
 import { useAppSelector } from '../store/store'
 import { selectMembers } from '../store/entities/members'
 import { useTranslation } from 'react-i18next'
+import PageTitle from '../components/PageTitle'
+import BasicButton from '../components/forms/BasicButton'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MemberItem from '../components/members/MemberItem'
 
 export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
@@ -10,9 +15,14 @@ export default function MembersPage (): ReactElement {
 
   return (
     <div>
-      <h1>{t('members.title')}</h1>
+      <PageTitle title={t('members.title')}>
+        <BasicButton onClick={() => {}}>
+          <FontAwesomeIcon icon={faPlus} />
+          {t('basicActions.add')}
+        </BasicButton>
+      </PageTitle>
       {members.map(member => (
-        <div key={member._id}>{member.name}</div>
+        <MemberItem key={member._id} member={member} />
       ))}
     </div>
   )
