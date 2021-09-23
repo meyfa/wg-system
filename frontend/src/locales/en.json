@@ -1,4 +1,8 @@
 {
+  "basicActions": {
+    "add": "Add",
+    "edit": "Edit"
+  },
   "navigation": "Navigation",
   "home": {
     "title": "Overview"

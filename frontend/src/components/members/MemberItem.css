@@ -1,0 +1,15 @@
+.MemberItem {
+  display: flex;
+  margin: 16px 0;
+  padding: 12px;
+  align-items: center;
+  border: 6px solid #ccc;
+}
+
+.MemberItem-name {
+  flex-grow: 1;
+}
+
+.MemberItem-actions {
+  text-align: right;
+}
