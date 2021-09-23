@@ -1,7 +1,10 @@
 import { ReactElement } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function HomePage (): ReactElement {
+  const { t } = useTranslation()
+
   return (
-    <div>Home</div>
+    <div>{t('home.title')}</div>
   )
 }
