@@ -1,0 +1,12 @@
+.EditMemberModal-title {
+  margin: 0 0 24px;
+}
+
+.EditMemberModal-title > svg {
+  margin-right: 12px;
+}
+
+.EditMemberModal-actions {
+  margin: 24px 0 0;
+  text-align: center;
+}
