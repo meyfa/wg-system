@@ -1,14 +1,21 @@
 {
   "basicActions": {
     "add": "Hinzufügen",
-    "edit": "Bearbeiten"
+    "edit": "Bearbeiten",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
   },
   "navigation": "Navigation",
   "home": {
     "title": "Übersicht"
   },
   "members": {
-    "title": "Mitbewohner"
+    "title": "Mitbewohner",
+    "edit": "Mitbewohner-Info ändern",
+    "create": "Mitbewohner hinzufügen",
+    "fields": {
+      "name": "Name"
+    }
   },
   "cleaning": {
     "title": "Putzdienste"

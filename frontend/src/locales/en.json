@@ -1,14 +1,21 @@
 {
   "basicActions": {
     "add": "Add",
-    "edit": "Edit"
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "navigation": "Navigation",
   "home": {
     "title": "Overview"
   },
   "members": {
-    "title": "Members"
+    "title": "Members",
+    "edit": "Edit member info",
+    "create": "Add a member",
+    "fields": {
+      "name": "Name"
+    }
   },
   "cleaning": {
     "title": "Cleaning"
