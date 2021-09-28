@@ -8,6 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MemberItem from '../components/members/MemberItem'
 import EditMemberModal from '../components/members/EditMemberModal'
+import api from '../api/api'
 
 export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
@@ -19,8 +20,8 @@ export default function MembersPage (): ReactElement {
   const showCreateModal = useCallback(() => setCreating(true), [])
   const hideCreateModal = useCallback(() => setCreating(false), [])
 
-  const create = useCallback((entity: Member) => {
-    // TODO implement
+  const create = useCallback(async (entity: Member) => {
+    await api.members.create(entity)
     setCreating(false)
   }, [])
 
