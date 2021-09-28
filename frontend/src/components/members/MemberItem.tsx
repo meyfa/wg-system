@@ -6,6 +6,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'react-i18next'
 import EditMemberModal from './EditMemberModal'
+import api from '../../api/api'
 
 interface Props {
   member: Member
@@ -19,8 +20,8 @@ export default function MemberItem (props: Props): ReactElement {
   const showEditModal = useCallback(() => setEditing(true), [])
   const hideEditModal = useCallback(() => setEditing(false), [])
 
-  const save = useCallback((entity: Member) => {
-    // TODO implement
+  const save = useCallback(async (entity: Member) => {
+    await api.members.update(entity)
     setEditing(false)
   }, [])
 
