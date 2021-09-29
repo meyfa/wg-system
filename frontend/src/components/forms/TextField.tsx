@@ -1,5 +1,6 @@
 import './TextField.css'
 import { ChangeEventHandler } from 'react'
+import clsx from 'clsx'
 
 interface Props {
   value?: string | number
@@ -13,7 +14,7 @@ export default function TextField (props: Props): JSX.Element {
   return (
     <input
       type='text'
-      className={'TextField' + (props.className != null ? ' ' + props.className : '')}
+      className={clsx('TextField', props.className)}
       disabled={props.disabled}
       value={props.value}
       placeholder={props.placeholder}
