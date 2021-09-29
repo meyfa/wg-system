@@ -1,5 +1,6 @@
 import './BasicButton.css'
 import { PropsWithChildren, ReactElement } from 'react'
+import clsx from 'clsx'
 
 interface BasicButtonProps {
   onClick?: () => void
@@ -9,7 +10,7 @@ interface BasicButtonProps {
 
 export default function BasicButton (props: PropsWithChildren<BasicButtonProps>): ReactElement {
   return (
-    <button className={'BasicButton' + (props.className != null ? ' ' + props.className : '')} type='button'
+    <button className={clsx('BasicButton', props.className)} type='button'
             disabled={props.disabled} onClick={props.onClick}>
       {props.children}
     </button>

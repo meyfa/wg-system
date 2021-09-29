@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faBroom, faHome, faTimes, faTrashAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { useTranslation } from 'react-i18next'
+import clsx from 'clsx'
 
 interface NavItem {
   icon: IconDefinition
@@ -32,7 +33,7 @@ export default function NavigationBar (): ReactElement {
   const close = useCallback(() => setActive(false), [])
 
   return (
-    <div className={'NavigationBar' + (active ? ' active' : '')}>
+    <div className={clsx('NavigationBar', { active })}>
       <div className='NavigationBar-inner'>
         {/* hamburger button */}
         <button className='NavigationBar-toggle' onClick={toggle}>
