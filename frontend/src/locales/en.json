@@ -7,7 +7,11 @@
   },
   "navigation": "Navigation",
   "home": {
-    "title": "Overview"
+    "title": "Overview",
+    "chores": {
+      "markDue": "Mark due",
+      "markDone": "Mark as done"
+    }
   },
   "members": {
     "title": "Members",
