@@ -1,6 +1,4 @@
-import './App.css'
 import { ReactElement } from 'react'
-import NavigationBar from './components/NavigationBar'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import MembersPage from './pages/MembersPage'
@@ -13,28 +11,24 @@ export default function App (): ReactElement {
   useApiSliceBridge('members', membersActions)
 
   return (
-    <div className='App'>
-      <BrowserRouter>
-        <NavigationBar />
+    <BrowserRouter>
+      <Switch>
+        {/* home page */}
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
 
-        <Switch>
-          {/* home page */}
-          <Route exact path='/'>
-            <HomePage />
-          </Route>
-
-          {/* settings pages */}
-          <Route exact path='/settings/members'>
-            <MembersPage />
-          </Route>
-          <Route exact path='/settings/cleaning'>
-            <CleaningPage />
-          </Route>
-          <Route exact path='/settings/garbage'>
-            <GarbageDisposalPage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
+        {/* settings pages */}
+        <Route exact path='/settings/members'>
+          <MembersPage />
+        </Route>
+        <Route exact path='/settings/cleaning'>
+          <CleaningPage />
+        </Route>
+        <Route exact path='/settings/garbage'>
+          <GarbageDisposalPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   )
 }
