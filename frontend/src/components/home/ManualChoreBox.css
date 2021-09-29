@@ -1,0 +1,23 @@
+.ManualChoreBox {
+  min-width: 240px;
+}
+
+.ManualChoreBox-title {
+  font-size: 24px;
+}
+
+.ManualChoreBox-icon {
+  margin-right: 12px;
+}
+
+.ManualChoreBox-icon.good {
+  color: #7ae293;
+}
+
+.ManualChoreBox-icon.bad {
+  color: #f05353;
+}
+
+.ManualChoreBox-actions {
+  margin-top: 16px;
+}
