@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MemberItem from '../components/members/MemberItem'
 import EditMemberModal from '../components/members/EditMemberModal'
 import api from '../api/api'
+import NavigationBarLayout from '../layouts/NavigationBarLayout'
 
 export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
@@ -26,7 +27,7 @@ export default function MembersPage (): ReactElement {
   }, [])
 
   return (
-    <div>
+    <NavigationBarLayout centered>
       <PageTitle title={t('members.title')}>
         <BasicButton onClick={showCreateModal}>
           <FontAwesomeIcon icon={faPlus} />
@@ -37,6 +38,6 @@ export default function MembersPage (): ReactElement {
       {members.map(member => (
         <MemberItem key={member._id} member={member} />
       ))}
-    </div>
+    </NavigationBarLayout>
   )
 }

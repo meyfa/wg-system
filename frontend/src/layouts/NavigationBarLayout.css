@@ -1,0 +1,10 @@
+.NavigationBarLayout {
+  margin-left: 60px;
+  padding: 24px 8px;
+}
+
+.NavigationBarLayout.centered > .NavigationBarLayout-content {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+}
