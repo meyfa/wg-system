@@ -1,17 +1,17 @@
-.MemberItem {
+.ManualChoreItem {
   display: flex;
   margin: 16px 0;
   padding: 12px;
   align-items: center;
   background: #fff;
-  border: 6px solid #ccc;
+  border: 2px solid #b1b1b1;
 }
 
-.MemberItem-name {
+.ManualChoreItem-name {
   flex-grow: 1;
   font-size: 20px;
 }
 
-.MemberItem-actions {
+.ManualChoreItem-actions {
   text-align: right;
 }
