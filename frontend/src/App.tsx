@@ -6,9 +6,11 @@ import CleaningPage from './pages/CleaningPage'
 import GarbageDisposalPage from './pages/GarbageDisposalPage'
 import { membersActions } from './store/entities/members'
 import { useApiSliceBridge } from './api-slice-bridge'
+import { manualChoresActions } from './store/entities/manual-chores'
 
 export default function App (): ReactElement {
   useApiSliceBridge('members', membersActions)
+  useApiSliceBridge('manual-chores', manualChoresActions)
 
   return (
     <BrowserRouter>
