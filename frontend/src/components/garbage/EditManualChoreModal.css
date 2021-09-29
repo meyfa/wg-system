@@ -1,0 +1,12 @@
+.EditManualChoreModal-title {
+  margin: 0 0 24px;
+}
+
+.EditManualChoreModal-title > svg {
+  margin-right: 12px;
+}
+
+.EditManualChoreModal-actions {
+  margin: 24px 0 0;
+  text-align: center;
+}

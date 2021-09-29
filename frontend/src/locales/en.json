@@ -25,6 +25,11 @@
     "title": "Cleaning"
   },
   "garbage": {
-    "title": "Garbage disposal"
+    "title": "Garbage disposal",
+    "edit": "Edit chore",
+    "create": "Set up a chore",
+    "fields": {
+      "name": "Name"
+    }
   }
 }

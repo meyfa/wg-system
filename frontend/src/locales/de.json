@@ -25,6 +25,11 @@
     "title": "Putzdienste"
   },
   "garbage": {
-    "title": "Mülldienste"
+    "title": "Mülldienste",
+    "edit": "Dienst bearbeiten",
+    "create": "Dienst erstellen",
+    "fields": {
+      "name": "Name"
+    }
   }
 }
