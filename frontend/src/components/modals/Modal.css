@@ -12,6 +12,10 @@
   justify-content: center;
 }
 
+.Modal.important {
+  z-index: 1000;
+}
+
 .Modal.active {
   display: flex;
 }
