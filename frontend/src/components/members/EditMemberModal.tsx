@@ -1,12 +1,8 @@
-import './EditMemberModal.css'
 import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
-import Modal from '../modals/Modal'
 import { Member } from '../../store/entities/members'
-import BasicButton from '../forms/BasicButton'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import EditModal from '../modals/EditModal'
 
 interface Props {
   active: boolean
@@ -39,24 +35,16 @@ export default function EditMemberModal (props: Props): ReactElement {
   }, [onSave, props.member, isValid, name])
 
   return (
-    <Modal active={props.active}>
-      <div className='EditMemberModal-title'>
-        <FontAwesomeIcon icon={faEdit} />
-        {props.member != null ? t('members.edit') : t('members.create')}
-      </div>
+    <EditModal title={props.member != null ? t('members.edit') : t('members.create')}
+               active={props.active}
+               isValid={isValid}
+               onSave={save}
+               onCancel={props.onCancel}>
       <TextField
         value={name}
         placeholder={t('members.fields.name')}
         onChange={({ target }) => setName(target.value)}
       />
-      <div className='EditMemberModal-actions'>
-        <BasicButton onClick={save} disabled={!isValid}>
-          {t('basicActions.save')}
-        </BasicButton>
-        <BasicButton onClick={props.onCancel}>
-          {t('basicActions.cancel')}
-        </BasicButton>
-      </div>
-    </Modal>
+    </EditModal>
   )
 }
