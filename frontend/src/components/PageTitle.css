@@ -11,3 +11,7 @@
   line-height: 1;
   vertical-align: middle;
 }
+
+.PageTitle:not(:first-child) {
+  margin-top: 48px;
+}

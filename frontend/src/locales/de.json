@@ -6,6 +6,7 @@
     "save": "Speichern",
     "cancel": "Abbrechen"
   },
+  "noneOption": "ohne",
   "navigation": "Navigation",
   "home": {
     "title": "Übersicht",
@@ -29,6 +30,15 @@
     "title": "Mülldienste",
     "edit": "Dienst bearbeiten",
     "create": "Dienst erstellen",
+    "fields": {
+      "name": "Name",
+      "scoreboard": "Zu verwendendes Scoreboard"
+    }
+  },
+  "scoreboards": {
+    "title": "Scoreboards",
+    "edit": "Edit scoreboard",
+    "create": "Create a scoreboard",
     "fields": {
       "name": "Name"
     }
