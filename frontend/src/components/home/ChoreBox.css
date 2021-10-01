@@ -2,6 +2,7 @@
   display: inline-block;
   margin: 0 16px 16px 0;
   padding: 12px;
+  vertical-align: top;
   background: #fff;
   border: 2px solid transparent;
   border-radius: 2px;
