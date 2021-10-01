@@ -1,11 +1,12 @@
-import mongoose, { Schema } from 'mongoose'
+import { model, Schema } from 'mongoose'
 import Joi from 'joi'
+import { idValidator } from './common'
 
 export interface Member {
   name: string
 }
 
-export const memberModel = mongoose.model('Member', new Schema<Member>({
+export const memberModel = model('Member', new Schema<Member>({
   name: {
     type: String,
     required: true
@@ -13,6 +14,6 @@ export const memberModel = mongoose.model('Member', new Schema<Member>({
 }))
 
 export const memberValidator = Joi.object({
-  _id: Joi.string().required(),
+  _id: idValidator.required(),
   name: Joi.string().trim().required()
 }).required()
