@@ -1,4 +1,4 @@
-.ManualChoreItem {
+.EditableItem {
   display: flex;
   margin: 16px 0;
   padding: 12px;
@@ -7,11 +7,11 @@
   border: 2px solid #b1b1b1;
 }
 
-.ManualChoreItem-name {
+.EditableItem-name {
   flex-grow: 1;
   font-size: 20px;
 }
 
-.ManualChoreItem-actions {
+.EditableItem-actions {
   text-align: right;
 }
