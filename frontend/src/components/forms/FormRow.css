@@ -1,0 +1,11 @@
+.FormRow {
+  display: block;
+  margin: 16px 0 24px;
+}
+
+.FormRow-text {
+  font-size: 14px;
+  margin: 0 0 8px;
+  line-height: 1;
+  font-weight: bold;
+}
