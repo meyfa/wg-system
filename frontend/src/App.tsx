@@ -8,10 +8,12 @@ import { membersActions } from './store/entities/members'
 import { useApiSliceBridge } from './api-slice-bridge'
 import { manualChoresActions } from './store/entities/manual-chores'
 import ConnectionModal from './components/ConnectionModal'
+import { scoreboardsActions } from './store/entities/scoreboards'
 
 export default function App (): ReactElement {
   useApiSliceBridge('members', membersActions)
   useApiSliceBridge('manual-chores', manualChoresActions)
+  useApiSliceBridge('scoreboards', scoreboardsActions)
 
   return (
     <BrowserRouter>

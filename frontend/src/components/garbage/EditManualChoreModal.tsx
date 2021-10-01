@@ -17,10 +17,12 @@ export default function EditManualChoreModal (props: Props): ReactElement {
 
   const [name, setName] = useState('')
   const [dueSince, setDueSince] = useState(0)
+  const [scoreboardId, setScoreboardId] = useState<string | null>(null)
 
   useEffect(() => {
     setName(props.chore?.name ?? '')
     setDueSince(props.chore?.dueSince ?? 0)
+    setScoreboardId(props.chore?.scoreboardId ?? null)
   }, [props.chore])
 
   const isValid = useMemo(() => {
@@ -33,7 +35,8 @@ export default function EditManualChoreModal (props: Props): ReactElement {
       onSave({
         _id: props.chore?._id ?? '',
         name,
-        dueSince
+        dueSince,
+        scoreboardId
       })
     }
   }, [onSave, props.chore, isValid, name, dueSince])
