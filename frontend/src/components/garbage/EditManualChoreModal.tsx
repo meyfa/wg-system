@@ -1,9 +1,9 @@
-import './EditManualChoreModal.css'
 import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import { ManualChore } from '../../store/entities/manual-chores'
 import EditModal from '../modals/EditModal'
+import FormRow from '../forms/FormRow'
 
 interface Props {
   active: boolean
@@ -39,7 +39,7 @@ export default function EditManualChoreModal (props: Props): ReactElement {
         scoreboardId
       })
     }
-  }, [onSave, props.chore, isValid, name, dueSince])
+  }, [onSave, props.chore, isValid, name, dueSince, scoreboardId])
 
   return (
     <EditModal title={props.chore != null ? t('garbage.edit') : t('garbage.create')}
@@ -47,11 +47,12 @@ export default function EditManualChoreModal (props: Props): ReactElement {
                isValid={isValid}
                onSave={save}
                onCancel={props.onCancel}>
-      <TextField
-        value={name}
-        placeholder={t('garbage.fields.name')}
-        onChange={({ target }) => setName(target.value)}
-      />
+      <FormRow label={t('garbage.fields.name')}>
+        <TextField
+          value={name}
+          onChange={({ target }) => setName(target.value)}
+        />
+      </FormRow>
     </EditModal>
   )
 }

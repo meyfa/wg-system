@@ -3,6 +3,7 @@ import { Member } from '../../store/entities/members'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import EditModal from '../modals/EditModal'
+import FormRow from '../forms/FormRow'
 
 interface Props {
   active: boolean
@@ -40,11 +41,12 @@ export default function EditMemberModal (props: Props): ReactElement {
                isValid={isValid}
                onSave={save}
                onCancel={props.onCancel}>
-      <TextField
-        value={name}
-        placeholder={t('members.fields.name')}
-        onChange={({ target }) => setName(target.value)}
-      />
+      <FormRow label={t('members.fields.name')}>
+        <TextField
+          value={name}
+          onChange={({ target }) => setName(target.value)}
+        />
+      </FormRow>
     </EditModal>
   )
 }
