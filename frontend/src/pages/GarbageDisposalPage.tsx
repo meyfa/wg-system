@@ -10,6 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import EditManualChoreModal from '../components/garbage/EditManualChoreModal'
 import ManualChoreItem from '../components/garbage/ManualChoreItem'
+import { Scoreboard, selectScoreboards } from '../store/entities/scoreboards'
+import ScoreboardItem from '../components/scoreboards/ScoreboardItem'
+import EditScoreboardModal from '../components/scoreboards/EditScoreboardModal'
 
 export default function GarbageDisposalPage (): ReactElement {
   const { t } = useTranslation()
@@ -17,13 +20,23 @@ export default function GarbageDisposalPage (): ReactElement {
   const manualChores = useAppSelector(selectManualChores)
 
   const [creating, setCreating] = useState(false)
-
   const showCreateModal = useCallback(() => setCreating(true), [])
   const hideCreateModal = useCallback(() => setCreating(false), [])
 
   const create = useCallback(async (entity: ManualChore) => {
     await api.manualChores.create(entity)
     setCreating(false)
+  }, [])
+
+  const scoreboards = useAppSelector(selectScoreboards)
+
+  const [creatingScoreboard, setCreatingScoreboard] = useState(false)
+  const showCreateScoreboardModal = useCallback(() => setCreatingScoreboard(true), [])
+  const hideCreateScoreboardModal = useCallback(() => setCreatingScoreboard(false), [])
+
+  const createScoreboard = useCallback(async (entity: Scoreboard) => {
+    await api.scoreboards.create(entity)
+    setCreatingScoreboard(false)
   }, [])
 
   return (
@@ -35,9 +48,15 @@ export default function GarbageDisposalPage (): ReactElement {
         </BasicButton>
       </PageTitle>
       <EditManualChoreModal active={creating} onSave={create} onCancel={hideCreateModal} />
-      {manualChores.map(chore => (
-        <ManualChoreItem key={chore._id} chore={chore} />
-      ))}
+      {manualChores.map(chore => <ManualChoreItem key={chore._id} chore={chore} />)}
+      <PageTitle title={t('scoreboards.title')}>
+        <BasicButton onClick={showCreateScoreboardModal}>
+          <FontAwesomeIcon icon={faPlus} />
+          {t('basicActions.add')}
+        </BasicButton>
+      </PageTitle>
+      <EditScoreboardModal active={creatingScoreboard} onSave={createScoreboard} onCancel={hideCreateScoreboardModal} />
+      {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
     </NavigationBarLayout>
   )
 }

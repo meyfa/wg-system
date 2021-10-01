@@ -3,7 +3,15 @@ import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import { ManualChore } from '../../store/entities/manual-chores'
 import EditModal from '../modals/EditModal'
+import { useAppSelector } from '../../store/store'
+import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
+import BasicDropdown from '../forms/BasicDropdown'
 import FormRow from '../forms/FormRow'
+
+function useScoreboardFormatter (): (item: Scoreboard | null) => string {
+  const { t } = useTranslation()
+  return item => item == null ? t('noneOption') : item.name
+}
 
 interface Props {
   active: boolean
@@ -14,6 +22,8 @@ interface Props {
 
 export default function EditManualChoreModal (props: Props): ReactElement {
   const { t } = useTranslation()
+
+  const scoreboards = useAppSelector(selectScoreboards)
 
   const [name, setName] = useState('')
   const [dueSince, setDueSince] = useState(0)
@@ -41,6 +51,14 @@ export default function EditManualChoreModal (props: Props): ReactElement {
     }
   }, [onSave, props.chore, isValid, name, dueSince, scoreboardId])
 
+  const scoreboardOptions = useMemo(() => [null, ...scoreboards], [scoreboards])
+  const scoreboardFormatter = useScoreboardFormatter()
+  const scoreboardValue = useMemo(() => {
+    return scoreboardId == null
+      ? null
+      : scoreboards.find(item => item._id === scoreboardId) ?? null
+  }, [scoreboards, scoreboardId])
+
   return (
     <EditModal title={props.chore != null ? t('garbage.edit') : t('garbage.create')}
                active={props.active}
@@ -51,6 +69,14 @@ export default function EditManualChoreModal (props: Props): ReactElement {
         <TextField
           value={name}
           onChange={({ target }) => setName(target.value)}
+        />
+      </FormRow>
+      <FormRow label={t('garbage.fields.scoreboard')}>
+        <BasicDropdown
+          options={scoreboardOptions}
+          formatter={scoreboardFormatter}
+          value={scoreboardValue}
+          onSelect={option => setScoreboardId(option?._id ?? null)}
         />
       </FormRow>
     </EditModal>

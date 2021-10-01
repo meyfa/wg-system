@@ -6,6 +6,7 @@
     "save": "Save",
     "cancel": "Cancel"
   },
+  "noneOption": "none",
   "navigation": "Navigation",
   "home": {
     "title": "Overview",
@@ -29,6 +30,15 @@
     "title": "Garbage disposal",
     "edit": "Edit chore",
     "create": "Set up a chore",
+    "fields": {
+      "name": "Name",
+      "scoreboard": "Scoreboard for this chore"
+    }
+  },
+  "scoreboards": {
+    "title": "Scoreboards",
+    "edit": "Edit scoreboard",
+    "create": "Create a scoreboard",
     "fields": {
       "name": "Name"
     }
