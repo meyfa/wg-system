@@ -6,6 +6,7 @@ import { useScrollLock } from '../../util/use-scroll-lock'
 
 interface Props {
   active: boolean
+  important?: boolean
 }
 
 export default function Modal (props: PropsWithChildren<Props>): ReactElement {
@@ -16,7 +17,7 @@ export default function Modal (props: PropsWithChildren<Props>): ReactElement {
     return <></>
   }
 
-  return createPortal(<div ref={ref} className={clsx('Modal', { active: props.active })}>
+  return createPortal(<div ref={ref} className={clsx('Modal', { active: props.active, important: props.important })}>
     <div className='Modal-container'>
       {props.children}
     </div>

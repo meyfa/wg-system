@@ -1,4 +1,5 @@
 {
+  "lostConnection": "Trying to reconnect...",
   "basicActions": {
     "add": "Add",
     "edit": "Edit",

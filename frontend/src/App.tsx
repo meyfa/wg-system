@@ -7,6 +7,7 @@ import GarbageDisposalPage from './pages/GarbageDisposalPage'
 import { membersActions } from './store/entities/members'
 import { useApiSliceBridge } from './api-slice-bridge'
 import { manualChoresActions } from './store/entities/manual-chores'
+import ConnectionModal from './components/ConnectionModal'
 
 export default function App (): ReactElement {
   useApiSliceBridge('members', membersActions)
@@ -31,6 +32,9 @@ export default function App (): ReactElement {
           <GarbageDisposalPage />
         </Route>
       </Switch>
+
+      {/* an overlay over the whole page displayed when connection is lost */}
+      <ConnectionModal />
     </BrowserRouter>
   )
 }

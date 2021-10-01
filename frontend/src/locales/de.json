@@ -1,4 +1,5 @@
 {
+  "lostConnection": "Verbindungsaufbau...",
   "basicActions": {
     "add": "Hinzufügen",
     "edit": "Bearbeiten",
