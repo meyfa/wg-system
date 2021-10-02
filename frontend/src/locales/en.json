@@ -13,6 +13,10 @@
     "chores": {
       "markDue": "Mark due",
       "markDone": "Mark as done"
+    },
+    "scoreboards": {
+      "help": "The person at the top should do the next chore.",
+      "empty": "No scores entered yet"
     }
   },
   "members": {

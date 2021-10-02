@@ -13,6 +13,10 @@
     "chores": {
       "markDue": "Als fällig markieren",
       "markDone": "Dienst eintragen"
+    },
+    "scoreboards": {
+      "help": "Die Person weiter oben sollte den nächsten Dienst machen.",
+      "empty": "Bisher keine Punkte eingetragen"
     }
   },
   "members": {

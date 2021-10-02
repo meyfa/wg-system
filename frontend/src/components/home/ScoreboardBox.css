@@ -1,0 +1,17 @@
+.ScoreboardBox {
+  width: 320px;
+}
+
+.ScoreboardBox-title {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.ScoreboardBox-row {
+  display: flex;
+}
+
+.ScoreboardBox-info {
+  margin-top: 12px;
+  color: #888;
+}
