@@ -17,7 +17,8 @@
     "scoreboards": {
       "help": "The person at the top should do the next chore.",
       "empty": "No scores entered yet"
-    }
+    },
+    "selectMember": "Who completed the task?"
   },
   "members": {
     "title": "Members",

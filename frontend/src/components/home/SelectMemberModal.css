@@ -1,0 +1,18 @@
+.SelectMemberModal-title {
+  margin: 8px 0 32px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.SelectMemberModal-choices {
+  display: grid;
+  max-width: 960px;
+  margin: 16px 0;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.SelectMemberModal-actions {
+  margin: 24px 0 0;
+  text-align: center;
+}

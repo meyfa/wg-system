@@ -17,7 +17,8 @@
     "scoreboards": {
       "help": "Die Person weiter oben sollte den nächsten Dienst machen.",
       "empty": "Bisher keine Punkte eingetragen"
-    }
+    },
+    "selectMember": "Wer hat die Aufgabe erledigt?"
   },
   "members": {
     "title": "Mitbewohner",
