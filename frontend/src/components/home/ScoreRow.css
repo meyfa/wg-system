@@ -16,5 +16,8 @@
 .ScoreRow-bar-inner {
   display: block;
   height: 100%;
+  padding-left: 8px;
+  font-size: 14px;
+  font-weight: bold;
   background: #e95;
 }
