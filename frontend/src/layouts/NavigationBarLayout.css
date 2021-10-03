@@ -1,6 +1,6 @@
 .NavigationBarLayout {
   margin-left: 60px;
-  padding: 24px 8px;
+  padding: 16px;
 }
 
 .NavigationBarLayout.centered > .NavigationBarLayout-content {
