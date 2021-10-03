@@ -21,6 +21,7 @@ export const scoreboardModel = model('Scoreboard', new Schema<Scoreboard>({
   },
   scores: [
     {
+      _id: false,
       memberId: {
         type: Schema.Types.ObjectId,
         required: true,
