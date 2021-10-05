@@ -43,6 +43,25 @@ function incrementScore (scoreboard: Scoreboard, memberId: string): Scoreboard {
   }
 }
 
+function useDueState (chore: ManualChore): [boolean, () => Promise<void>, (member?: Member) => Promise<void>] {
+  const choreScoreboard = useEntityById(selectScoreboards, chore.scoreboardId)
+
+  const isDue = chore.dueSince != null && chore.dueSince > 0
+
+  const markDue = useCallback(async () => {
+    await api.manualChores.update({ ...chore, dueSince: Date.now() })
+  }, [chore])
+
+  const markDone = useCallback(async (member?: Member) => {
+    await api.manualChores.update({ ...chore, dueSince: 0 })
+    if (choreScoreboard != null && member != null) {
+      await api.scoreboards.update(incrementScore(choreScoreboard, member._id))
+    }
+  }, [chore, choreScoreboard])
+
+  return [isDue, markDue, markDone]
+}
+
 interface Props {
   chore: ManualChore
 }
@@ -50,38 +69,23 @@ interface Props {
 export default function ManualChoreBox (props: Props): ReactElement {
   const { t } = useTranslation()
 
-  const choreScoreboard = useEntityById(selectScoreboards, props.chore.scoreboardId)
-
-  const isDue = props.chore.dueSince != null && props.chore.dueSince > 0
-
-  const markDue = useCallback(async () => {
-    await api.manualChores.update({
-      ...props.chore,
-      dueSince: Date.now()
-    })
-  }, [props.chore])
-
-  const markDone = useCallback(async (member?: Member) => {
-    setSelectingMember(false)
-    await api.manualChores.update({
-      ...props.chore,
-      dueSince: 0
-    })
-    if (choreScoreboard != null && member != null) {
-      await api.scoreboards.update(incrementScore(choreScoreboard, member._id))
-    }
-  }, [props.chore, choreScoreboard])
+  const [isDue, markDue, markDone] = useDueState(props.chore)
 
   const [isSelectingMember, setSelectingMember] = useState(false)
 
   const startMarkDone = useCallback(async () => {
     // when no scoreboard exists for the chore, do not show the modal
-    if (choreScoreboard == null) {
+    if (props.chore.scoreboardId == null) {
       await markDone()
       return
     }
     setSelectingMember(true)
-  }, [choreScoreboard, markDone])
+  }, [props.chore.scoreboardId, markDone])
+
+  const confirmMarkDone = useCallback(async (member?: Member) => {
+    setSelectingMember(false)
+    await markDone(member)
+  }, [markDone])
 
   const cancelMarkDone = useCallback(() => setSelectingMember(false), [])
 
@@ -102,7 +106,7 @@ export default function ManualChoreBox (props: Props): ReactElement {
           </BasicButton>)
         }
       </div>
-      <SelectMemberModal active={isSelectingMember} onSelect={markDone} onCancel={cancelMarkDone} />
+      <SelectMemberModal active={isSelectingMember} onSelect={confirmMarkDone} onCancel={cancelMarkDone} />
     </ChoreBox>
   )
 }
