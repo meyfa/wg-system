@@ -1,6 +1,7 @@
 import './SelectMemberButton.css'
-import { ReactElement, useCallback } from 'react'
+import { ReactElement } from 'react'
 import { Member } from '../../store/entities/members'
+import { useParametrized } from '../../util/use-parametrized'
 
 interface Props {
   member: Member
@@ -8,8 +9,7 @@ interface Props {
 }
 
 export default function SelectMemberButton (props: Props): ReactElement {
-  const { onSelect } = props
-  const handleClick = useCallback(() => onSelect(props.member), [onSelect, props.member])
+  const handleClick = useParametrized(props.onSelect, props.member)
 
   return (
     <button type='button' className='SelectMemberButton' onClick={handleClick}>

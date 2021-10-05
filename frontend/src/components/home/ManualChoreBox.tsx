@@ -1,5 +1,5 @@
 import './ManualChoreBox.css'
-import { ReactElement, useCallback, useMemo, useState } from 'react'
+import { ReactElement, useCallback, useState } from 'react'
 import { ManualChore } from '../../store/entities/manual-chores'
 import ChoreBox from './ChoreBox'
 import BasicButton from '../forms/BasicButton'
@@ -10,8 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { SelectMemberModal } from './SelectMemberModal'
 import { Member } from '../../store/entities/members'
-import { useAppSelector } from '../../store/store'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
+import { useEntityById } from '../../util/use-entity-by-id'
 
 /**
  * Increase the score of a specific member on the given scoreboard by 1.
@@ -50,12 +50,7 @@ interface Props {
 export default function ManualChoreBox (props: Props): ReactElement {
   const { t } = useTranslation()
 
-  const scoreboards = useAppSelector(selectScoreboards)
-  const choreScoreboard = useMemo(() => {
-    return props.chore.scoreboardId != null
-      ? scoreboards.find(item => item._id === props.chore.scoreboardId)
-      : undefined
-  }, [props.chore.scoreboardId, scoreboards])
+  const choreScoreboard = useEntityById(selectScoreboards, props.chore.scoreboardId)
 
   const isDue = props.chore.dueSince != null && props.chore.dueSince > 0
 

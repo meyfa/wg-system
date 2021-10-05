@@ -7,6 +7,7 @@ import { useAppSelector } from '../../store/store'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
 import BasicDropdown from '../forms/BasicDropdown'
 import FormRow from '../forms/FormRow'
+import { useEntityById } from '../../util/use-entity-by-id'
 
 function useScoreboardFormatter (): (item: Scoreboard | null) => string {
   const { t } = useTranslation()
@@ -53,11 +54,7 @@ export default function EditManualChoreModal (props: Props): ReactElement {
 
   const scoreboardOptions = useMemo(() => [null, ...scoreboards], [scoreboards])
   const scoreboardFormatter = useScoreboardFormatter()
-  const scoreboardValue = useMemo(() => {
-    return scoreboardId == null
-      ? null
-      : scoreboards.find(item => item._id === scoreboardId) ?? null
-  }, [scoreboards, scoreboardId])
+  const scoreboardValue = useEntityById(selectScoreboards, scoreboardId)
 
   return (
     <EditModal title={props.chore != null ? t('garbage.edit') : t('garbage.create')}

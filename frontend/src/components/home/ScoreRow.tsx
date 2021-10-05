@@ -1,7 +1,7 @@
 import './ScoreRow.css'
-import { ReactElement, useMemo } from 'react'
-import { useAppSelector } from '../../store/store'
+import { ReactElement } from 'react'
 import { selectMembers } from '../../store/entities/members'
+import { useEntityById } from '../../util/use-entity-by-id'
 
 interface Props {
   memberId: string
@@ -10,11 +10,7 @@ interface Props {
 }
 
 export default function ScoreRow (props: Props): ReactElement {
-  const members = useAppSelector(selectMembers)
-
-  const member = useMemo(() => {
-    return members.find(item => item._id === props.memberId)
-  }, [members, props.memberId])
+  const member = useEntityById(selectMembers, props.memberId)
 
   const badness = props.lowestScore !== 0
     ? Math.abs(props.relativeScore / props.lowestScore)
