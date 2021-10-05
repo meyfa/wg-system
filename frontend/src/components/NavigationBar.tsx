@@ -18,9 +18,9 @@ const NAVIGATION: NavItem[][] = [
     { icon: faHome, label: 'home.title', path: '/' }
   ],
   [
-    { icon: faUsers, label: 'members.title', path: '/settings/members' },
-    { icon: faBroom, label: 'cleaning.title', path: '/settings/cleaning' },
-    { icon: faTrashAlt, label: 'garbage.title', path: '/settings/garbage' }
+    { icon: faUsers, label: 'members.title', path: '/members' },
+    { icon: faBroom, label: 'cleaning.title', path: '/cleaning' },
+    { icon: faTrashAlt, label: 'garbage.title', path: '/garbage' }
   ]
 ]
 

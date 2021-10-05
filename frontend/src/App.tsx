@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import MembersPage from './pages/MembersPage'
 import CleaningPage from './pages/CleaningPage'
@@ -24,14 +24,19 @@ export default function App (): ReactElement {
         </Route>
 
         {/* settings pages */}
-        <Route exact path='/settings/members'>
+        <Route exact path='/members'>
           <MembersPage />
         </Route>
-        <Route exact path='/settings/cleaning'>
+        <Route exact path='/cleaning'>
           <CleaningPage />
         </Route>
-        <Route exact path='/settings/garbage'>
+        <Route exact path='/garbage'>
           <GarbageDisposalPage />
+        </Route>
+
+        {/* page not found */}
+        <Route>
+          <Redirect to='/' />
         </Route>
       </Switch>
 
