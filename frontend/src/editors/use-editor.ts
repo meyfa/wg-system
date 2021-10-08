@@ -1,5 +1,5 @@
 import { Entity } from '../store/entity'
-import { Dispatch, DispatchWithoutAction, useCallback, useEffect, useMemo, useState } from 'react'
+import { Dispatch, DispatchWithoutAction, useEffect, useMemo, useState } from 'react'
 import { useSameObjectReference } from '../util/use-same-object-reference'
 
 /**
@@ -31,18 +31,17 @@ export interface Editor<E extends Entity> {
  * @returns The editor.
  */
 export function useEditor<E extends Entity> (options: EditorOptions<E>): Editor<E> {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getInitial = useCallback(() => options.value ?? options.default, [options.value, options.default])
-  const [storedValue, setStoredValue] = useState<E>(getInitial)
+  const initial = options.value ?? options.default
+  const [storedValue, setStoredValue] = useState<E>(initial)
 
   const update: Dispatch<UpdateStateAction<E>> = (value) => setStoredValue(previous => {
     const partial = value instanceof Function ? value(previous) : value
     return { ...previous, ...partial }
   })
 
-  const reset = (): void => setStoredValue(getInitial)
+  const reset = (): void => setStoredValue(initial)
   // when the outside inputs change, reset the editor to them
-  useEffect(reset, [getInitial])
+  useEffect(reset, [initial])
 
   const isValid = useMemo(() => {
     return options.validate != null ? options.validate(storedValue) : true
