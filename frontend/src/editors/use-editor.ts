@@ -24,6 +24,13 @@ export interface Editor<E extends Entity> {
   isValid: boolean
 }
 
+function useValidation<T> (value: T, validator?: (value: T) => boolean): boolean {
+  return useMemo(() => {
+    return validator != null ? validator(value) : true
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
+}
+
 /**
  * A custom hook that provides editing functionality. The given options MUST NOT change dynamically.
  *
@@ -43,10 +50,7 @@ export function useEditor<E extends Entity> (options: EditorOptions<E>): Editor<
   // when the outside inputs change, reset the editor to them
   useEffect(reset, [initial])
 
-  const isValid = useMemo(() => {
-    return options.validate != null ? options.validate(storedValue) : true
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storedValue])
+  const isValid = useValidation(storedValue, options.validate)
 
   return useSameObjectReference({
     value: storedValue,
