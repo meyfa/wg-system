@@ -4,11 +4,11 @@ import { RootState } from '../store'
 import { Entity } from '../entity'
 
 export interface Scoreboard extends Entity {
-  name: string
-  scores: Array<{
-    memberId: string
-    offset: number
-    score: number
+  readonly name: string
+  readonly scores: ReadonlyArray<{
+    readonly memberId: string
+    readonly offset: number
+    readonly score: number
   }>
 }
 

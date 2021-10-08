@@ -4,9 +4,9 @@ import { RootState } from '../store'
 import { Entity } from '../entity'
 
 export interface ManualChore extends Entity {
-  name: string
-  dueSince: number
-  scoreboardId: string | null
+  readonly name: string
+  readonly dueSince: number
+  readonly scoreboardId: string | null
 }
 
 const manualChoresSlice = createEntitySlice<ManualChore>('manual-chores')

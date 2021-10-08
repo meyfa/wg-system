@@ -1,10 +1,12 @@
-import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
+import { ReactElement, useEffect } from 'react'
 import { Member } from '../../store/entities/members'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import EditModal from '../modals/EditModal'
 import FormRow from '../forms/FormRow'
 import ColorPicker from './ColorPicker'
+import { useMemberEditor } from '../../editors/use-member-editor'
+import { useParametrized } from '../../util/use-parametrized'
 
 interface Props {
   active: boolean
@@ -16,45 +18,28 @@ interface Props {
 export default function EditMemberModal (props: Props): ReactElement {
   const { t } = useTranslation()
 
-  const [name, setName] = useState('')
-  const [color, setColor] = useState('#000000')
+  const editor = useMemberEditor(props.member)
+  // reset editor when modal closes/opens
+  useEffect(() => editor.reset(), [editor, props.active])
 
-  useEffect(() => {
-    setName(props.member?.name ?? '')
-    setColor(props.member?.color ?? '#000000')
-  }, [props.member])
-
-  const isValid = useMemo(() => {
-    return name.trim().length > 0
-  }, [name])
-
-  const { onSave } = props
-  const save = useCallback(() => {
-    if (isValid) {
-      onSave({
-        _id: props.member?._id ?? '',
-        name,
-        color
-      })
-    }
-  }, [onSave, props.member, isValid, name, color])
+  const save = useParametrized(props.onSave, editor.value)
 
   return (
     <EditModal title={props.member != null ? t('members.edit') : t('members.create')}
                active={props.active}
-               isValid={isValid}
+               isValid={editor.isValid}
                onSave={save}
                onCancel={props.onCancel}>
       <FormRow label={t('members.fields.name')}>
         <TextField
-          value={name}
-          onChange={({ target }) => setName(target.value)}
+          value={editor.value.name}
+          onChange={({ target }) => editor.update({ name: target.value })}
         />
       </FormRow>
       <FormRow label={t('members.fields.color')}>
         <ColorPicker
-          value={color}
-          onPick={color => setColor(color)}
+          value={editor.value.color}
+          onPick={color => editor.update({ color })}
         />
       </FormRow>
     </EditModal>

@@ -1,9 +1,11 @@
-import { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
+import { ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import EditModal from '../modals/EditModal'
 import { Scoreboard } from '../../store/entities/scoreboards'
 import FormRow from '../forms/FormRow'
+import { useScoreboardEditor } from '../../editors/use-scoreboard-editor'
+import { useParametrized } from '../../util/use-parametrized'
 
 interface Props {
   active: boolean
@@ -15,37 +17,22 @@ interface Props {
 export default function EditScoreboardModal (props: Props): ReactElement {
   const { t } = useTranslation()
 
-  const [name, setName] = useState('')
+  const editor = useScoreboardEditor(props.scoreboard)
+  // reset editor when modal closes/opens
+  useEffect(() => editor.reset(), [editor, props.active])
 
-  useEffect(() => {
-    setName(props.scoreboard?.name ?? '')
-  }, [props.scoreboard])
-
-  const isValid = useMemo(() => {
-    return name.trim().length > 0
-  }, [name])
-
-  const { onSave } = props
-  const save = useCallback(() => {
-    if (isValid) {
-      onSave({
-        _id: props.scoreboard?._id ?? '',
-        name,
-        scores: props.scoreboard?.scores ?? []
-      })
-    }
-  }, [onSave, props.scoreboard, isValid, name])
+  const save = useParametrized(props.onSave, editor.value)
 
   return (
     <EditModal title={props.scoreboard != null ? t('scoreboards.edit') : t('scoreboards.create')}
                active={props.active}
-               isValid={isValid}
+               isValid={editor.isValid}
                onSave={save}
                onCancel={props.onCancel}>
       <FormRow label={t('scoreboards.fields.name')}>
         <TextField
-          value={name}
-          onChange={({ target }) => setName(target.value)}
+          value={editor.value.name}
+          onChange={({ target }) => editor.update({ name: target.value })}
         />
       </FormRow>
     </EditModal>

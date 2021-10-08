@@ -4,8 +4,8 @@ import { RootState } from '../store'
 import { Entity } from '../entity'
 
 export interface Member extends Entity {
-  name: string
-  color: string
+  readonly name: string
+  readonly color: string
 }
 
 const membersSlice = createEntitySlice<Member>('members')
