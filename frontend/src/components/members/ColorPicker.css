@@ -1,0 +1,28 @@
+.ColorPicker {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ColorPicker-btn {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  padding: 0;
+  font: inherit;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+}
+
+.ColorPicker-btn:active,
+.ColorPicker-btn:hover {
+  outline-color: #aaa;
+}
+
+.ColorPicker-btn.selected {
+  outline-color: #000;
+}

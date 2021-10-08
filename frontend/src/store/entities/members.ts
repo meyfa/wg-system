@@ -5,6 +5,7 @@ import { Entity } from '../entity'
 
 export interface Member extends Entity {
   name: string
+  color: string
 }
 
 const membersSlice = createEntitySlice<Member>('members')
