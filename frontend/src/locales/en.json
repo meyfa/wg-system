@@ -25,7 +25,8 @@
     "edit": "Edit member info",
     "create": "Add a member",
     "fields": {
-      "name": "Name"
+      "name": "Name",
+      "color": "Color"
     }
   },
   "cleaning": {

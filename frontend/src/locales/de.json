@@ -25,7 +25,8 @@
     "edit": "Mitbewohner-Info ändern",
     "create": "Mitbewohner hinzufügen",
     "fields": {
-      "name": "Name"
+      "name": "Name",
+      "color": "Farbe"
     }
   },
   "cleaning": {
