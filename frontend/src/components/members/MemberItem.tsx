@@ -20,11 +20,7 @@ export default function MemberItem (props: Props): ReactElement {
     setEditing(false)
   }, [])
 
-  const style: CSSProperties = useMemo(() => {
-    return {
-      borderColor: props.member.color
-    }
-  }, [props.member.color])
+  const style = useMemo<CSSProperties>(() => ({ borderColor: props.member.color }), [props.member.color])
 
   return (
     <EditableItem className='MemberItem' style={style} itemName={props.member.name} onClickEdit={showEditModal}>

@@ -11,11 +11,7 @@ interface Props {
 export default function SelectMemberButton (props: Props): ReactElement {
   const handleClick = useParametrized(props.onSelect, props.member)
 
-  const style: CSSProperties = useMemo(() => {
-    return {
-      borderColor: props.member.color
-    }
-  }, [props.member.color])
+  const style = useMemo<CSSProperties>(() => ({ borderColor: props.member.color }), [props.member.color])
 
   return (
     <button type='button' className='SelectMemberButton' style={style} onClick={handleClick}>
