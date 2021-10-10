@@ -1,5 +1,5 @@
 import './SelectMemberModal.css'
-import { ReactElement } from 'react'
+import { ReactElement, useMemo } from 'react'
 import Modal from '../modals/Modal'
 import { useTranslation } from 'react-i18next'
 import { useAppSelector } from '../../store/store'
@@ -17,6 +17,7 @@ export function SelectMemberModal (props: Props): ReactElement {
   const { t } = useTranslation()
 
   const members = useAppSelector(selectMembers)
+  const activeMembers = useMemo(() => members.filter(item => item.active), [members])
 
   return (
     <Modal active={props.active}>
@@ -24,7 +25,7 @@ export function SelectMemberModal (props: Props): ReactElement {
         {t('home.selectMember')}
       </div>
       <div className='SelectMemberModal-choices'>
-        {members.map(item => <SelectMemberButton key={item._id} member={item} onSelect={props.onSelect} />)}
+        {activeMembers.map(item => <SelectMemberButton key={item._id} member={item} onSelect={props.onSelect} />)}
       </div>
       <div className='SelectMemberModal-actions'>
         <BasicButton onClick={props.onCancel}>
