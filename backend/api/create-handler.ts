@@ -1,9 +1,6 @@
 import { Request, RequestHandler, Response } from 'express'
 import { ApiError } from './errors'
-
-export const HTTP_OK = 200
-export const HTTP_CREATED = 201
-export const HTTP_INTERNAL_SERVER_ERROR = 500
+import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from './constants'
 
 /**
  * Respond with an error message.
@@ -44,6 +41,30 @@ export interface HandlerResponse<T = any> {
   data?: T
 }
 
+function isSyntaxErrorWithStatus (error: unknown): error is SyntaxError & { status: number } {
+  return error instanceof SyntaxError && 'status' in error
+}
+
+/**
+ * The error handling function that is used. This is called automatically when a request handler throws something,
+ * but is also exposed here to be called manually from outside request handlers.
+ *
+ * @param error The error that occurred.
+ * @param res The response object.
+ */
+export function handleError (error: unknown, res: Response): void {
+  if (isSyntaxErrorWithStatus(error) && error.status >= 400 && error.status < 500) {
+    // JSON input error
+    sendError(res, HTTP_BAD_REQUEST, 'malformed input')
+  } else if (error instanceof ApiError) {
+    // one of our own errors
+    sendError(res, error.code, error.message)
+  } else {
+    console.error(error)
+    sendError(res, HTTP_INTERNAL_SERVER_ERROR, 'internal error')
+  }
+}
+
 /**
  * Construct an Express RequestHandler that will invoke the given function when called.
  * The function may be asynchronous. If the function throws an error, an error response will be sent.
@@ -63,12 +84,7 @@ export function createHandler (fn: (req: Request) => HandlerResponse | Promise<H
       const result = await fn(req)
       sendResult(res, result)
     } catch (error) {
-      if (!(error instanceof ApiError)) {
-        console.error(error)
-        sendError(res, HTTP_INTERNAL_SERVER_ERROR, 'internal error')
-        return
-      }
-      sendError(res, error.code, error.message)
+      handleError(error, res)
     }
   }
 }

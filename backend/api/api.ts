@@ -1,5 +1,5 @@
-import { Router } from 'express'
-import { createHandler } from './create-handler'
+import { ErrorRequestHandler, Router } from 'express'
+import { createHandler, handleError } from './create-handler'
 import { NotFoundError } from './errors'
 import { Controller } from '../controllers/controller'
 import { createControllerRoute } from './controller-route'
@@ -26,4 +26,13 @@ export function createApiRouter (): Router {
   }))
 
   return router
+}
+
+export function createApiErrorHandler (): ErrorRequestHandler {
+  return (err, req, res, next) => {
+    if (res.headersSent) {
+      return next(err)
+    }
+    handleError(err, res)
+  }
 }

@@ -1,3 +1,5 @@
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from './constants'
+
 /**
  * A special type of error that is intentionally thrown by the API.
  * It includes a HTTP status code and a message string.
@@ -19,7 +21,7 @@ export class ApiError extends Error {
  */
 export class BadRequestError extends ApiError {
   constructor (message: string) {
-    super(400, message)
+    super(HTTP_BAD_REQUEST, message)
   }
 }
 
@@ -28,6 +30,6 @@ export class BadRequestError extends ApiError {
  */
 export class NotFoundError extends ApiError {
   constructor (object: string = 'resource') {
-    super(404, `${object} not found`)
+    super(HTTP_NOT_FOUND, `${object} not found`)
   }
 }
