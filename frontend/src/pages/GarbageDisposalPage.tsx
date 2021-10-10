@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import PageTitle from '../components/PageTitle'
+import Title from '../components/Title'
 import NavigationBarLayout from '../layouts/NavigationBarLayout'
 import { useAppSelector } from '../store/store'
 import { ManualChore, selectManualChores } from '../store/entities/manual-chores'
@@ -41,20 +41,20 @@ export default function GarbageDisposalPage (): ReactElement {
 
   return (
     <NavigationBarLayout centered>
-      <PageTitle title={t('garbage.title')}>
+      <Title title={t('garbage.title')}>
         <BasicButton onClick={showCreateModal}>
           <FontAwesomeIcon icon={faPlus} />
           {t('basicActions.add')}
         </BasicButton>
-      </PageTitle>
+      </Title>
       <EditManualChoreModal active={creating} onSave={create} onCancel={hideCreateModal} />
       {manualChores.map(chore => <ManualChoreItem key={chore._id} chore={chore} />)}
-      <PageTitle title={t('scoreboards.title')}>
+      <Title minor title={t('scoreboards.title')}>
         <BasicButton onClick={showCreateScoreboardModal}>
           <FontAwesomeIcon icon={faPlus} />
           {t('basicActions.add')}
         </BasicButton>
-      </PageTitle>
+      </Title>
       <EditScoreboardModal active={creatingScoreboard} onSave={createScoreboard} onCancel={hideCreateScoreboardModal} />
       {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
     </NavigationBarLayout>
