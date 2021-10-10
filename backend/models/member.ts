@@ -7,6 +7,7 @@ const HEX_COLOR_REGEXP = /^#[0-9a-fA-F]{6}$/
 export interface Member {
   name: string
   color: string
+  active: boolean
 }
 
 export const memberModel = model('Member', new Schema<Member>({
@@ -18,11 +19,16 @@ export const memberModel = model('Member', new Schema<Member>({
     type: String,
     required: true,
     match: HEX_COLOR_REGEXP
+  },
+  active: {
+    type: Boolean,
+    required: true
   }
 }))
 
 export const memberValidator = Joi.object({
   _id: idValidator.required(),
   name: Joi.string().trim().required(),
-  color: Joi.string().pattern(HEX_COLOR_REGEXP).lowercase().required()
+  color: Joi.string().pattern(HEX_COLOR_REGEXP).lowercase().required(),
+  active: Joi.boolean().required()
 }).required()

@@ -6,6 +6,7 @@ import { Entity } from '../entity'
 export interface Member extends Entity {
   readonly name: string
   readonly color: string
+  readonly active: boolean
 }
 
 const membersSlice = createEntitySlice<Member>('members')
