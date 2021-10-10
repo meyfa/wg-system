@@ -6,3 +6,11 @@
   border-radius: 4px;
   vertical-align: middle;
 }
+
+.MemberItem.inactive {
+  color: #888;
+}
+
+.MemberItem.inactive .MemberItem-color {
+  background: #d0d0d0 !important;
+}

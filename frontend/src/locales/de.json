@@ -26,8 +26,10 @@
     "create": "Mitbewohner hinzufügen",
     "fields": {
       "name": "Name",
-      "color": "Farbe"
-    }
+      "color": "Farbe",
+      "active": "Aktueller Mitbewohner"
+    },
+    "former": "Ehemalige Mitbewohner"
   },
   "cleaning": {
     "title": "Putzdienste"

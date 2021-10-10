@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useState } from 'react'
+import { ReactElement, useCallback, useMemo, useState } from 'react'
 import { useAppSelector } from '../store/store'
 import { Member, selectMembers } from '../store/entities/members'
 import { useTranslation } from 'react-i18next'
@@ -15,6 +15,8 @@ export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
 
   const members = useAppSelector(selectMembers)
+  const activeMembers = useMemo(() => members.filter(item => item.active), [members])
+  const inactiveMembers = useMemo(() => members.filter(item => !item.active), [members])
 
   const [creating, setCreating] = useState(false)
 
@@ -35,7 +37,11 @@ export default function MembersPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditMemberModal active={creating} onSave={create} onCancel={hideCreateModal} />
-      {members.map(member => (
+      {activeMembers.map(member => (
+        <MemberItem key={member._id} member={member} />
+      ))}
+      <Title minor title={t('members.former')} />
+      {inactiveMembers.map(member => (
         <MemberItem key={member._id} member={member} />
       ))}
     </NavigationBarLayout>
