@@ -4,6 +4,7 @@ import { Member } from '../../store/entities/members'
 import EditMemberModal from './EditMemberModal'
 import api from '../../api/api'
 import EditableItem from '../items/EditableItem'
+import clsx from 'clsx'
 
 interface Props {
   member: Member
@@ -28,7 +29,9 @@ export default function MemberItem (props: Props): ReactElement {
   )
 
   return (
-    <EditableItem className='MemberItem' itemName={itemName} onClickEdit={showEditModal}>
+    <EditableItem className={clsx('MemberItem', { inactive: !props.member.active })}
+                  itemName={itemName}
+                  onClickEdit={showEditModal}>
       <EditMemberModal member={props.member} active={editing} onSave={save} onCancel={hideEditModal} />
     </EditableItem>
   )

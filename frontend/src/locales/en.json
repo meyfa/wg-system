@@ -26,8 +26,10 @@
     "create": "Add a member",
     "fields": {
       "name": "Name",
-      "color": "Color"
-    }
+      "color": "Color",
+      "active": "Current member"
+    },
+    "former": "Former members"
   },
   "cleaning": {
     "title": "Cleaning"

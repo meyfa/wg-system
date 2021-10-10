@@ -7,6 +7,7 @@ import FormRow from '../forms/FormRow'
 import ColorPicker from './ColorPicker'
 import { useMemberEditor } from '../../editors/use-member-editor'
 import { useParametrized } from '../../util/use-parametrized'
+import BasicCheckbox from '../forms/BasicCheckbox'
 
 interface Props {
   active: boolean
@@ -40,6 +41,12 @@ export default function EditMemberModal (props: Props): ReactElement {
         <ColorPicker
           value={editor.value.color}
           onPick={color => editor.update({ color })}
+        />
+      </FormRow>
+      <FormRow label={t('members.fields.active')}>
+        <BasicCheckbox
+          checked={editor.value.active}
+          onChange={({ target }) => editor.update({ active: target.checked })}
         />
       </FormRow>
     </EditModal>
