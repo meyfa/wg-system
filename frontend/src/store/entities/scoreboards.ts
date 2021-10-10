@@ -3,13 +3,15 @@ import { createEntitySlice } from '../create-entity-slice'
 import { RootState } from '../store'
 import { Entity } from '../entity'
 
+export interface ScoreboardScore {
+  readonly memberId: string
+  readonly offset: number
+  readonly score: number
+}
+
 export interface Scoreboard extends Entity {
   readonly name: string
-  readonly scores: ReadonlyArray<{
-    readonly memberId: string
-    readonly offset: number
-    readonly score: number
-  }>
+  readonly scores: readonly ScoreboardScore[]
 }
 
 const scoreboardsSlice = createEntitySlice<Scoreboard>('scoreboards')
