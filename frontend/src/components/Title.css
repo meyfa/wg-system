@@ -1,17 +1,25 @@
-.PageTitle {
+.Title {
   display: block;
   margin: 0 0 32px;
 }
 
-.PageTitle-h {
+.Title-h {
   display: inline-block;
   margin: 0 48px 0 0;
-  font-size: 32px;
-  font-weight: normal;
   line-height: 1;
   vertical-align: middle;
 }
 
-.PageTitle:not(:first-child) {
+h1.Title-h {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+h2.Title-h {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.Title:not(:first-child) {
   margin-top: 48px;
 }

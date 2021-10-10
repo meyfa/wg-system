@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useState } from 'react'
 import { useAppSelector } from '../store/store'
 import { Member, selectMembers } from '../store/entities/members'
 import { useTranslation } from 'react-i18next'
-import PageTitle from '../components/PageTitle'
+import Title from '../components/Title'
 import BasicButton from '../components/forms/BasicButton'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -28,12 +28,12 @@ export default function MembersPage (): ReactElement {
 
   return (
     <NavigationBarLayout centered>
-      <PageTitle title={t('members.title')}>
+      <Title title={t('members.title')}>
         <BasicButton onClick={showCreateModal}>
           <FontAwesomeIcon icon={faPlus} />
           {t('basicActions.add')}
         </BasicButton>
-      </PageTitle>
+      </Title>
       <EditMemberModal active={creating} onSave={create} onCancel={hideCreateModal} />
       {members.map(member => (
         <MemberItem key={member._id} member={member} />
