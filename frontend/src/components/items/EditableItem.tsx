@@ -1,5 +1,5 @@
 import './EditableItem.css'
-import { CSSProperties, PropsWithChildren, ReactElement } from 'react'
+import { CSSProperties, PropsWithChildren, ReactElement, ReactNode } from 'react'
 import clsx from 'clsx'
 import BasicButton from '../forms/BasicButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 interface Props {
   className?: string
   style?: CSSProperties
-  itemName: string
+  itemName: ReactNode
   onClickEdit: () => void
 }
 

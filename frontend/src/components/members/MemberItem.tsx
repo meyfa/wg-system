@@ -1,5 +1,5 @@
 import './MemberItem.css'
-import { CSSProperties, ReactElement, useCallback, useMemo, useState } from 'react'
+import { ReactElement, useCallback, useState } from 'react'
 import { Member } from '../../store/entities/members'
 import EditMemberModal from './EditMemberModal'
 import api from '../../api/api'
@@ -20,10 +20,15 @@ export default function MemberItem (props: Props): ReactElement {
     setEditing(false)
   }, [])
 
-  const style = useMemo<CSSProperties>(() => ({ borderColor: props.member.color }), [props.member.color])
+  const itemName = (
+    <>
+      <div className='MemberItem-color' style={{ background: props.member.color }} />
+      {props.member.name}
+    </>
+  )
 
   return (
-    <EditableItem className='MemberItem' style={style} itemName={props.member.name} onClickEdit={showEditModal}>
+    <EditableItem className='MemberItem' itemName={itemName} onClickEdit={showEditModal}>
       <EditMemberModal member={props.member} active={editing} onSave={save} onCancel={hideEditModal} />
     </EditableItem>
   )
