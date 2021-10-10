@@ -1,6 +1,7 @@
 import { Router } from 'express'
-import { createHandler, HTTP_CREATED } from './create-handler'
+import { createHandler } from './create-handler'
 import { Controller } from '../controllers/controller'
+import { HTTP_CREATED } from './constants'
 
 export function createControllerRoute (controller: Controller<any>): Router {
   const router = Router()

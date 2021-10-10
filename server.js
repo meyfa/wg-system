@@ -4,8 +4,7 @@ const express = require('express')
 const path = require('path')
 const { Server: WebSocketServer } = require('ws')
 
-const { init, createApiRouter } = require('./backend/build/index')
-const { webSocketHandler } = require('./backend/build/websocket/handler')
+const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = require('./backend/build/index')
 
 async function start () {
   init(process.env)
@@ -21,6 +20,9 @@ async function start () {
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './frontend/build/index.html'))
   })
+
+  // this will catch errors in express itself, and things missed by the routes
+  app.use(createApiErrorHandler())
 
   const server = app.listen(8080, '::')
 
