@@ -4,7 +4,8 @@ import { Editor, useEditor } from './use-editor'
 const DEFAULT: Member = {
   _id: '',
   name: '',
-  color: '#000000'
+  color: '#000000',
+  active: true
 }
 
 export function useMemberEditor (value?: Member): Editor<Member> {
