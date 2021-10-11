@@ -32,7 +32,13 @@
     "former": "Former members"
   },
   "cleaning": {
-    "title": "Cleaning"
+    "title": "Cleaning",
+    "edit": "Edit chore",
+    "create": "Set up a chore",
+    "fields": {
+      "name": "Name",
+      "period": "Due after ... days"
+    }
   },
   "garbage": {
     "title": "Garbage disposal",

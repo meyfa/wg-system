@@ -32,7 +32,13 @@
     "former": "Ehemalige Mitbewohner"
   },
   "cleaning": {
-    "title": "Putzdienste"
+    "title": "Putzdienste",
+    "edit": "Dienst bearbeiten",
+    "create": "Dienst erstellen",
+    "fields": {
+      "name": "Name",
+      "period": "Fällig nach ... Tagen"
+    }
   },
   "garbage": {
     "title": "Mülldienste",
