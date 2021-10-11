@@ -1,0 +1,11 @@
+.PeriodicChoreBox {
+  min-width: 240px;
+}
+
+.PeriodicChoreBox-title {
+  font-size: 24px;
+}
+
+.PeriodicChoreBox-detail {
+  margin: 10px 0;
+}

@@ -11,6 +11,7 @@
   "home": {
     "title": "Übersicht",
     "chores": {
+      "last": "Zuletzt erledigt",
       "markDue": "Als fällig markieren",
       "markDone": "Dienst eintragen"
     },
