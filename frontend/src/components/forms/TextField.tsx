@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 interface Props {
   value?: string | number
+  numeric?: boolean
   placeholder?: string
   onChange?: ChangeEventHandler<HTMLInputElement>
   className?: string
@@ -13,7 +14,7 @@ interface Props {
 export default function TextField (props: Props): JSX.Element {
   return (
     <input
-      type='text'
+      type={props.numeric === true ? 'number' : 'text'}
       className={clsx('TextField', props.className)}
       disabled={props.disabled}
       value={props.value}
