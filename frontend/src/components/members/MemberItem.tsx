@@ -17,8 +17,8 @@ export default function MemberItem (props: Props): ReactElement {
   const hideEditModal = useCallback(() => setEditing(false), [])
 
   const save = useCallback(async (entity: Member) => {
-    await api.members.update(entity)
     setEditing(false)
+    await api.members.update(entity)
   }, [])
 
   const itemName = (

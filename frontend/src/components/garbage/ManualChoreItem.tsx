@@ -15,8 +15,8 @@ export default function ManualChoreItem (props: Props): ReactElement {
   const hideEditModal = useCallback(() => setEditing(false), [])
 
   const save = useCallback(async (entity: ManualChore) => {
-    await api.manualChores.update(entity)
     setEditing(false)
+    await api.manualChores.update(entity)
   }, [])
 
   return (
