@@ -9,11 +9,13 @@ import { useApiSliceBridge } from './api-slice-bridge'
 import { manualChoresActions } from './store/entities/manual-chores'
 import ConnectionModal from './components/ConnectionModal'
 import { scoreboardsActions } from './store/entities/scoreboards'
+import { periodicChoresActions } from './store/entities/periodic-chores'
 
 export default function App (): ReactElement {
   useApiSliceBridge('members', membersActions)
   useApiSliceBridge('manual-chores', manualChoresActions)
   useApiSliceBridge('scoreboards', scoreboardsActions)
+  useApiSliceBridge('periodic-chores', periodicChoresActions)
 
   return (
     <BrowserRouter>
