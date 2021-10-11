@@ -15,8 +15,8 @@ export default function ScoreboardItem (props: Props): ReactElement {
   const hideEditModal = useCallback(() => setEditing(false), [])
 
   const save = useCallback(async (entity: Scoreboard) => {
-    await api.scoreboards.update(entity)
     setEditing(false)
+    await api.scoreboards.update(entity)
   }, [])
 
   return (
