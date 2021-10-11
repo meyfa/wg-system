@@ -11,6 +11,7 @@
   "home": {
     "title": "Overview",
     "chores": {
+      "last": "Recently completed",
       "markDue": "Mark due",
       "markDone": "Mark as done"
     },

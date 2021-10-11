@@ -20,6 +20,14 @@
   user-select: none;
 }
 
+.BasicButton:first-child {
+  margin-left: 0;
+}
+
+.BasicButton:last-child {
+  margin-right: 0;
+}
+
 .BasicButton:disabled {
   cursor: default;
   opacity: 0.5;
