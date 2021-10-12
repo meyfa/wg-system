@@ -10,6 +10,7 @@
   "navigation": "Navigation",
   "home": {
     "title": "Overview",
+    "empty": "Nothing to show. If a task is configured, it will show up here.",
     "chores": {
       "last": "Recently completed",
       "markDue": "Mark due",
@@ -23,6 +24,7 @@
   },
   "members": {
     "title": "Members",
+    "empty": "There are no current members added.",
     "edit": "Edit member info",
     "create": "Add a member",
     "fields": {
@@ -34,6 +36,7 @@
   },
   "cleaning": {
     "title": "Cleaning",
+    "empty": "No chores are configured yet.",
     "edit": "Edit chore",
     "create": "Set up a chore",
     "fields": {
@@ -43,6 +46,7 @@
   },
   "garbage": {
     "title": "Garbage disposal",
+    "empty": "No chores are configured yet.",
     "edit": "Edit chore",
     "create": "Set up a chore",
     "fields": {
@@ -52,6 +56,7 @@
   },
   "scoreboards": {
     "title": "Scoreboards",
+    "empty": "No scoreboards are configured yet.",
     "edit": "Edit scoreboard",
     "create": "Create a scoreboard",
     "fields": {

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import EditPeriodicChoreModal from '../components/cleaning/EditPeriodicChoreModal'
 import PeriodicChoreItem from '../components/cleaning/PeriodicChoreItem'
+import Empty from '../components/Empty'
 
 export default function CleaningPage (): ReactElement {
   const { t } = useTranslation()
@@ -34,6 +35,7 @@ export default function CleaningPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditPeriodicChoreModal active={creating} onSave={create} onCancel={hideCreateModal} />
+      {periodicChores.length === 0 ? <Empty message={t('cleaning.empty')} /> : undefined}
       {periodicChores.map(chore => <PeriodicChoreItem key={chore._id} chore={chore} />)}
     </NavigationBarLayout>
   )

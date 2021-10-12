@@ -13,6 +13,7 @@ import ManualChoreItem from '../components/garbage/ManualChoreItem'
 import { Scoreboard, selectScoreboards } from '../store/entities/scoreboards'
 import ScoreboardItem from '../components/scoreboards/ScoreboardItem'
 import EditScoreboardModal from '../components/scoreboards/EditScoreboardModal'
+import Empty from '../components/Empty'
 
 export default function GarbageDisposalPage (): ReactElement {
   const { t } = useTranslation()
@@ -48,6 +49,7 @@ export default function GarbageDisposalPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditManualChoreModal active={creating} onSave={create} onCancel={hideCreateModal} />
+      {manualChores.length === 0 ? <Empty message={t('garbage.empty')} /> : undefined}
       {manualChores.map(chore => <ManualChoreItem key={chore._id} chore={chore} />)}
       <Title minor title={t('scoreboards.title')}>
         <BasicButton onClick={showCreateScoreboardModal}>
@@ -56,6 +58,7 @@ export default function GarbageDisposalPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditScoreboardModal active={creatingScoreboard} onSave={createScoreboard} onCancel={hideCreateScoreboardModal} />
+      {scoreboards.length === 0 ? <Empty message={t('scoreboards.empty')} /> : undefined}
       {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
     </NavigationBarLayout>
   )

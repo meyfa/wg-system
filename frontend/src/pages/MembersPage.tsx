@@ -10,6 +10,7 @@ import MemberItem from '../components/members/MemberItem'
 import EditMemberModal from '../components/members/EditMemberModal'
 import api from '../api/api'
 import NavigationBarLayout from '../layouts/NavigationBarLayout'
+import Empty from '../components/Empty'
 
 export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
@@ -37,13 +38,14 @@ export default function MembersPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditMemberModal active={creating} onSave={create} onCancel={hideCreateModal} />
-      {activeMembers.map(member => (
-        <MemberItem key={member._id} member={member} />
-      ))}
-      <Title minor title={t('members.former')} />
-      {inactiveMembers.map(member => (
-        <MemberItem key={member._id} member={member} />
-      ))}
+      {activeMembers.length === 0 ? <Empty message={t('members.empty')} /> : undefined}
+      {activeMembers.map(member => <MemberItem key={member._id} member={member} />)}
+      {inactiveMembers.length > 0
+        ? (<>
+          <Title minor title={t('members.former')} />
+          {inactiveMembers.map(member => <MemberItem key={member._id} member={member} />)}
+        </>)
+        : undefined}
     </NavigationBarLayout>
   )
 }
