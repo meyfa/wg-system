@@ -10,6 +10,7 @@
   "navigation": "Navigation",
   "home": {
     "title": "Übersicht",
+    "empty": "Nichts anzuzeigen. Wenn eine Aufgabe erstellt wird, wird sie hier erscheinen.",
     "chores": {
       "last": "Zuletzt erledigt",
       "markDue": "Als fällig markieren",
@@ -23,6 +24,7 @@
   },
   "members": {
     "title": "Mitbewohner",
+    "empty": "Es sind aktuell keine Mitbewohner hinzugefügt.",
     "edit": "Mitbewohner-Info ändern",
     "create": "Mitbewohner hinzufügen",
     "fields": {
@@ -34,6 +36,7 @@
   },
   "cleaning": {
     "title": "Putzdienste",
+    "empty": "Es sind noch keine Dienste erstellt.",
     "edit": "Dienst bearbeiten",
     "create": "Dienst erstellen",
     "fields": {
@@ -43,6 +46,7 @@
   },
   "garbage": {
     "title": "Mülldienste",
+    "empty": "Es sind noch keine Dienste erstellt.",
     "edit": "Dienst bearbeiten",
     "create": "Dienst erstellen",
     "fields": {
@@ -52,8 +56,9 @@
   },
   "scoreboards": {
     "title": "Scoreboards",
-    "edit": "Edit scoreboard",
-    "create": "Create a scoreboard",
+    "empty": "Es sind noch keine Scoreboards erstellt.",
+    "edit": "Scoreboard bearbeiten",
+    "create": "Scoreboard erstellen",
     "fields": {
       "name": "Name"
     }
