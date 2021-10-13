@@ -7,6 +7,10 @@
   white-space: nowrap;
 }
 
+.PeriodicChoreBox-urgency {
+  margin-right: 8px;
+}
+
 .PeriodicChoreBox-calendar {
   display: inline-block;
   margin-left: 16px;
