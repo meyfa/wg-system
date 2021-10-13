@@ -28,6 +28,15 @@
       "noChores": "No chores with calendar are configured.",
       "unselected": "Select a chore above to show its calendar.",
       "noItems": "The calendar for this is still empty."
+    },
+    "week": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
     }
   },
   "members": {

@@ -1,11 +1,86 @@
-.Calendar-item {
-  margin: 16px 0;
-  padding: 16px 12px;
-  background: #fff;
+.Calendar {
+  padding: 12px;
   border-radius: 2px;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  background: #fff;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
-.Calendar-item-member {
+.Calendar-head {
   font-size: 20px;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.Calendar-head-btn {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  line-height: 28px;
+  color: inherit;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.Calendar-head-btn:focus,
+.Calendar-head-btn:hover {
+  border-color: #999;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.Calendar-head-month {
+  display: inline-block;
+  min-width: 200px;
+  margin: 0 16px;
+}
+
+.Calendar-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.Calendar-th {
+  padding: 4px 0 8px;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.Calendar-td {
+  height: 64px;
+  padding: 4px 0;
+  text-align: center;
+  vertical-align: top;
+  border: 2px solid #eee;
+}
+
+.Calendar-td.inactive {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.Calendar-entry {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 4px;
+  font: inherit;
+  font-weight: bold;
+  background: #eee;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  text-shadow: 0 0 2px #fff;
+}
+
+.Calendar-entry:focus,
+.Calendar-entry:hover {
+  border-color: #666;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
 }
