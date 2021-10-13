@@ -28,6 +28,15 @@
       "noChores": "Keine Dienste mit Kalender sind konfiguriert.",
       "unselected": "Wähle einen Dienst aus, um den Kalender anzuzeigen.",
       "noItems": "Der Kalender ist noch leer."
+    },
+    "week": {
+      "monday": "Mo",
+      "tuesday": "Di",
+      "wednesday": "Mi",
+      "thursday": "Do",
+      "friday": "Fr",
+      "saturday": "Sa",
+      "sunday": "So"
     }
   },
   "members": {
