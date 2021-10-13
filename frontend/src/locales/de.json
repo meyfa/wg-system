@@ -22,6 +22,14 @@
     },
     "selectMember": "Wer hat die Aufgabe erledigt?"
   },
+  "calendar": {
+    "title": "Kalender",
+    "empty": {
+      "noChores": "Keine Dienste mit Kalender sind konfiguriert.",
+      "unselected": "Wähle einen Dienst aus, um den Kalender anzuzeigen.",
+      "noItems": "Der Kalender ist noch leer."
+    }
+  },
   "members": {
     "title": "Mitbewohner",
     "empty": "Es sind aktuell keine Mitbewohner hinzugefügt.",

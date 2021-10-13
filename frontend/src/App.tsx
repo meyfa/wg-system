@@ -1,6 +1,7 @@
 import { ReactElement } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
+import CalendarPage from './pages/CalendarPage'
 import MembersPage from './pages/MembersPage'
 import CleaningPage from './pages/CleaningPage'
 import GarbageDisposalPage from './pages/GarbageDisposalPage'
@@ -23,6 +24,14 @@ export default function App (): ReactElement {
         {/* home page */}
         <Route exact path='/'>
           <HomePage />
+        </Route>
+
+        {/* calendar page */}
+        <Route exact path='/calendar'>
+          <CalendarPage />
+        </Route>
+        <Route exact path='/calendar/:choreId'>
+          <CalendarPage />
         </Route>
 
         {/* settings pages */}
