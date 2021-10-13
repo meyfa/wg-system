@@ -63,24 +63,3 @@
 .Calendar-td.inactive {
   background: rgba(0, 0, 0, 0.02);
 }
-
-.Calendar-entry {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 4px;
-  font: inherit;
-  font-weight: bold;
-  background: #eee;
-  border: 2px solid #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-  text-shadow: 0 0 2px #fff;
-}
-
-.Calendar-entry:focus,
-.Calendar-entry:hover {
-  border-color: #666;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
-}
