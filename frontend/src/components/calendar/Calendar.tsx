@@ -5,6 +5,7 @@ import { selectMembers } from '../../store/entities/members'
 import { useMemo } from 'react'
 import Empty from '../Empty'
 import { useTranslation } from 'react-i18next'
+import { DateTime } from 'luxon'
 
 /**
  * Behaves like Array.prototype.map, but starts at the right and moves backwards through the array.
@@ -22,7 +23,9 @@ function mapRight<T, U> (array: readonly T[], callbackFn: (value: T, index: numb
 }
 
 function formatDate (date: string): string {
-  return date.length >= 10 ? date.substring(0, 10) : '???'
+  return DateTime.fromISO(date, {
+    zone: 'utc'
+  }).toLocal().toFormat('yyyy-MM-dd')
 }
 
 interface Props {

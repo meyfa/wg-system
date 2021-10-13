@@ -11,10 +11,13 @@ import { SelectMemberModal } from './SelectMemberModal'
 import { Link } from 'react-router-dom'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { DateTime } from 'luxon'
 
-function useRecentlyCompletedString (entries: readonly PeriodicChoreEntry[]): string {
-  const last = entries.length > 0 ? entries[entries.length - 1] : undefined
+function useMostRecent (entries: readonly PeriodicChoreEntry[]): PeriodicChoreEntry | undefined {
+  return entries.length > 0 ? entries[entries.length - 1] : undefined
+}
 
+function useRecentlyCompletedString (last: PeriodicChoreEntry | undefined): string {
   const lastMember = useEntityById(selectMembers, last?.memberId)
   // get only date part from ISO date-time string
   const lastDate = last != null && last.date.length >= 10 ? last.date.substring(0, 10) : '???'
@@ -29,7 +32,7 @@ async function addEntry (chore: PeriodicChore, member: Member): Promise<void> {
       ...chore.entries,
       {
         memberId: member._id,
-        date: new Date().toISOString()
+        date: DateTime.now().toUTC().toISO()
       }
     ]
   })
@@ -42,7 +45,8 @@ interface Props {
 export default function PeriodicChoreBox (props: Props): ReactElement {
   const { t } = useTranslation()
 
-  const recentlyCompleted = useRecentlyCompletedString(props.chore.entries)
+  const mostRecent = useMostRecent(props.chore.entries)
+  const recentlyCompleted = useRecentlyCompletedString(mostRecent)
 
   const [isSelectingMember, setSelectingMember] = useState(false)
 
