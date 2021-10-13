@@ -6,7 +6,7 @@ import { PeriodicChore, selectPeriodicChores } from '../store/entities/periodic-
 import { useEntityById } from '../util/use-entity-by-id'
 import Title from '../components/Title'
 import { useTranslation } from 'react-i18next'
-import Calendar from '../components/calendar/Calendar'
+import PeriodicChoreCalendar from '../components/calendar/PeriodicChoreCalendar'
 import BasicDropdown from '../components/forms/BasicDropdown'
 import Empty from '../components/Empty'
 
@@ -44,7 +44,7 @@ export default function CalendarPage (): ReactElement {
       </Title>
       {periodicChores.length === 0 ? <Empty message={t('calendar.empty.noChores')} /> : undefined}
       {periodicChores.length > 0 && chore == null ? <Empty message={t('calendar.empty.unselected')} /> : undefined}
-      {chore != null ? <Calendar items={chore.entries} /> : undefined}
+      {chore != null ? <PeriodicChoreCalendar entries={chore.entries} /> : undefined}
     </NavigationBarLayout>
   )
 }
