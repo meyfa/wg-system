@@ -22,6 +22,14 @@
     },
     "selectMember": "Who completed the task?"
   },
+  "calendar": {
+    "title": "Calendar",
+    "empty": {
+      "noChores": "No chores with calendar are configured.",
+      "unselected": "Select a chore above to show its calendar.",
+      "noItems": "The calendar for this is still empty."
+    }
+  },
   "members": {
     "title": "Members",
     "empty": "There are no current members added.",

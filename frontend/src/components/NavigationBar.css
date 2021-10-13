@@ -3,6 +3,7 @@
   left: 0;
   top: 0;
   height: 100vh;
+  z-index: 10;
 }
 
 .NavigationBar.active {
@@ -28,8 +29,8 @@
 
 .NavigationBar-sep {
   border: none;
-  height: 0;
-  margin: 16px 0;
+  height: 16px;
+  margin: 0;
 }
 
 /* toggle button */

@@ -8,6 +8,9 @@ import { useTranslation } from 'react-i18next'
 import BasicButton from '../forms/BasicButton'
 import api from '../../api/api'
 import { SelectMemberModal } from './SelectMemberModal'
+import { Link } from 'react-router-dom'
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function useRecentlyCompletedString (entries: readonly PeriodicChoreEntry[]): string {
   const last = entries.length > 0 ? entries[entries.length - 1] : undefined
@@ -57,6 +60,9 @@ export default function PeriodicChoreBox (props: Props): ReactElement {
     <ChoreBox className='PeriodicChoreBox'>
       <div className='PeriodicChoreBox-title'>
         {props.chore.name}
+        <Link to={`/calendar/${props.chore._id}`} className='PeriodicChoreBox-calendar'>
+          <FontAwesomeIcon icon={faCalendarAlt} />
+        </Link>
       </div>
       <div className='PeriodicChoreBox-detail'>
         {t('home.chores.last')}<br />
