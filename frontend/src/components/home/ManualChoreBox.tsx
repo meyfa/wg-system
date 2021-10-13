@@ -12,6 +12,7 @@ import { SelectMemberModal } from './SelectMemberModal'
 import { Member } from '../../store/entities/members'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
 import { useEntityById } from '../../util/use-entity-by-id'
+import { DateTime } from 'luxon'
 
 /**
  * Increase the score of a specific member on the given scoreboard by 1.
@@ -49,7 +50,7 @@ function useDueState (chore: ManualChore): [boolean, () => Promise<void>, (membe
   const isDue = chore.dueSince != null && chore.dueSince > 0
 
   const markDue = useCallback(async () => {
-    await api.manualChores.update({ ...chore, dueSince: Date.now() })
+    await api.manualChores.update({ ...chore, dueSince: DateTime.now().toUTC().toMillis() })
   }, [chore])
 
   const markDone = useCallback(async (member?: Member) => {
