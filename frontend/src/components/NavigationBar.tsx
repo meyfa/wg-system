@@ -57,9 +57,11 @@ export default function NavigationBar (): ReactElement {
   const toggle = useCallback(() => setActive(state => !state), [])
   const close = useCallback(() => setActive(false), [])
 
+  const handleClickInner: MouseEventHandler = useCallback(event => event.stopPropagation(), [])
+
   return (
-    <div className={clsx('NavigationBar', { active })}>
-      <div className='NavigationBar-inner'>
+    <div className={clsx('NavigationBar', { active })} onClick={close}>
+      <div className='NavigationBar-inner' onClick={handleClickInner}>
         {/* hamburger button */}
         <button className='NavigationBar-toggle' onClick={toggle}>
           <span className='NavigationBar-toggle-label'>{t('navigation')}</span>
