@@ -1,27 +1,26 @@
-import { ReactElement, useCallback, useState } from 'react'
+import { ReactElement, useCallback } from 'react'
 import api from '../../api/api'
 import EditPeriodicChoreModal from './EditPeriodicChoreModal'
 import EditableItem from '../items/EditableItem'
 import { PeriodicChore } from '../../store/entities/periodic-chores'
+import { EditModalRenderFn } from '../items/EditButton'
 
 interface Props {
   chore: PeriodicChore
 }
 
 export default function PeriodicChoreItem (props: Props): ReactElement {
-  const [editing, setEditing] = useState(false)
-
-  const showEditModal = useCallback(() => setEditing(true), [])
-  const hideEditModal = useCallback(() => setEditing(false), [])
-
-  const save = useCallback(async (entity: PeriodicChore) => {
-    setEditing(false)
-    await api.periodicChores.update(entity)
-  }, [])
+  const renderModal: EditModalRenderFn = useCallback((active, hide) => {
+    const save = async (entity: PeriodicChore): Promise<void> => {
+      hide()
+      await api.periodicChores.update(entity)
+    }
+    return <EditPeriodicChoreModal chore={props.chore} active={active} onSave={save} onCancel={hide} />
+  }, [props.chore])
 
   return (
-    <EditableItem itemName={props.chore.name} onClickEdit={showEditModal}>
-      <EditPeriodicChoreModal chore={props.chore} active={editing} onSave={save} onCancel={hideEditModal} />
+    <EditableItem renderModal={renderModal}>
+      {props.chore.name}
     </EditableItem>
   )
 }

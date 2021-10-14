@@ -6,15 +6,16 @@ import api from '../../api/api'
 import EditManualChoreModal from './EditManualChoreModal'
 import Empty from '../Empty'
 import ManualChoreItem from './ManualChoreItem'
-import Section, { CreateModalRenderFn } from '../Section'
+import Section from '../Section'
 import { faTasks } from '@fortawesome/free-solid-svg-icons'
+import { EditModalRenderFn } from '../items/EditButton'
 
 export default function ManualChoresSection (): ReactElement {
   const { t } = useTranslation()
 
   const manualChores = useAppSelector(selectManualChores)
 
-  const renderCreateModal: CreateModalRenderFn = useCallback((active, hide) => {
+  const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
     const create = async (entity: ManualChore): Promise<void> => {
       await api.manualChores.create(entity)
       hide()
