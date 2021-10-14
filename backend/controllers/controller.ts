@@ -1,26 +1,25 @@
 import { Document, Model, Types } from 'mongoose'
 import Joi, { ObjectSchema } from 'joi'
 import { BadRequestError, NotFoundError } from '../api/errors'
-import { broadcast } from '../websocket/events'
 import { TypedEmitter } from 'tiny-typed-emitter'
 
+export type ControllerListener<EntityType> = (item: Document<any, any, EntityType>) => any
+
 export interface ControllerEvents<EntityType> {
-  created: (item: Document<any, any, EntityType>) => any
-  updated: (item: Document<any, any, EntityType>) => any
-  deleted: (item: Document<any, any, EntityType>) => any
+  created: ControllerListener<EntityType>
+  updated: ControllerListener<EntityType>
+  deleted: ControllerListener<EntityType>
 }
 
 export class Controller<EntityType> extends TypedEmitter<ControllerEvents<EntityType>> {
   private readonly model: Model<EntityType>
   private readonly schema: ObjectSchema
-  private readonly broadcastName: string
 
-  constructor (model: Model<EntityType>, schema: ObjectSchema, broadcastName: string) {
+  constructor (model: Model<EntityType>, schema: ObjectSchema) {
     super()
     this.model = model
     // use a modified schema that removes the id to avoid problems during create/update
     this.schema = schema.fork('_id', () => Joi.any().strip())
-    this.broadcastName = broadcastName
   }
 
   private validate (data: any): Omit<EntityType, '_id'> {
@@ -50,7 +49,6 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     const value = this.validate(data)
     const item = await this.model.create(value)
     this.emit('created', item)
-    broadcast('add/' + this.broadcastName, item)
     return item
   }
 
@@ -62,7 +60,6 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     Object.assign(item, this.validate(data))
     const saved = await item.save()
     this.emit('updated', saved)
-    broadcast('update/' + this.broadcastName, saved)
     return saved
   }
 
@@ -75,7 +72,6 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
       throw new NotFoundError()
     }
     this.emit('deleted', item)
-    broadcast('remove/' + this.broadcastName, item)
     return item
   }
 }

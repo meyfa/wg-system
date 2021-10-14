@@ -2,15 +2,14 @@ import { Controller } from './controller'
 import { PeriodicChore, periodicChoreModel, periodicChoreValidator } from '../models/periodic-chore'
 import { Member } from '../models/member'
 import { Document, QueryCursor } from 'mongoose'
-import { broadcast } from '../websocket/events'
 
 export interface PeriodicChoreDependencies {
   member: Controller<Member>
 }
 
 export class PeriodicChoreController extends Controller<PeriodicChore> {
-  constructor (broadcastName: string, dependencies: PeriodicChoreDependencies) {
-    super(periodicChoreModel, periodicChoreValidator, broadcastName)
+  constructor (dependencies: PeriodicChoreDependencies) {
+    super(periodicChoreModel, periodicChoreValidator)
 
     // remove entries for members when they are deleted
     dependencies.member.on('deleted', async (other) => {
@@ -26,7 +25,7 @@ export class PeriodicChoreController extends Controller<PeriodicChore> {
           }
         })
         const updated = await periodicChoreModel.findById(item._id)
-        broadcast('update/' + broadcastName, updated)
+        this.emit('updated', updated)
       })
     })
   }
