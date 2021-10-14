@@ -3,8 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import CalendarPage from './pages/CalendarPage'
 import MembersPage from './pages/MembersPage'
-import CleaningPage from './pages/CleaningPage'
-import GarbageDisposalPage from './pages/GarbageDisposalPage'
+import ChoresPage from './pages/ChoresPage'
 import { membersActions } from './store/entities/members'
 import { useApiSliceBridge } from './api-slice-bridge'
 import { manualChoresActions } from './store/entities/manual-chores'
@@ -38,11 +37,8 @@ export default function App (): ReactElement {
         <Route exact path='/members'>
           <MembersPage />
         </Route>
-        <Route exact path='/cleaning'>
-          <CleaningPage />
-        </Route>
-        <Route exact path='/garbage'>
-          <GarbageDisposalPage />
+        <Route exact path='/chores'>
+          <ChoresPage />
         </Route>
 
         {/* page not found */}
