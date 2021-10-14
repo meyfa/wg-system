@@ -2,13 +2,21 @@ import { Document, Model, Types } from 'mongoose'
 import Joi, { ObjectSchema } from 'joi'
 import { BadRequestError, NotFoundError } from '../api/errors'
 import { broadcast } from '../websocket/events'
+import { TypedEmitter } from 'tiny-typed-emitter'
 
-export class Controller<EntityType> {
+export interface ControllerEvents<EntityType> {
+  created: (item: Document<any, any, EntityType>) => any
+  updated: (item: Document<any, any, EntityType>) => any
+  deleted: (item: Document<any, any, EntityType>) => any
+}
+
+export class Controller<EntityType> extends TypedEmitter<ControllerEvents<EntityType>> {
   private readonly model: Model<EntityType>
   private readonly schema: ObjectSchema
   private readonly broadcastName: string
 
   constructor (model: Model<EntityType>, schema: ObjectSchema, broadcastName: string) {
+    super()
     this.model = model
     // use a modified schema that removes the id to avoid problems during create/update
     this.schema = schema.fork('_id', () => Joi.any().strip())
@@ -23,11 +31,11 @@ export class Controller<EntityType> {
     return value
   }
 
-  async list (): Promise<Array<Document<EntityType>>> {
+  async list (): Promise<Array<Document<any, any, EntityType>>> {
     return await this.model.find()
   }
 
-  async find (id: string): Promise<Document<EntityType>> {
+  async find (id: string): Promise<Document<any, any, EntityType>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
@@ -38,25 +46,27 @@ export class Controller<EntityType> {
     return item
   }
 
-  async create (data: any): Promise<Document<EntityType>> {
+  async create (data: any): Promise<Document<any, any, EntityType>> {
     const value = this.validate(data)
     const item = await this.model.create(value)
+    this.emit('created', item)
     broadcast('add/' + this.broadcastName, item)
     return item
   }
 
-  async update (id: string, data: any): Promise<Document<EntityType>> {
+  async update (id: string, data: any): Promise<Document<any, any, EntityType>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
     const item = await this.find(id)
     Object.assign(item, this.validate(data))
     const saved = await item.save()
+    this.emit('updated', saved)
     broadcast('update/' + this.broadcastName, saved)
     return saved
   }
 
-  async delete (id: string): Promise<Document<EntityType>> {
+  async delete (id: string): Promise<Document<any, any, EntityType>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
@@ -64,6 +74,7 @@ export class Controller<EntityType> {
     if (item == null) {
       throw new NotFoundError()
     }
+    this.emit('deleted', item)
     broadcast('remove/' + this.broadcastName, item)
     return item
   }
