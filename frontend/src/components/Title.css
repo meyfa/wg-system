@@ -3,6 +3,10 @@
   margin: 0 0 32px;
 }
 
+.Title:not(:first-child) {
+  margin-top: 48px;
+}
+
 .Title-h {
   display: inline-block;
   margin: 0 48px 0 0;
@@ -20,6 +24,6 @@ h2.Title-h {
   font-weight: 600;
 }
 
-.Title:not(:first-child) {
-  margin-top: 48px;
+.Title-icon {
+  margin-right: 0.75em;
 }

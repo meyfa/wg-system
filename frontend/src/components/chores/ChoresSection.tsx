@@ -4,10 +4,12 @@ import BasicButton from '../forms/BasicButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
 export type CreateModalRenderFn = (active: boolean, hide: () => void) => ReactElement
 
 interface Props {
+  icon?: IconDefinition
   title: string
   renderCreateModal: CreateModalRenderFn
 }
@@ -21,7 +23,7 @@ export default function ChoresSection (props: PropsWithChildren<Props>): ReactEl
 
   return (
     <>
-      <Title minor title={props.title}>
+      <Title minor title={props.title} icon={props.icon}>
         <BasicButton onClick={showCreateModal}>
           <FontAwesomeIcon icon={faPlus} />
           {t('basicActions.add')}

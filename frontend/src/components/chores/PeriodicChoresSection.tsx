@@ -7,6 +7,7 @@ import EditPeriodicChoreModal from './EditPeriodicChoreModal'
 import Empty from '../Empty'
 import PeriodicChoreItem from './PeriodicChoreItem'
 import ChoresSection, { CreateModalRenderFn } from './ChoresSection'
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 
 export default function PeriodicChoresSection (): ReactElement {
   const { t } = useTranslation()
@@ -22,7 +23,7 @@ export default function PeriodicChoresSection (): ReactElement {
   }, [])
 
   return (
-    <ChoresSection title={t('periodic.title')} renderCreateModal={renderCreateModal}>
+    <ChoresSection icon={faCalendarCheck} title={t('periodic.title')} renderCreateModal={renderCreateModal}>
       {periodicChores.length === 0 ? <Empty message={t('periodic.empty')} /> : undefined}
       {periodicChores.map(chore => <PeriodicChoreItem key={chore._id} chore={chore} />)}
     </ChoresSection>

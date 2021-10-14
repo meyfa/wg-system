@@ -41,6 +41,8 @@
   },
   "members": {
     "title": "Members",
+    "active": "Current members",
+    "former": "Former members",
     "empty": "There are no current members added.",
     "edit": "Edit member info",
     "create": "Add a member",
@@ -48,8 +50,7 @@
       "name": "Name",
       "color": "Color",
       "active": "Current member"
-    },
-    "former": "Former members"
+    }
   },
   "chores": {
     "title": "Chores"

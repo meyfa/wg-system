@@ -7,6 +7,7 @@ import EditScoreboardModal from './EditScoreboardModal'
 import Empty from '../Empty'
 import ScoreboardItem from './ScoreboardItem'
 import ChoresSection, { CreateModalRenderFn } from './ChoresSection'
+import { faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default function ScoreboardsSection (): ReactElement {
   const { t } = useTranslation()
@@ -22,7 +23,7 @@ export default function ScoreboardsSection (): ReactElement {
   }, [])
 
   return (
-    <ChoresSection title={t('scoreboards.title')} renderCreateModal={renderCreateModal}>
+    <ChoresSection icon={faSortAmountUpAlt} title={t('scoreboards.title')} renderCreateModal={renderCreateModal}>
       {scoreboards.length === 0 ? <Empty message={t('scoreboards.empty')} /> : undefined}
       {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
     </ChoresSection>
