@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next'
 import Title from '../components/Title'
 import BasicButton from '../components/forms/BasicButton'
 import { faPlus, faUser, faUserSlash } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MemberItem from '../components/members/MemberItem'
 import EditMemberModal from '../components/members/EditMemberModal'
 import api from '../api/api'
 import NavigationBarLayout from '../layouts/NavigationBarLayout'
 import Empty from '../components/Empty'
+import Icon from '../components/Icon'
 
 export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
@@ -33,8 +33,7 @@ export default function MembersPage (): ReactElement {
     <NavigationBarLayout centered>
       <Title title={t('members.title')}>
         <BasicButton onClick={showCreateModal}>
-          <FontAwesomeIcon icon={faPlus} />
-          {t('basicActions.add')}
+          <Icon icon={faPlus} /> {t('basicActions.add')}
         </BasicButton>
       </Title>
       <EditMemberModal active={creating} onSave={create} onCancel={hideCreateModal} />

@@ -3,7 +3,7 @@ import { ReactElement, ReactNode, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DateTime } from 'luxon'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Icon from '../Icon'
 
 export type CellRenderFn = (date: DateTime) => ReactNode
 type CalendarGrid = Array<Array<CalendarDaySpec | undefined>>
@@ -106,11 +106,11 @@ export default function Calendar (props: Props): ReactElement {
     <div className='Calendar'>
       <div className='Calendar-head'>
         <button className='Calendar-head-btn' onClick={previousMonth}>
-          <FontAwesomeIcon icon={faAngleLeft} />
+          <Icon icon={faAngleLeft} />
         </button>
         <div className='Calendar-head-month'>{monthName}</div>
         <button className='Calendar-head-btn' onClick={nextMonth}>
-          <FontAwesomeIcon icon={faAngleRight} />
+          <Icon icon={faAngleRight} />
         </button>
       </div>
       <table className='Calendar-table'>

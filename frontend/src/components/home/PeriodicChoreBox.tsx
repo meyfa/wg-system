@@ -10,9 +10,9 @@ import api from '../../api/api'
 import { SelectMemberModal } from './SelectMemberModal'
 import { Link } from 'react-router-dom'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DateTime } from 'luxon'
 import UrgencyIndicator from './UrgencyIndicator'
+import Icon from '../Icon'
 
 /**
  * After this much progress has been made towards the next due-date, show the chore as being urgent.
@@ -113,7 +113,7 @@ export default function PeriodicChoreBox (props: Props): ReactElement {
         <UrgencyIndicator className='PeriodicChoreBox-urgency' urgency={urgency} />
         {props.chore.name}
         <Link to={`/calendar/${props.chore._id}`} className='PeriodicChoreBox-calendar'>
-          <FontAwesomeIcon icon={faCalendarAlt} />
+          <Icon icon={faCalendarAlt} />
         </Link>
       </div>
       <div className='PeriodicChoreBox-detail'>
