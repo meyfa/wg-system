@@ -6,15 +6,16 @@ import api from '../../api/api'
 import EditPeriodicChoreModal from './EditPeriodicChoreModal'
 import Empty from '../Empty'
 import PeriodicChoreItem from './PeriodicChoreItem'
-import Section, { CreateModalRenderFn } from '../Section'
+import Section from '../Section'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
+import { EditModalRenderFn } from '../items/EditButton'
 
 export default function PeriodicChoresSection (): ReactElement {
   const { t } = useTranslation()
 
   const periodicChores = useAppSelector(selectPeriodicChores)
 
-  const renderCreateModal: CreateModalRenderFn = useCallback((active, hide) => {
+  const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
     const create = async (entity: PeriodicChore): Promise<void> => {
       await api.periodicChores.create(entity)
       hide()

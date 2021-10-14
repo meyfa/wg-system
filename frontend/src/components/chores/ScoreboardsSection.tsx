@@ -6,15 +6,16 @@ import api from '../../api/api'
 import EditScoreboardModal from './EditScoreboardModal'
 import Empty from '../Empty'
 import ScoreboardItem from './ScoreboardItem'
-import Section, { CreateModalRenderFn } from '../Section'
+import Section from '../Section'
 import { faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons'
+import { EditModalRenderFn } from '../items/EditButton'
 
 export default function ScoreboardsSection (): ReactElement {
   const { t } = useTranslation()
 
   const scoreboards = useAppSelector(selectScoreboards)
 
-  const renderCreateModal: CreateModalRenderFn = useCallback((active, hide) => {
+  const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
     const create = async (entity: Scoreboard): Promise<void> => {
       await api.scoreboards.create(entity)
       hide()
