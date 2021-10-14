@@ -28,9 +28,10 @@ export default function BasicDropdown<V> (props: Props<V>): ReactElement {
   /* eslint-disable react/prop-types */ // for some reason the linter complains here? maybe because of generics?
 
   const valueIndex = useMemo(() => {
-    return props.value != null ? props.options.indexOf(props.value) : -1
+    // @ts-expect-error because props.value can be undefined, but props.options cannot contain undefined
+    // (this component is a lot more useful if value can be undefined, so we need to allow this, unfortunately)
+    return props.options.indexOf(props.value)
   }, [props.value, props.options])
-
   const invalidSelection = valueIndex < 0
 
   const formattedOptions = useFormatter(props.options, props.formatter)

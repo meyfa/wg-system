@@ -11,7 +11,7 @@ import { useEntityById } from '../../util/use-entity-by-id'
 import { useManualChoreEditor } from '../../editors/use-manual-chore-editor'
 import { useParametrized } from '../../util/use-parametrized'
 
-function useScoreboardFormatter (): (item: Scoreboard | null) => string {
+function useScoreboardFormatter (): (item: Scoreboard | undefined) => string {
   const { t } = useTranslation()
   return item => item == null ? t('noneOption') : item.name
 }
@@ -34,7 +34,7 @@ export default function EditManualChoreModal (props: Props): ReactElement {
 
   const save = useParametrized(props.onSave, editor.value)
 
-  const scoreboardOptions = useMemo(() => [null, ...scoreboards], [scoreboards])
+  const scoreboardOptions = useMemo(() => [undefined, ...scoreboards], [scoreboards])
   const scoreboardFormatter = useScoreboardFormatter()
   const scoreboardValue = useEntityById(selectScoreboards, editor.value.scoreboardId)
 
