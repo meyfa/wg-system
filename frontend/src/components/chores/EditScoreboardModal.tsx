@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import EditModal from '../modals/EditModal'
@@ -12,6 +12,7 @@ interface Props {
   scoreboard?: Scoreboard
   onSave: (entity: Scoreboard) => void
   onCancel: () => void
+  onDelete?: () => void
 }
 
 export default function EditScoreboardModal (props: Props): ReactElement {
@@ -23,12 +24,17 @@ export default function EditScoreboardModal (props: Props): ReactElement {
 
   const save = useParametrized(props.onSave, editor.value)
 
+  const doDelete = useMemo(() => {
+    return props.onDelete != null && props.scoreboard != null ? props.onDelete : undefined
+  }, [props.onDelete, props.scoreboard])
+
   return (
     <EditModal title={props.scoreboard != null ? t('scoreboards.edit') : t('scoreboards.create')}
                active={props.active}
                isValid={editor.isValid}
                onSave={save}
-               onCancel={props.onCancel}>
+               onCancel={props.onCancel}
+               onDelete={doDelete}>
       <FormRow label={t('scoreboards.fields.name')}>
         <TextField
           value={editor.value.name}

@@ -10,13 +10,15 @@ interface Props {
 }
 
 export default function PeriodicChoreItem (props: Props): ReactElement {
+  const onDelete = useCallback(async () => await api.periodicChores.delete(props.chore._id), [props.chore._id])
+
   const renderModal: EditModalRenderFn = useCallback((active, hide) => {
     const save = async (entity: PeriodicChore): Promise<void> => {
       hide()
       await api.periodicChores.update(entity)
     }
-    return <EditPeriodicChoreModal chore={props.chore} active={active} onSave={save} onCancel={hide} />
-  }, [props.chore])
+    return <EditPeriodicChoreModal chore={props.chore} active={active} onSave={save} onCancel={hide} onDelete={onDelete} />
+  }, [props.chore, onDelete])
 
   return (
     <EditableItem renderModal={renderModal}>

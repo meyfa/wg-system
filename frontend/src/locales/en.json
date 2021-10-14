@@ -4,7 +4,8 @@
     "add": "Add",
     "edit": "Edit",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "delete": "Delete"
   },
   "noneOption": "none",
   "navigation": "Navigation",

@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import EditModal from '../modals/EditModal'
@@ -12,6 +12,7 @@ interface Props {
   chore?: PeriodicChore
   onSave: (entity: PeriodicChore) => void
   onCancel: () => void
+  onDelete?: () => void
 }
 
 export default function EditPeriodicChoreModal (props: Props): ReactElement {
@@ -21,6 +22,10 @@ export default function EditPeriodicChoreModal (props: Props): ReactElement {
   // reset editor when modal closes/opens
   useEffect(() => editor.reset(), [editor, props.active])
 
+  const doDelete = useMemo(() => {
+    return props.onDelete != null && props.chore != null ? props.onDelete : undefined
+  }, [props.onDelete, props.chore])
+
   const save = useParametrized(props.onSave, editor.value)
 
   return (
@@ -28,7 +33,8 @@ export default function EditPeriodicChoreModal (props: Props): ReactElement {
                active={props.active}
                isValid={editor.isValid}
                onSave={save}
-               onCancel={props.onCancel}>
+               onCancel={props.onCancel}
+               onDelete={doDelete}>
       <FormRow label={t('periodic.fields.name')}>
         <TextField
           value={editor.value.name}
