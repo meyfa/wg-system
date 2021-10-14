@@ -4,7 +4,7 @@ import { Member, selectMembers } from '../store/entities/members'
 import { useTranslation } from 'react-i18next'
 import Title from '../components/Title'
 import BasicButton from '../components/forms/BasicButton'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faUser, faUserSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MemberItem from '../components/members/MemberItem'
 import EditMemberModal from '../components/members/EditMemberModal'
@@ -38,11 +38,12 @@ export default function MembersPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditMemberModal active={creating} onSave={create} onCancel={hideCreateModal} />
+      <Title minor icon={faUser} title={t('members.active')} />
       {activeMembers.length === 0 ? <Empty message={t('members.empty')} /> : undefined}
       {activeMembers.map(member => <MemberItem key={member._id} member={member} />)}
       {inactiveMembers.length > 0
         ? (<>
-          <Title minor title={t('members.former')} />
+          <Title minor icon={faUserSlash} title={t('members.former')} />
           {inactiveMembers.map(member => <MemberItem key={member._id} member={member} />)}
         </>)
         : undefined}

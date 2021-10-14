@@ -41,6 +41,8 @@
   },
   "members": {
     "title": "Mitbewohner",
+    "active": "Aktuelle Mitbewohner",
+    "former": "Ehemalige Mitbewohner",
     "empty": "Es sind aktuell keine Mitbewohner hinzugefügt.",
     "edit": "Mitbewohner-Info ändern",
     "create": "Mitbewohner hinzufügen",
@@ -48,8 +50,7 @@
       "name": "Name",
       "color": "Farbe",
       "active": "Aktueller Mitbewohner"
-    },
-    "former": "Ehemalige Mitbewohner"
+    }
   },
   "chores": {
     "title": "Aufgaben"
