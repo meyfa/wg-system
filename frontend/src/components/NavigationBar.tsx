@@ -1,11 +1,11 @@
 import './NavigationBar.css'
 import { Fragment, MouseEventHandler, ReactElement, useCallback, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faBroom, faCalendarAlt, faHome, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
+import Icon from './Icon'
 
 interface NavItem {
   icon: IconDefinition
@@ -41,7 +41,7 @@ function NavigationBarLink (props: { item: NavItem, onClick?: MouseEventHandler<
   return (
     <NavLink exact={item.exact} to={item.path} className='NavigationBar-link' onClick={onClick}>
       <span className='NavigationBar-link-icon'>
-        <FontAwesomeIcon icon={item.icon} />
+        <Icon icon={item.icon} />
       </span>
       <span className='NavigationBar-link-label'>{t(item.label)}</span>
     </NavLink>
@@ -64,7 +64,7 @@ export default function NavigationBar (): ReactElement {
         {/* hamburger button */}
         <button className='NavigationBar-toggle' onClick={toggle}>
           <span className='NavigationBar-toggle-label'>{t('navigation')}</span>
-          <FontAwesomeIcon icon={active ? faTimes : faBars} />
+          <Icon icon={active ? faTimes : faBars} />
         </button>
         {/* item groups */}
         {NAVIGATION.map((group, i) => (

@@ -6,13 +6,13 @@ import BasicButton from '../forms/BasicButton'
 import { useTranslation } from 'react-i18next'
 import api from '../../api/api'
 import { faCheckCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import { SelectMemberModal } from './SelectMemberModal'
 import { Member } from '../../store/entities/members'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
 import { useEntityById } from '../../util/use-entity-by-id'
 import { DateTime } from 'luxon'
+import Icon from '../Icon'
 
 /**
  * Increase the score of a specific member on the given scoreboard by 1.
@@ -93,8 +93,10 @@ export default function ManualChoreBox (props: Props): ReactElement {
   return (
     <ChoreBox className='ManualChoreBox' urgent={isDue}>
       <div className='ManualChoreBox-title'>
-        <FontAwesomeIcon className={clsx('ManualChoreBox-icon', { good: !isDue, bad: isDue })}
-                         icon={isDue ? faExclamationTriangle : faCheckCircle} />
+        <Icon
+          className={clsx('ManualChoreBox-icon', { good: !isDue, bad: isDue })}
+          icon={isDue ? faExclamationTriangle : faCheckCircle}
+        />
         {props.chore.name}
       </div>
       <div className='ManualChoreBox-actions'>

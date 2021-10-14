@@ -2,9 +2,9 @@ import './EditableItem.css'
 import { CSSProperties, PropsWithChildren, ReactElement, ReactNode } from 'react'
 import clsx from 'clsx'
 import BasicButton from '../forms/BasicButton'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
+import Icon from '../Icon'
 
 interface Props {
   className?: string
@@ -23,8 +23,7 @@ export default function EditableItem (props: PropsWithChildren<Props>): ReactEle
       </div>
       <div className='EditableItem-actions'>
         <BasicButton onClick={props.onClickEdit}>
-          <FontAwesomeIcon icon={faEdit} />
-          {t('basicActions.edit')}
+          <Icon icon={faEdit} /> {t('basicActions.edit')}
         </BasicButton>
       </div>
       {props.children}

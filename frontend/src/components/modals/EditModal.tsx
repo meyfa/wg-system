@@ -4,7 +4,7 @@ import Modal from '../modals/Modal'
 import BasicButton from '../forms/BasicButton'
 import { useTranslation } from 'react-i18next'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Icon from '../Icon'
 
 interface Props {
   active: boolean
@@ -20,8 +20,7 @@ export default function EditModal (props: PropsWithChildren<Props>): ReactElemen
   return (
     <Modal active={props.active}>
       <div className='EditModal-title'>
-        <FontAwesomeIcon icon={faEdit} />
-        {props.title}
+        <Icon icon={faEdit} /> {props.title}
       </div>
       {props.children}
       <div className='EditModal-actions'>
