@@ -13,7 +13,7 @@ async function start () {
 
   app.use(express.json())
 
-  // the project needs to be built (`npm run build`) before these paths can work!
+  // the project needs to be built (`npm run build-all`) before these paths can work!
   app.use('/api', createApiRouter())
   app.use(express.static('./frontend/build'))
   // redirect all other requests to index.html for React-Router to handle
