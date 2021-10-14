@@ -4,14 +4,20 @@ import { NotFoundError } from './errors'
 import { Controller } from '../controllers/controller'
 import { createControllerRoute } from './controller-route'
 import { memberModel, memberValidator } from '../models/member'
-import { manualChoreModel, manualChoreValidator } from '../models/manual-chore'
-import { scoreboardModel, scoreboardValidator } from '../models/scoreboard'
-import { periodicChoreModel, periodicChoreValidator } from '../models/periodic-chore'
+import { PeriodicChoreController } from '../controllers/periodic-chore-controller'
+import { ManualChoreController } from '../controllers/manual-chore-controller'
+import { ScoreboardController } from '../controllers/scoreboard-controller'
 
 const membersController = new Controller(memberModel, memberValidator, 'members')
-const manualChoresController = new Controller(manualChoreModel, manualChoreValidator, 'manual-chores')
-const scoreboardsController = new Controller(scoreboardModel, scoreboardValidator, 'scoreboards')
-const periodicChoresController = new Controller(periodicChoreModel, periodicChoreValidator, 'periodic-chores')
+const scoreboardsController = new ScoreboardController('scoreboards', {
+  member: membersController
+})
+const manualChoresController = new ManualChoreController('manual-chores', {
+  scoreboard: scoreboardsController
+})
+const periodicChoresController = new PeriodicChoreController('periodic-chores', {
+  member: membersController
+})
 
 export function createApiRouter (): Router {
   const router = Router()
