@@ -24,18 +24,18 @@ export default function EditPeriodicChoreModal (props: Props): ReactElement {
   const save = useParametrized(props.onSave, editor.value)
 
   return (
-    <EditModal title={props.chore != null ? t('cleaning.edit') : t('cleaning.create')}
+    <EditModal title={props.chore != null ? t('periodic.edit') : t('periodic.create')}
                active={props.active}
                isValid={editor.isValid}
                onSave={save}
                onCancel={props.onCancel}>
-      <FormRow label={t('cleaning.fields.name')}>
+      <FormRow label={t('periodic.fields.name')}>
         <TextField
           value={editor.value.name}
           onChange={({ target }) => editor.update({ name: target.value })}
         />
       </FormRow>
-      <FormRow label={t('cleaning.fields.period')}>
+      <FormRow label={t('periodic.fields.period')}>
         <TextField
           numeric
           value={editor.value.period}

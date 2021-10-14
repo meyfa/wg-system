@@ -2,7 +2,7 @@ import './NavigationBar.css'
 import { Fragment, MouseEventHandler, ReactElement, useCallback, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faBroom, faCalendarAlt, faHome, faTimes, faTrashAlt, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faBroom, faCalendarAlt, faHome, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
@@ -23,8 +23,7 @@ const NAVIGATION: NavItem[][] = [
   ],
   [
     { icon: faUsers, label: 'members.title', path: '/members', exact: true },
-    { icon: faBroom, label: 'cleaning.title', path: '/cleaning', exact: true },
-    { icon: faTrashAlt, label: 'garbage.title', path: '/garbage', exact: true }
+    { icon: faBroom, label: 'chores.title', path: '/chores', exact: true }
   ]
 ]
 

@@ -25,8 +25,8 @@
   "calendar": {
     "title": "Kalender",
     "empty": {
-      "noChores": "Keine Dienste mit Kalender sind konfiguriert.",
-      "unselected": "Wähle einen Dienst aus, um den Kalender anzuzeigen.",
+      "noChores": "Keine Aufgaben mit Kalender sind konfiguriert.",
+      "unselected": "Wähle eine Aufgabe aus, um den Kalender anzuzeigen.",
       "noItems": "Der Kalender ist noch leer."
     },
     "week": {
@@ -51,31 +51,34 @@
     },
     "former": "Ehemalige Mitbewohner"
   },
-  "cleaning": {
-    "title": "Putzdienste",
-    "empty": "Es sind noch keine Dienste erstellt.",
-    "edit": "Dienst bearbeiten",
-    "create": "Dienst erstellen",
+  "chores": {
+    "title": "Aufgaben"
+  },
+  "periodic": {
+    "title": "Abwechselnde Aufgaben",
+    "empty": "Es sind noch keine Aufgaben erstellt.",
+    "edit": "Aufgabe bearbeiten",
+    "create": "Aufgabe erstellen",
     "fields": {
       "name": "Name",
       "period": "Fällig nach ... Tagen"
     }
   },
-  "garbage": {
-    "title": "Mülldienste",
-    "empty": "Es sind noch keine Dienste erstellt.",
-    "edit": "Dienst bearbeiten",
-    "create": "Dienst erstellen",
+  "manual": {
+    "title": "Situationsabhängige Aufgaben",
+    "empty": "Es sind noch keine Aufgaben erstellt.",
+    "edit": "Aufgabe bearbeiten",
+    "create": "Aufgabe erstellen",
     "fields": {
       "name": "Name",
-      "scoreboard": "Zu verwendendes Scoreboard"
+      "scoreboard": "Zu verwendende Punkteliste"
     }
   },
   "scoreboards": {
-    "title": "Scoreboards",
-    "empty": "Es sind noch keine Scoreboards erstellt.",
-    "edit": "Scoreboard bearbeiten",
-    "create": "Scoreboard erstellen",
+    "title": "Punktelisten",
+    "empty": "Es sind noch keine Punktelisten erstellt.",
+    "edit": "Punkteliste bearbeiten",
+    "create": "Punkteliste erstellen",
     "fields": {
       "name": "Name"
     }

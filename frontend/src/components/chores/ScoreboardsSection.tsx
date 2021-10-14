@@ -1,0 +1,30 @@
+import { ReactElement, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useAppSelector } from '../../store/store'
+import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
+import api from '../../api/api'
+import EditScoreboardModal from './EditScoreboardModal'
+import Empty from '../Empty'
+import ScoreboardItem from './ScoreboardItem'
+import ChoresSection, { CreateModalRenderFn } from './ChoresSection'
+
+export default function ScoreboardsSection (): ReactElement {
+  const { t } = useTranslation()
+
+  const scoreboards = useAppSelector(selectScoreboards)
+
+  const renderCreateModal: CreateModalRenderFn = useCallback((active, hide) => {
+    const create = async (entity: Scoreboard): Promise<void> => {
+      await api.scoreboards.create(entity)
+      hide()
+    }
+    return <EditScoreboardModal active={active} onSave={create} onCancel={hide} />
+  }, [])
+
+  return (
+    <ChoresSection title={t('scoreboards.title')} renderCreateModal={renderCreateModal}>
+      {scoreboards.length === 0 ? <Empty message={t('scoreboards.empty')} /> : undefined}
+      {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
+    </ChoresSection>
+  )
+}

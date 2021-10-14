@@ -51,8 +51,11 @@
     },
     "former": "Former members"
   },
-  "cleaning": {
-    "title": "Cleaning",
+  "chores": {
+    "title": "Chores"
+  },
+  "periodic": {
+    "title": "Rotating chores",
     "empty": "No chores are configured yet.",
     "edit": "Edit chore",
     "create": "Set up a chore",
@@ -61,8 +64,8 @@
       "period": "Due after ... days"
     }
   },
-  "garbage": {
-    "title": "Garbage disposal",
+  "manual": {
+    "title": "Manually set chores",
     "empty": "No chores are configured yet.",
     "edit": "Edit chore",
     "create": "Set up a chore",
