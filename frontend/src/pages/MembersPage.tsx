@@ -11,6 +11,7 @@ import api from '../api/api'
 import NavigationBarLayout from '../layouts/NavigationBarLayout'
 import Empty from '../components/Empty'
 import Icon from '../components/Icon'
+import Section from '../components/Section'
 
 export default function MembersPage (): ReactElement {
   const { t } = useTranslation()
@@ -37,14 +38,14 @@ export default function MembersPage (): ReactElement {
         </BasicButton>
       </Title>
       <EditMemberModal active={creating} onSave={create} onCancel={hideCreateModal} />
-      <Title minor icon={faUser} title={t('members.active')} />
-      {activeMembers.length === 0 ? <Empty message={t('members.empty')} /> : undefined}
-      {activeMembers.map(member => <MemberItem key={member._id} member={member} />)}
+      <Section icon={faUser} title={t('members.active')}>
+        {activeMembers.length === 0 ? <Empty message={t('members.empty')} /> : undefined}
+        {activeMembers.map(member => <MemberItem key={member._id} member={member} />)}
+      </Section>
       {inactiveMembers.length > 0
-        ? (<>
-          <Title minor icon={faUserSlash} title={t('members.former')} />
+        ? (<Section icon={faUserSlash} title={t('members.former')}>
           {inactiveMembers.map(member => <MemberItem key={member._id} member={member} />)}
-        </>)
+        </Section>)
         : undefined}
     </NavigationBarLayout>
   )

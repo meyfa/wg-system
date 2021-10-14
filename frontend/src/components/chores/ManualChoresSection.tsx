@@ -6,7 +6,7 @@ import api from '../../api/api'
 import EditManualChoreModal from './EditManualChoreModal'
 import Empty from '../Empty'
 import ManualChoreItem from './ManualChoreItem'
-import ChoresSection, { CreateModalRenderFn } from './ChoresSection'
+import Section, { CreateModalRenderFn } from '../Section'
 import { faTasks } from '@fortawesome/free-solid-svg-icons'
 
 export default function ManualChoresSection (): ReactElement {
@@ -23,9 +23,9 @@ export default function ManualChoresSection (): ReactElement {
   }, [])
 
   return (
-    <ChoresSection icon={faTasks} title={t('manual.title')} renderCreateModal={renderCreateModal}>
+    <Section icon={faTasks} title={t('manual.title')} renderCreateModal={renderCreateModal}>
       {manualChores.length === 0 ? <Empty message={t('manual.empty')} /> : undefined}
       {manualChores.map(chore => <ManualChoreItem key={chore._id} chore={chore} />)}
-    </ChoresSection>
+    </Section>
   )
 }
