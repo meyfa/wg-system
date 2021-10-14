@@ -1,7 +1,6 @@
 import { Controller } from './controller'
 import { Member } from '../models/member'
 import { Document, QueryCursor } from 'mongoose'
-import { broadcast } from '../websocket/events'
 import { Scoreboard, scoreboardModel, scoreboardValidator } from '../models/scoreboard'
 
 export interface ScoreboardDependencies {
@@ -9,8 +8,8 @@ export interface ScoreboardDependencies {
 }
 
 export class ScoreboardController extends Controller<Scoreboard> {
-  constructor (broadcastName: string, dependencies: ScoreboardDependencies) {
-    super(scoreboardModel, scoreboardValidator, broadcastName)
+  constructor (dependencies: ScoreboardDependencies) {
+    super(scoreboardModel, scoreboardValidator)
 
     // remove scores for members when they are deleted
     dependencies.member.on('deleted', async (other) => {
@@ -26,7 +25,7 @@ export class ScoreboardController extends Controller<Scoreboard> {
           }
         })
         const updated = await scoreboardModel.findById(item._id)
-        broadcast('update/' + broadcastName, updated)
+        this.emit('updated', updated)
       })
     })
   }
