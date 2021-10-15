@@ -14,6 +14,9 @@
     "empty": "Nichts anzuzeigen. Wenn eine Aufgabe erstellt wird, wird sie hier erscheinen.",
     "chores": {
       "last": "Zuletzt erledigt",
+      "next": "Nächster Dienst",
+      "nextFormat": "{{name}}",
+      "nextFormatDays": "{{name}} (noch {{days}} Tag(e))",
       "markDue": "Als fällig markieren",
       "markDone": "Dienst eintragen"
     },
