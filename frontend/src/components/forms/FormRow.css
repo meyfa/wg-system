@@ -1,12 +1,12 @@
 .FormRow {
   display: block;
-  margin: 16px 0 24px;
+  margin: 12px 0 16px;
   cursor: default;
 }
 
 .FormRow-text {
   font-size: 14px;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
   line-height: 1;
   font-weight: bold;
 }

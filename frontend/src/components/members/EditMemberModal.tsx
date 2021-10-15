@@ -8,6 +8,38 @@ import ColorPicker from './ColorPicker'
 import { useMemberEditor } from '../../editors/use-member-editor'
 import { useParametrized } from '../../util/use-parametrized'
 import BasicCheckbox from '../forms/BasicCheckbox'
+import BasicDropdown from '../forms/BasicDropdown'
+import { useAppSelector } from '../../store/store'
+import { Group, selectGroups } from '../../store/entities/groups'
+import { Editor } from '../../editors/use-editor'
+
+function useGroupFormatter (): (item: Group | undefined) => string {
+  const { t } = useTranslation()
+  return item => item == null ? t('noneOption') : item.name
+}
+
+function UserGroupSelect (props: { editor: Editor<Member> }): ReactElement {
+  const { editor } = props
+
+  const groups = useAppSelector(selectGroups)
+
+  const groupOptions = useMemo(() => [undefined, ...groups], [groups])
+  const groupFormatter = useGroupFormatter()
+  const groupValue = useMemo(() => {
+    return editor.value.groups.length !== 0
+      ? groups.find(item => item._id === editor.value.groups[0])
+      : undefined
+  }, [groups, editor.value.groups])
+
+  return (
+    <BasicDropdown
+      options={groupOptions}
+      formatter={groupFormatter}
+      value={groupValue}
+      onSelect={group => editor.update({ groups: group != null ? [group._id] : [] })}
+    />
+  )
+}
 
 interface Props {
   active: boolean
@@ -48,6 +80,9 @@ export default function EditMemberModal (props: Props): ReactElement {
           value={editor.value.color}
           onPick={color => editor.update({ color })}
         />
+      </FormRow>
+      <FormRow label={t('members.fields.group')}>
+        <UserGroupSelect editor={editor} />
       </FormRow>
       <FormRow label={t('members.fields.active')}>
         <BasicCheckbox

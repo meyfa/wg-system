@@ -61,6 +61,7 @@
     "fields": {
       "name": "Name",
       "color": "Farbe",
+      "group": "Gruppe",
       "active": "Aktueller Mitbewohner"
     }
   },
