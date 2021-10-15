@@ -6,6 +6,22 @@ import api from '../../api/api'
 import EditableItem from '../items/EditableItem'
 import clsx from 'clsx'
 import { EditModalRenderFn } from '../items/EditButton'
+import { selectGroups } from '../../store/entities/groups'
+import { useEntityById } from '../../util/use-entity-by-id'
+import { faTag } from '@fortawesome/free-solid-svg-icons'
+import Icon from '../Icon'
+
+function MemberItemGroup (props: { id: string }): ReactElement {
+  const group = useEntityById(selectGroups, props.id)
+  if (group == null) {
+    return <></>
+  }
+  return (
+    <div className='MemberItem-group'>
+      <Icon icon={faTag} /> {group.name}
+    </div>
+  )
+}
 
 interface Props {
   member: Member
@@ -26,6 +42,7 @@ export default function MemberItem (props: Props): ReactElement {
     <EditableItem className={clsx('MemberItem', { inactive: !props.member.active })} renderModal={renderModal}>
       <div className='MemberItem-color' style={{ background: props.member.color }} />
       {props.member.name}
+      {props.member.groups.map((id, i) => <MemberItemGroup key={i} id={id} />)}
     </EditableItem>
   )
 }

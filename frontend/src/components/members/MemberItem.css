@@ -14,3 +14,12 @@
 .MemberItem.inactive .MemberItem-color {
   background: #d0d0d0 !important;
 }
+
+.MemberItem-group {
+  display: inline-block;
+  margin-left: 24px;
+  font-size: 16px;
+  padding: 4px 12px;
+  background: #eaeaea;
+  border-radius: 2px;
+}
