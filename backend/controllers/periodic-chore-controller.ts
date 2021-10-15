@@ -1,7 +1,7 @@
 import { Controller } from './controller'
 import { PeriodicChore, periodicChoreModel, periodicChoreValidator } from '../models/periodic-chore'
 import { Member } from '../models/member'
-import { Document, QueryCursor } from 'mongoose'
+import { EnforceDocument, QueryCursor } from 'mongoose'
 
 export interface PeriodicChoreDependencies {
   member: Controller<Member>
@@ -13,7 +13,7 @@ export class PeriodicChoreController extends Controller<PeriodicChore> {
 
     // remove entries for members when they are deleted
     dependencies.member.on('deleted', async (other) => {
-      const cursor: QueryCursor<Document<any, any, PeriodicChore>> = periodicChoreModel.find({
+      const cursor: QueryCursor<EnforceDocument<PeriodicChore, {}>> = periodicChoreModel.find({
         'entries.memberId': other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {

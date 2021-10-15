@@ -1,10 +1,10 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 import Joi from 'joi'
 import { idValidator } from './common'
 import { memberModel } from './member'
 
 export interface PeriodicChoreEntry {
-  memberId: typeof Schema.Types.ObjectId
+  memberId: Types.ObjectId
   date: string
 }
 
