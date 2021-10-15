@@ -1,9 +1,9 @@
-import { Document, Model, Types } from 'mongoose'
+import { EnforceDocument, Model, Types } from 'mongoose'
 import Joi, { ObjectSchema } from 'joi'
 import { BadRequestError, NotFoundError } from '../api/errors'
 import { TypedEmitter } from 'tiny-typed-emitter'
 
-export type ControllerListener<EntityType> = (item: Document<any, any, EntityType>) => any
+export type ControllerListener<EntityType> = (item: EnforceDocument<EntityType, {}>) => any
 
 export interface ControllerEvents<EntityType> {
   created: ControllerListener<EntityType>
@@ -30,11 +30,11 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     return value
   }
 
-  async list (): Promise<Array<Document<any, any, EntityType>>> {
+  async list (): Promise<Array<EnforceDocument<EntityType, {}>>> {
     return await this.model.find()
   }
 
-  async find (id: string): Promise<Document<any, any, EntityType>> {
+  async find (id: string): Promise<EnforceDocument<EntityType, {}>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
@@ -45,25 +45,25 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     return item
   }
 
-  async create (data: any): Promise<Document<any, any, EntityType>> {
+  async create (data: any): Promise<EnforceDocument<EntityType, {}>> {
     const value = this.validate(data)
     const item = await this.model.create(value)
     this.emit('created', item)
     return item
   }
 
-  async update (id: string, data: any): Promise<Document<any, any, EntityType>> {
+  async update (id: string, data: any): Promise<EnforceDocument<EntityType, {}>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
     const item = await this.find(id)
-    Object.assign(item, this.validate(data))
-    const saved = await item.save()
-    this.emit('updated', saved)
-    return saved
+    item.set(this.validate(data))
+    await item.save()
+    this.emit('updated', item)
+    return item
   }
 
-  async delete (id: string): Promise<Document<any, any, EntityType>> {
+  async delete (id: string): Promise<EnforceDocument<EntityType, {}>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }

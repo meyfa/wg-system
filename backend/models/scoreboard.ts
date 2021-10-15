@@ -1,10 +1,10 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 import { memberModel } from './member'
 import Joi from 'joi'
 import { idValidator } from './common'
 
 export interface ScoreboardEntry {
-  memberId: typeof Schema.Types.ObjectId
+  memberId: Types.ObjectId
   offset: number
   score: number
 }

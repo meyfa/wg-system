@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 import Joi from 'joi'
 import { scoreboardModel } from './scoreboard'
 import { idValidator } from './common'
@@ -6,7 +6,7 @@ import { idValidator } from './common'
 export interface ManualChore {
   name: string
   dueSince: number
-  scoreboardId: typeof Schema.Types.ObjectId
+  scoreboardId: Types.ObjectId | null
 }
 
 export const manualChoreModel = model('ManualChore', new Schema<ManualChore>({
