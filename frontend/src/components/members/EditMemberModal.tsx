@@ -11,10 +11,34 @@ import BasicCheckbox from '../forms/BasicCheckbox'
 import BasicDropdown from '../forms/BasicDropdown'
 import { useAppSelector } from '../../store/store'
 import { Group, selectGroups } from '../../store/entities/groups'
+import { Editor } from '../../editors/use-editor'
 
 function useGroupFormatter (): (item: Group | undefined) => string {
   const { t } = useTranslation()
   return item => item == null ? t('noneOption') : item.name
+}
+
+function UserGroupSelect (props: { editor: Editor<Member> }): ReactElement {
+  const { editor } = props
+
+  const groups = useAppSelector(selectGroups)
+
+  const groupOptions = useMemo(() => [undefined, ...groups], [groups])
+  const groupFormatter = useGroupFormatter()
+  const groupValue = useMemo(() => {
+    return editor.value.groups.length !== 0
+      ? groups.find(item => item._id === editor.value.groups[0])
+      : undefined
+  }, [groups, editor.value.groups])
+
+  return (
+    <BasicDropdown
+      options={groupOptions}
+      formatter={groupFormatter}
+      value={groupValue}
+      onSelect={group => editor.update({ groups: group != null ? [group._id] : [] })}
+    />
+  )
 }
 
 interface Props {
@@ -28,8 +52,6 @@ interface Props {
 export default function EditMemberModal (props: Props): ReactElement {
   const { t } = useTranslation()
 
-  const groups = useAppSelector(selectGroups)
-
   const editor = useMemberEditor(props.member)
   // reset editor when modal closes/opens
   useEffect(() => editor.reset(), [editor, props.active])
@@ -39,14 +61,6 @@ export default function EditMemberModal (props: Props): ReactElement {
   const doDelete = useMemo(() => {
     return props.onDelete != null && props.member != null ? props.onDelete : undefined
   }, [props.onDelete, props.member])
-
-  const groupOptions = useMemo(() => [undefined, ...groups], [groups])
-  const groupFormatter = useGroupFormatter()
-  const groupValue = useMemo(() => {
-    return editor.value.groups.length !== 0
-      ? groups.find(item => item._id === editor.value.groups[0])
-      : undefined
-  }, [groups, editor.value.groups])
 
   return (
     <EditModal title={props.member != null ? t('members.edit') : t('members.create')}
@@ -68,12 +82,7 @@ export default function EditMemberModal (props: Props): ReactElement {
         />
       </FormRow>
       <FormRow label={t('members.fields.group')}>
-        <BasicDropdown
-          options={groupOptions}
-          formatter={groupFormatter}
-          value={groupValue}
-          onSelect={group => editor.update({ groups: group != null ? [group._id] : [] })}
-        />
+        <UserGroupSelect editor={editor} />
       </FormRow>
       <FormRow label={t('members.fields.active')}>
         <BasicCheckbox
