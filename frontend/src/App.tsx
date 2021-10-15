@@ -4,14 +4,16 @@ import HomePage from './pages/HomePage'
 import CalendarPage from './pages/CalendarPage'
 import MembersPage from './pages/MembersPage'
 import ChoresPage from './pages/ChoresPage'
-import { membersActions } from './store/entities/members'
-import { useApiSliceBridge } from './api-slice-bridge'
-import { manualChoresActions } from './store/entities/manual-chores'
 import ConnectionModal from './components/ConnectionModal'
+import { useApiSliceBridge } from './api-slice-bridge'
+import { groupsActions } from './store/entities/groups'
+import { membersActions } from './store/entities/members'
+import { manualChoresActions } from './store/entities/manual-chores'
 import { scoreboardsActions } from './store/entities/scoreboards'
 import { periodicChoresActions } from './store/entities/periodic-chores'
 
 export default function App (): ReactElement {
+  useApiSliceBridge('groups', groupsActions)
   useApiSliceBridge('members', membersActions)
   useApiSliceBridge('manual-chores', manualChoresActions)
   useApiSliceBridge('scoreboards', scoreboardsActions)

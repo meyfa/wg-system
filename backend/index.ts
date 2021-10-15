@@ -1,15 +1,19 @@
 import mongoose from 'mongoose'
 import { Environment } from './environment'
 import { Controller } from './controllers/controller'
-import { memberModel, memberValidator } from './models/member'
+import { groupModel, groupValidator } from './models/group'
 import { ScoreboardController } from './controllers/scoreboard-controller'
 import { ManualChoreController } from './controllers/manual-chore-controller'
 import { PeriodicChoreController } from './controllers/periodic-chore-controller'
 
 import { createRouter, createErrorHandler } from './api/api'
 import { handler as wsHandler } from './websocket/handler'
+import { MemberController } from './controllers/member-controller'
 
-const membersController = new Controller(memberModel, memberValidator)
+const groupsController = new Controller(groupModel, groupValidator)
+const membersController = new MemberController({
+  group: groupsController
+})
 const scoreboardsController = new ScoreboardController({
   member: membersController
 })
@@ -21,6 +25,7 @@ const periodicChoresController = new PeriodicChoreController({
 })
 
 const controllers: Record<string, Controller<unknown>> = {
+  groups: groupsController,
   members: membersController,
   scoreboards: scoreboardsController,
   'manual-chores': manualChoresController,

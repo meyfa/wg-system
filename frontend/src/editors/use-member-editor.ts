@@ -5,7 +5,8 @@ const DEFAULT: Member = {
   _id: '',
   name: '',
   color: '#000000',
-  active: true
+  active: true,
+  groups: []
 }
 
 export function useMemberEditor (value?: Member): Editor<Member> {
