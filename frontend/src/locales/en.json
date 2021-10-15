@@ -61,6 +61,7 @@
     "fields": {
       "name": "Name",
       "color": "Color",
+      "group": "Group",
       "active": "Current member"
     }
   },
