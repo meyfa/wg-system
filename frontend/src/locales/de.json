@@ -4,7 +4,8 @@
     "add": "Hinzufügen",
     "edit": "Bearbeiten",
     "save": "Speichern",
-    "cancel": "Abbrechen"
+    "cancel": "Abbrechen",
+    "delete": "Löschen"
   },
   "noneOption": "ohne",
   "navigation": "Navigation",

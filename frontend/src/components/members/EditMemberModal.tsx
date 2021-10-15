@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useMemo } from 'react'
 import { Member } from '../../store/entities/members'
 import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
@@ -14,6 +14,7 @@ interface Props {
   member?: Member
   onSave: (entity: Member) => void
   onCancel: () => void
+  onDelete?: () => void
 }
 
 export default function EditMemberModal (props: Props): ReactElement {
@@ -25,12 +26,17 @@ export default function EditMemberModal (props: Props): ReactElement {
 
   const save = useParametrized(props.onSave, editor.value)
 
+  const doDelete = useMemo(() => {
+    return props.onDelete != null && props.member != null ? props.onDelete : undefined
+  }, [props.onDelete, props.member])
+
   return (
     <EditModal title={props.member != null ? t('members.edit') : t('members.create')}
                active={props.active}
                isValid={editor.isValid}
                onSave={save}
-               onCancel={props.onCancel}>
+               onCancel={props.onCancel}
+               onDelete={doDelete}>
       <FormRow label={t('members.fields.name')}>
         <TextField
           value={editor.value.name}

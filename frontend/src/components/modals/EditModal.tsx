@@ -12,10 +12,21 @@ interface Props {
   isValid: boolean
   onSave: () => void
   onCancel: () => void
+  onDelete?: () => void
 }
 
 export default function EditModal (props: PropsWithChildren<Props>): ReactElement {
   const { t } = useTranslation()
+
+  const deleteButton = props.onDelete != null
+    ? (
+      <div className='EditModal-delete'>
+        <BasicButton warn onClick={props.onDelete} className='EditModal-delete'>
+          {t('basicActions.delete')}
+        </BasicButton>
+      </div>
+      )
+    : undefined
 
   return (
     <Modal active={props.active}>
@@ -24,7 +35,8 @@ export default function EditModal (props: PropsWithChildren<Props>): ReactElemen
       </div>
       {props.children}
       <div className='EditModal-actions'>
-        <BasicButton onClick={props.onSave} disabled={!props.isValid}>
+        {deleteButton}
+        <BasicButton primary onClick={props.onSave} disabled={!props.isValid}>
           {t('basicActions.save')}
         </BasicButton>
         <BasicButton onClick={props.onCancel}>

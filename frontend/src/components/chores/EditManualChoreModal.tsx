@@ -21,6 +21,7 @@ interface Props {
   chore?: ManualChore
   onSave: (entity: ManualChore) => void
   onCancel: () => void
+  onDelete?: () => void
 }
 
 export default function EditManualChoreModal (props: Props): ReactElement {
@@ -34,6 +35,10 @@ export default function EditManualChoreModal (props: Props): ReactElement {
 
   const save = useParametrized(props.onSave, editor.value)
 
+  const doDelete = useMemo(() => {
+    return props.onDelete != null && props.chore != null ? props.onDelete : undefined
+  }, [props.onDelete, props.chore])
+
   const scoreboardOptions = useMemo(() => [undefined, ...scoreboards], [scoreboards])
   const scoreboardFormatter = useScoreboardFormatter()
   const scoreboardValue = useEntityById(selectScoreboards, editor.value.scoreboardId)
@@ -43,7 +48,8 @@ export default function EditManualChoreModal (props: Props): ReactElement {
                active={props.active}
                isValid={editor.isValid}
                onSave={save}
-               onCancel={props.onCancel}>
+               onCancel={props.onCancel}
+               onDelete={doDelete}>
       <FormRow label={t('manual.fields.name')}>
         <TextField
           value={editor.value.name}

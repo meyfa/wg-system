@@ -6,11 +6,14 @@ interface BasicButtonProps {
   onClick?: () => void
   className?: string
   disabled?: boolean
+  primary?: boolean
+  warn?: boolean
 }
 
 export default function BasicButton (props: PropsWithChildren<BasicButtonProps>): ReactElement {
   return (
-    <button className={clsx('BasicButton', props.className)} type='button'
+    <button className={clsx('BasicButton', props.className, { primary: props.primary, warn: props.warn })}
+            type='button'
             disabled={props.disabled} onClick={props.onClick}>
       {props.children}
     </button>

@@ -33,6 +33,16 @@
   opacity: 0.5;
 }
 
+.BasicButton.primary {
+  color: #4787c6;
+  border-color: #4787c6;
+}
+
+.BasicButton.warn {
+  border-color: #da042f;
+  color: #da042f;
+}
+
 .BasicButton:not(:disabled):hover,
 .BasicButton:not(:disabled):focus {
   box-shadow: 0 0 0 1px currentColor, 0 3px 3px 0 rgba(0, 0, 0, 0.4);

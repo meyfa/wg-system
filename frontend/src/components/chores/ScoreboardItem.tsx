@@ -10,13 +10,15 @@ interface Props {
 }
 
 export default function ScoreboardItem (props: Props): ReactElement {
+  const onDelete = useCallback(async () => await api.scoreboards.delete(props.scoreboard._id), [props.scoreboard._id])
+
   const renderModal: EditModalRenderFn = useCallback((active, hide) => {
     const save = async (entity: Scoreboard): Promise<void> => {
       hide()
       await api.scoreboards.update(entity)
     }
-    return <EditScoreboardModal scoreboard={props.scoreboard} active={active} onSave={save} onCancel={hide} />
-  }, [props.scoreboard])
+    return <EditScoreboardModal scoreboard={props.scoreboard} active={active} onSave={save} onCancel={hide} onDelete={onDelete} />
+  }, [props.scoreboard, onDelete])
 
   return (
     <EditableItem renderModal={renderModal}>
