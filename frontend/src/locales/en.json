@@ -43,8 +43,16 @@
       "sunday": "Sun"
     }
   },
+  "groups": {
+    "edit": "Edit group",
+    "create": "Create a group",
+    "fields": {
+      "name": "Name"
+    }
+  },
   "members": {
     "title": "Members",
+    "groups": "Groups",
     "active": "Current members",
     "former": "Former members",
     "empty": "There are no current members added.",

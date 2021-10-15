@@ -43,8 +43,16 @@
       "sunday": "So"
     }
   },
+  "groups": {
+    "edit": "Gruppe bearbeiten",
+    "create": "Gruppe erstellen",
+    "fields": {
+      "name": "Name"
+    }
+  },
   "members": {
     "title": "Mitbewohner",
+    "groups": "Gruppen",
     "active": "Aktuelle Mitbewohner",
     "former": "Ehemalige Mitbewohner",
     "empty": "Es sind aktuell keine Mitbewohner hinzugefügt.",
