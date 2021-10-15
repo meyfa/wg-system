@@ -4,6 +4,7 @@ import EditPeriodicChoreModal from './EditPeriodicChoreModal'
 import EditableItem from '../items/EditableItem'
 import { PeriodicChore } from '../../store/entities/periodic-chores'
 import { EditModalRenderFn } from '../items/EditButton'
+import GroupTag from '../items/GroupTag'
 
 interface Props {
   chore: PeriodicChore
@@ -23,6 +24,7 @@ export default function PeriodicChoreItem (props: Props): ReactElement {
   return (
     <EditableItem renderModal={renderModal}>
       {props.chore.name}
+      {props.chore.groups.map((id, i) => <GroupTag key={i} id={id} />)}
     </EditableItem>
   )
 }

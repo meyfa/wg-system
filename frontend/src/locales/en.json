@@ -75,7 +75,8 @@
     "create": "Set up a chore",
     "fields": {
       "name": "Name",
-      "period": "Due after ... days"
+      "period": "Due after ... days",
+      "group": "Limit to group"
     }
   },
   "manual": {

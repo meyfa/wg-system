@@ -75,7 +75,8 @@
     "create": "Aufgabe erstellen",
     "fields": {
       "name": "Name",
-      "period": "Fällig nach ... Tagen"
+      "period": "Fällig nach ... Tagen",
+      "group": "Einschränkung auf Gruppe"
     }
   },
   "manual": {
