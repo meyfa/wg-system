@@ -40,8 +40,9 @@ function formatDate (date: string): string {
 interface Props {
   active: boolean
   entry: PeriodicChoreEntry
-  onCancel: () => void
+  onDelete: () => void
   onSave: (entry: PeriodicChoreEntry) => void
+  onCancel: () => void
 }
 
 export default function EditEntryModal (props: Props): ReactElement {
@@ -63,7 +64,8 @@ export default function EditEntryModal (props: Props): ReactElement {
   return (
     <EditModal active={props.active}
                title={t('calendar.edit')}
-               isValid={true}
+               isValid={editor.isValid}
+               onDelete={props.onDelete}
                onSave={save}
                onCancel={props.onCancel}>
       <FormRow label={t('calendar.fields.date')}>
