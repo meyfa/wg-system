@@ -55,7 +55,9 @@ export default function EditEntryModal (props: Props): ReactElement {
 
   const members = useAppSelector(selectMembers)
 
-  const memberOptions = useMemo(() => members.filter(item => item.active), [members])
+  const memberOptions = useMemo(() => {
+    return members.filter(item => item.active || item._id === props.entry.memberId)
+  }, [members, props.entry.memberId])
   const memberValue = useEntityById(selectMembers, editor.value.memberId)
 
   return (
