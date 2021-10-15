@@ -4,9 +4,11 @@ import manualChores from './entities/manual-chores'
 import members from './entities/members'
 import periodicChores from './entities/periodic-chores'
 import scoreboards from './entities/scoreboards'
+import groups from './entities/groups'
 
 export const store = configureStore({
   reducer: {
+    groups,
     members,
     manualChores,
     scoreboards,
