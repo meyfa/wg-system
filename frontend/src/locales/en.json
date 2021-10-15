@@ -41,6 +41,11 @@
       "friday": "Fri",
       "saturday": "Sat",
       "sunday": "Sun"
+    },
+    "edit": "Edit entry",
+    "fields": {
+      "date": "Date",
+      "member": "Completed by"
     }
   },
   "groups": {

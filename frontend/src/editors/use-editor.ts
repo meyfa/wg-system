@@ -1,25 +1,24 @@
-import { Entity } from '../store/entity'
 import { Dispatch, DispatchWithoutAction, useEffect, useMemo, useState } from 'react'
 import { useSameObjectReference } from '../util/use-same-object-reference'
 
 /**
- * Options that can be passed to the editor hook to customize it for a specific entity type.
+ * Options that can be passed to the editor hook to customize it for a specific data type.
  */
-export interface EditorOptions<E extends Entity> {
-  value?: E
-  default: E
-  validate?: (value: E) => boolean
+export interface EditorOptions<T> {
+  value?: T
+  default: T
+  validate?: (value: T) => boolean
 }
 
 // similar to SetStateAction<S>, but allowing partial values
 export type UpdateStateAction<S> = Partial<S> | ((prevState: S) => Partial<S>)
 
 /**
- * An editor for an entity, containing the current value, update and reset methods, and a validity state.
+ * An editor for a data object, containing the current value, update and reset methods, and a validity state.
  */
-export interface Editor<E extends Entity> {
-  value: E
-  update: Dispatch<UpdateStateAction<E>>
+export interface Editor<T> {
+  value: T
+  update: Dispatch<UpdateStateAction<T>>
   reset: DispatchWithoutAction
   isValid: boolean
 }
@@ -37,11 +36,11 @@ function useValidation<T> (value: T, validator?: (value: T) => boolean): boolean
  * @param options The editor options.
  * @returns The editor.
  */
-export function useEditor<E extends Entity> (options: EditorOptions<E>): Editor<E> {
+export function useEditor<T> (options: EditorOptions<T>): Editor<T> {
   const initial = options.value ?? options.default
-  const [storedValue, setStoredValue] = useState<E>(initial)
+  const [storedValue, setStoredValue] = useState<T>(initial)
 
-  const update: Dispatch<UpdateStateAction<E>> = (value) => setStoredValue(previous => {
+  const update: Dispatch<UpdateStateAction<T>> = (value) => setStoredValue(previous => {
     const partial = value instanceof Function ? value(previous) : value
     return { ...previous, ...partial }
   })
