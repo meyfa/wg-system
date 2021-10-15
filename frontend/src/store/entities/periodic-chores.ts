@@ -11,6 +11,7 @@ export interface PeriodicChoreEntry {
 export interface PeriodicChore extends Entity {
   readonly name: string
   readonly period: number
+  readonly groups: readonly string[]
   readonly entries: readonly PeriodicChoreEntry[]
 }
 
