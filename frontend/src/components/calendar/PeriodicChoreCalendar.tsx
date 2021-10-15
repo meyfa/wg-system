@@ -1,10 +1,11 @@
 import './PeriodicChoreCalendar.css'
 import { ReactElement, useCallback, useMemo } from 'react'
-import { PeriodicChoreEntry } from '../../store/entities/periodic-chores'
+import { PeriodicChore, PeriodicChoreEntry } from '../../store/entities/periodic-chores'
 import Calendar, { CellRenderFn } from './Calendar'
 import { DateTime } from 'luxon'
 import { useEntityById } from '../../util/use-entity-by-id'
 import { selectMembers } from '../../store/entities/members'
+import { PlannedEntry, usePlannedEntry } from '../../hooks/periodic-chores/use-planned-entry'
 
 type EntryMap = Map<string, readonly PeriodicChoreEntry[]>
 
@@ -46,26 +47,40 @@ function PeriodicChoreCalendarEntry (props: { entry: PeriodicChoreEntry }): Reac
   const member = useEntityById(selectMembers, props.entry.memberId)
 
   return (
-    <button className='PeriodicChoreCalendarEntry' style={{ backgroundColor: member?.color }}>
+    <button className='PeriodicChoreCalendar-entry' style={{ backgroundColor: member?.color }}>
       {member?.name ?? '???'}
     </button>
   )
 }
 
+function PeriodicChoreCalendarPlannedEntry (props: { entry: PlannedEntry }): ReactElement {
+  const member = props.entry.member
+
+  return (
+    <button className='PeriodicChoreCalendar-entry planned' style={{ backgroundColor: member.color }}>
+      {member.name}
+    </button>
+  )
+}
+
 interface Props {
-  entries: readonly PeriodicChoreEntry[]
+  chore: PeriodicChore
 }
 
 export default function PeriodicChoreCalendar (props: Props): ReactElement {
-  const map = useEntryMap(props.entries)
+  const map = useEntryMap(props.chore.entries)
+  const planned = usePlannedEntry(props.chore)
 
   const renderCell: CellRenderFn = useCallback(date => {
+    if (planned?.dueDate != null && date.hasSame(planned.dueDate, 'day')) {
+      return <PeriodicChoreCalendarPlannedEntry entry={planned} />
+    }
     const entries = map.get(formatDate(date))
     if (entries == null) {
       return undefined
     }
     return entries.map((entry, i) => <PeriodicChoreCalendarEntry key={i} entry={entry} />)
-  }, [map])
+  }, [map, planned])
 
   return (
     <Calendar renderCell={renderCell} />

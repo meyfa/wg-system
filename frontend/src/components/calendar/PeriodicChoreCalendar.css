@@ -1,4 +1,4 @@
-.PeriodicChoreCalendarEntry {
+.PeriodicChoreCalendar-entry {
   display: block;
   width: 100%;
   margin: 0;
@@ -8,13 +8,18 @@
   background: #eee;
   border: 2px solid #fff;
   border-radius: 4px;
-  cursor: pointer;
   outline: none;
   text-shadow: 0 0 2px #fff;
 }
 
-.PeriodicChoreCalendarEntry:focus,
-.PeriodicChoreCalendarEntry:hover {
+.PeriodicChoreCalendar-entry:not(.planned):focus,
+.PeriodicChoreCalendar-entry:not(.planned):hover {
   border-color: #666;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.PeriodicChoreCalendar-entry.planned {
+  opacity: 0.5;
+  font-style: italic;
 }
