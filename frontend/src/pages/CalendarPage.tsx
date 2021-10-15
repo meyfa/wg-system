@@ -44,7 +44,7 @@ export default function CalendarPage (): ReactElement {
       </Title>
       {periodicChores.length === 0 ? <Empty message={t('calendar.empty.noChores')} /> : undefined}
       {periodicChores.length > 0 && chore == null ? <Empty message={t('calendar.empty.unselected')} /> : undefined}
-      {chore != null ? <PeriodicChoreCalendar entries={chore.entries} /> : undefined}
+      {chore != null ? <PeriodicChoreCalendar chore={chore} /> : undefined}
     </NavigationBarLayout>
   )
 }
