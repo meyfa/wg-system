@@ -5,6 +5,7 @@ const DEFAULT: PeriodicChore = {
   _id: '',
   name: '',
   period: 7,
+  groups: [],
   entries: []
 }
 

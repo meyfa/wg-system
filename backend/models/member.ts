@@ -39,5 +39,5 @@ export const memberValidator = Joi.object({
   name: Joi.string().trim().required(),
   color: Joi.string().pattern(HEX_COLOR_REGEXP).lowercase().required(),
   active: Joi.boolean().required(),
-  groups: Joi.array().items(idValidator)
+  groups: Joi.array().items(idValidator).required()
 }).required()
