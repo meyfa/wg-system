@@ -18,8 +18,8 @@ export class MemberController extends Controller<Member> {
       }).cursor()
       await cursor.eachAsync(async (item) => {
         item.groups = item.groups.filter(id => !id.equals(other._id))
-        const updated = await memberModel.findById(item._id)
-        this.emit('updated', updated)
+        await item.save()
+        this.emit('updated', item)
       })
     })
   }
