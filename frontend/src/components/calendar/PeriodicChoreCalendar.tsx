@@ -55,6 +55,15 @@ async function updateEntry (chore: PeriodicChore, index: number, entry: Periodic
   })
 }
 
+async function deleteEntry (chore: PeriodicChore, index: number): Promise<void> {
+  const newEntries = [...chore.entries]
+  newEntries.splice(index, 1)
+  await api.periodicChores.update({
+    ...chore,
+    entries: newEntries
+  })
+}
+
 function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: number }): ReactElement {
   const entry = props.chore.entries[props.entryIndex]
 
@@ -69,6 +78,11 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
     await updateEntry(props.chore, props.entryIndex, updatedEntry)
   }, [props.chore, props.entryIndex])
 
+  const onDelete = useCallback(async () => {
+    setEditing(false)
+    await deleteEntry(props.chore, props.entryIndex)
+  }, [props.chore, props.entryIndex])
+
   return (
     <>
       <button className='PeriodicChoreCalendar-entry'
@@ -79,6 +93,7 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
       <EditEntryModal
         active={editing}
         entry={entry}
+        onDelete={onDelete}
         onSave={save}
         onCancel={cancelEditing}
       />
