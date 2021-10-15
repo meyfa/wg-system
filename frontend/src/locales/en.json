@@ -14,6 +14,9 @@
     "empty": "Nothing to show. If a task is configured, it will show up here.",
     "chores": {
       "last": "Recently completed",
+      "next": "Next up",
+      "nextFormat": "{{name}}",
+      "nextFormatDays": "{{name}} ({{days}} day(s) left)",
       "markDue": "Mark due",
       "markDone": "Mark as done"
     },
