@@ -6,6 +6,38 @@ import FormRow from '../forms/FormRow'
 import { useParametrized } from '../../util/use-parametrized'
 import { PeriodicChore } from '../../store/entities/periodic-chores'
 import { usePeriodicChoreEditor } from '../../editors/use-periodic-chore-editor'
+import { Group, selectGroups } from '../../store/entities/groups'
+import { Editor } from '../../editors/use-editor'
+import { useAppSelector } from '../../store/store'
+import BasicDropdown from '../forms/BasicDropdown'
+
+function useGroupFormatter (): (item: Group | undefined) => string {
+  const { t } = useTranslation()
+  return item => item == null ? t('noneOption') : item.name
+}
+
+function ChoreGroupSelect (props: { editor: Editor<PeriodicChore> }): ReactElement {
+  const { editor } = props
+
+  const groups = useAppSelector(selectGroups)
+
+  const groupOptions = useMemo(() => [undefined, ...groups], [groups])
+  const groupFormatter = useGroupFormatter()
+  const groupValue = useMemo(() => {
+    return editor.value.groups.length !== 0
+      ? groups.find(item => item._id === editor.value.groups[0])
+      : undefined
+  }, [groups, editor.value.groups])
+
+  return (
+    <BasicDropdown
+      options={groupOptions}
+      formatter={groupFormatter}
+      value={groupValue}
+      onSelect={group => editor.update({ groups: group != null ? [group._id] : [] })}
+    />
+  )
+}
 
 interface Props {
   active: boolean
@@ -47,6 +79,9 @@ export default function EditPeriodicChoreModal (props: Props): ReactElement {
           value={editor.value.period}
           onChange={({ target }) => editor.update({ period: target.valueAsNumber })}
         />
+      </FormRow>
+      <FormRow label={t('periodic.fields.group')}>
+        <ChoreGroupSelect editor={editor} />
       </FormRow>
     </EditModal>
   )
