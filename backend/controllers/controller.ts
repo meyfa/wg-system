@@ -3,7 +3,9 @@ import Joi, { ObjectSchema } from 'joi'
 import { BadRequestError, NotFoundError } from '../api/errors'
 import { TypedEmitter } from 'tiny-typed-emitter'
 
-export type ControllerListener<EntityType> = (item: EnforceDocument<EntityType, {}>) => any
+export type Doc<EntityType> = EnforceDocument<EntityType, {}, {}>
+
+export type ControllerListener<EntityType> = (item: Doc<EntityType>) => any
 
 export interface ControllerEvents<EntityType> {
   created: ControllerListener<EntityType>
@@ -30,11 +32,11 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     return value
   }
 
-  async list (): Promise<Array<EnforceDocument<EntityType, {}>>> {
+  async list (): Promise<Array<Doc<EntityType>>> {
     return await this.model.find()
   }
 
-  async find (id: string): Promise<EnforceDocument<EntityType, {}>> {
+  async find (id: string): Promise<Doc<EntityType>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
@@ -45,14 +47,14 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     return item
   }
 
-  async create (data: any): Promise<EnforceDocument<EntityType, {}>> {
+  async create (data: any): Promise<Doc<EntityType>> {
     const value = this.validate(data)
     const item = await this.model.create(value)
     this.emit('created', item)
     return item
   }
 
-  async update (id: string, data: any): Promise<EnforceDocument<EntityType, {}>> {
+  async update (id: string, data: any): Promise<Doc<EntityType>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
@@ -63,7 +65,7 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
     return item
   }
 
-  async delete (id: string): Promise<EnforceDocument<EntityType, {}>> {
+  async delete (id: string): Promise<Doc<EntityType>> {
     if (!Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }

@@ -1,5 +1,5 @@
-import { Controller } from './controller'
-import { EnforceDocument, QueryCursor } from 'mongoose'
+import { Controller, Doc } from './controller'
+import { QueryCursor } from 'mongoose'
 import { ManualChore, manualChoreModel, manualChoreValidator } from '../models/manual-chore'
 import { Scoreboard } from '../models/scoreboard'
 
@@ -13,7 +13,7 @@ export class ManualChoreController extends Controller<ManualChore> {
 
     // unset scoreboards when they are deleted
     dependencies.scoreboard.on('deleted', async (other) => {
-      const cursor: QueryCursor<EnforceDocument<ManualChore, {}>> = manualChoreModel.find({
+      const cursor: QueryCursor<Doc<ManualChore>> = manualChoreModel.find({
         scoreboardId: other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {
