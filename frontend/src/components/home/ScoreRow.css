@@ -21,3 +21,13 @@
   font-weight: bold;
   background: #e95;
 }
+
+@media (max-width: 400px) {
+  .ScoreRow {
+    display: block;
+  }
+
+  .ScoreRow-bar {
+    width: 100%;
+  }
+}

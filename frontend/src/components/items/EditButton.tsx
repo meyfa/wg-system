@@ -1,3 +1,4 @@
+import './EditButton.css'
 import { ReactElement, useState } from 'react'
 import Icon from '../Icon'
 import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -24,8 +25,9 @@ export default function EditButton (props: Props): ReactElement {
 
   return (
     <>
-      <BasicButton onClick={showModal}>
-        <Icon icon={isCreate ? faPlus : faEdit} /> {t(isCreate ? 'basicActions.add' : 'basicActions.edit')}
+      <BasicButton className='EditButton' onClick={showModal}>
+        <Icon icon={isCreate ? faPlus : faEdit} />
+        <span className='EditButton-label'>{t(isCreate ? 'basicActions.add' : 'basicActions.edit')}</span>
       </BasicButton>
       {props.renderModal(active, hideModal)}
     </>

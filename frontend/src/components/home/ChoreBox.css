@@ -13,3 +13,9 @@
   background: #fffcf9;
   border-color: #ff3c00;
 }
+
+@media (max-width: 480px) {
+  .ChoreBox {
+    width: 100%;
+  }
+}

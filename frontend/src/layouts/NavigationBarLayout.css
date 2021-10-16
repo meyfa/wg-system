@@ -8,3 +8,10 @@
   max-width: 800px;
   margin: 20px auto;
 }
+
+@media (max-width: 560px) {
+  .NavigationBarLayout.centered > .NavigationBarLayout-content {
+    width: 100%;
+    margin: 20px 0;
+  }
+}

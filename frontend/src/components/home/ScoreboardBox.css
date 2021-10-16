@@ -15,3 +15,10 @@
   margin-top: 12px;
   color: #888;
 }
+
+@media (max-width: 480px) {
+  .ScoreboardBox {
+    width: 100%;
+    min-width: 240px;
+  }
+}

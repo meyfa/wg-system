@@ -6,10 +6,9 @@
   top: 0;
   left: 0;
   background-color: #0005;
-  padding: 24px;
+  padding: 24px 24px 72px;
   display: none;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
 }
 
 .Modal.important {
@@ -22,9 +21,21 @@
 
 .Modal-container {
   position: relative;
+  max-width: 100%;
+  margin: auto;
   padding: 24px 32px;
   background-color: #fff;
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  overflow-y: hidden;
+}
+
+@media (max-width: 720px) {
+  .Modal {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .Modal-container {
+    padding: 16px;
+  }
 }
