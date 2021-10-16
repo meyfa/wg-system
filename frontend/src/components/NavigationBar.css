@@ -107,3 +107,34 @@
 .NavigationBar:not(.active) .NavigationBar-link-label {
   display: none;
 }
+
+@media (max-width: 560px) {
+  .NavigationBar:not(.active) {
+    width: 100vw;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  .NavigationBar:not(.active) .NavigationBar-inner {
+    width: 100%;
+    height: 60px;
+    padding: 0;
+  }
+
+  .NavigationBar:not(.active) .NavigationBar-sep {
+    display: none;
+  }
+
+  .NavigationBar:not(.active) .NavigationBar-toggle {
+    display: inline-flex;
+    width: 60px;
+    height: 100%;
+  }
+
+  .NavigationBar:not(.active) .NavigationBar-link {
+    display: inline-flex;
+    width: 60px;
+    height: 100%;
+    line-height: inherit;
+  }
+}
