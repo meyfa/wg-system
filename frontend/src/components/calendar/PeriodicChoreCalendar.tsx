@@ -113,15 +113,8 @@ function PeriodicChoreCalendarPlannedEntry (props: { entry: PlannedEntry }): Rea
   )
 }
 
-interface Props {
-  chore: PeriodicChore
-}
-
-export default function PeriodicChoreCalendar (props: Props): ReactElement {
-  const map = useEntryMap(props.chore.entries)
-  const planned = usePlannedEntry(props.chore)
-
-  const renderCell: CellRenderFn = useCallback(date => {
+function useCellRenderer (chore: PeriodicChore, map: EntryMap, planned?: PlannedEntry): CellRenderFn {
+  return useCallback(date => {
     if (planned?.dueDate != null && date.hasSame(planned.dueDate, 'day')) {
       return <PeriodicChoreCalendarPlannedEntry entry={planned} />
     }
@@ -130,9 +123,20 @@ export default function PeriodicChoreCalendar (props: Props): ReactElement {
       return undefined
     }
     return entryIndices.map((index) => (
-      <PeriodicChoreCalendarEntry key={index} chore={props.chore} entryIndex={index} />
+      <PeriodicChoreCalendarEntry key={index} chore={chore} entryIndex={index} />
     ))
-  }, [props.chore, map, planned])
+  }, [chore, map, planned])
+}
+
+interface Props {
+  chore: PeriodicChore
+}
+
+export default function PeriodicChoreCalendar (props: Props): ReactElement {
+  const map = useEntryMap(props.chore.entries)
+  const planned = usePlannedEntry(props.chore)
+
+  const renderCell = useCellRenderer(props.chore, map, planned)
 
   const [creating, setCreating] = useState<DateTime | undefined>()
   const cancelCreate = useParametrized(setCreating, undefined)
