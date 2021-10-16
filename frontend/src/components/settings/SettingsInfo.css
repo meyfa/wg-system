@@ -1,0 +1,8 @@
+.SettingsInfo {
+  padding: 24px;
+  line-height: 1.5;
+}
+
+.SettingsInfo > svg:first-child {
+  margin-right: 16px;
+}

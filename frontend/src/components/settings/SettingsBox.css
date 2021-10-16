@@ -1,0 +1,17 @@
+.SettingsBox {
+  margin: 10px 0;
+  padding: 0 12px;
+  align-items: center;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.SettingsBox > hr {
+  display: block;
+  margin: 0;
+  height: 2px;
+  border: none;
+  background: #e8e8e8;
+}

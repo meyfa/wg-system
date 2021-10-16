@@ -106,5 +106,10 @@
     "fields": {
       "name": "Name"
     }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "onlyThisBrowserInfo": "Diese Einstellungen betreffen nur diesen Browser. Sie haben keine Auswirkung auf andere Geräte."
   }
 }

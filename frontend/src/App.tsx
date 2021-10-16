@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import CalendarPage from './pages/CalendarPage'
 import MembersPage from './pages/MembersPage'
 import ChoresPage from './pages/ChoresPage'
+import SettingsPage from './pages/SettingsPage'
 import ConnectionModal from './components/ConnectionModal'
 import { useApiSliceBridge } from './api-slice-bridge'
 import { groupsActions } from './store/entities/groups'
@@ -41,6 +42,9 @@ export default function App (): ReactElement {
         </Route>
         <Route exact path='/chores'>
           <ChoresPage />
+        </Route>
+        <Route exact path='/settings'>
+          <SettingsPage />
         </Route>
 
         {/* page not found */}
