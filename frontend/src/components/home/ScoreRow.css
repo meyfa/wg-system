@@ -1,6 +1,7 @@
 .ScoreRow {
   display: flex;
   margin: 4px 0;
+  line-height: 20px;
 }
 
 .ScoreRow-name {
@@ -8,7 +9,7 @@
 }
 
 .ScoreRow-bar {
-  width: 160px;
+  width: 100px;
   height: 20px;
   background: #c0e0d0;
 }

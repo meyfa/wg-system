@@ -9,6 +9,7 @@ import { selectPeriodicChores } from '../store/entities/periodic-chores'
 import PeriodicChoreBox from '../components/home/PeriodicChoreBox'
 import Empty from '../components/Empty'
 import { useTranslation } from 'react-i18next'
+import ChoreGrid from '../components/home/ChoreGrid'
 
 export default function HomePage (): ReactElement {
   const { t } = useTranslation()
@@ -22,9 +23,11 @@ export default function HomePage (): ReactElement {
   return (
     <NavigationBarLayout centered={empty}>
       {empty ? <Empty message={t('home.empty')} /> : undefined}
-      {periodicChores.map(chore => <PeriodicChoreBox key={chore._id} chore={chore} />)}
-      {scoreboards.map(scoreboard => <ScoreboardBox key={scoreboard._id} scoreboard={scoreboard} />)}
-      {manualChores.map(chore => <ManualChoreBox key={chore._id} chore={chore} />)}
+      <ChoreGrid>
+        {periodicChores.map(chore => <PeriodicChoreBox key={chore._id} chore={chore} />)}
+        {scoreboards.map(scoreboard => <ScoreboardBox key={scoreboard._id} scoreboard={scoreboard} />)}
+        {manualChores.map(chore => <ManualChoreBox key={chore._id} chore={chore} />)}
+      </ChoreGrid>
     </NavigationBarLayout>
   )
 }

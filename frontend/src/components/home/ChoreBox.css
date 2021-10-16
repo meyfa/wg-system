@@ -1,8 +1,5 @@
 .ChoreBox {
-  display: inline-block;
-  margin: 0 12px 12px 0;
   padding: 10px;
-  vertical-align: top;
   background: #fff;
   border: 2px solid transparent;
   border-radius: 2px;
@@ -12,10 +9,4 @@
 .ChoreBox.urgent {
   background: #fffcf9;
   border-color: #ff3c00;
-}
-
-@media (max-width: 480px) {
-  .ChoreBox {
-    width: 100%;
-  }
 }
