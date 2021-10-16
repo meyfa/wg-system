@@ -43,6 +43,7 @@
       "sunday": "So"
     },
     "edit": "Eintrag bearbeiten",
+    "create": "Eintrag erstellen",
     "fields": {
       "date": "Datum",
       "member": "Erledigt von"

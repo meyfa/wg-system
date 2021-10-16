@@ -63,3 +63,12 @@
 .Calendar-td.inactive {
   background: rgba(0, 0, 0, 0.02);
 }
+
+.Calendar-td.clickable {
+  cursor: pointer;
+}
+
+.Calendar-td.clickable:focus,
+.Calendar-td.clickable:hover {
+  outline: 2px solid #ccc;
+}

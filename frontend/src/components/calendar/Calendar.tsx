@@ -4,8 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { DateTime } from 'luxon'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import Icon from '../Icon'
+import clsx from 'clsx'
 
 export type CellRenderFn = (date: DateTime) => ReactNode
+export type CellClickHandler = (date: DateTime) => void
+
 type CalendarGrid = Array<Array<CalendarDaySpec | undefined>>
 
 /**
@@ -30,11 +33,11 @@ function CalendarHeader (): ReactElement {
 }
 
 interface CalendarDaySpec {
-  day?: number
+  date: DateTime
   children: ReactNode
 }
 
-function CalendarBody (props: { month: DateTime, renderCell?: CellRenderFn }): ReactElement {
+function CalendarBody (props: { month: DateTime, renderCell?: CellRenderFn, onClickCell?: (date: DateTime) => void }): ReactElement {
   const { renderCell } = props
 
   const grid = useMemo(() => {
@@ -45,7 +48,7 @@ function CalendarBody (props: { month: DateTime, renderCell?: CellRenderFn }): R
     let offset = props.month.weekday - 1
     for (let cursor = props.month; cursor.toMillis() < last.toMillis(); cursor = cursor.plus({ days: 1 })) {
       rows[Math.trunc(offset / 7)][offset % 7] = {
-        day: cursor.day,
+        date: cursor,
         children: renderCell != null ? renderCell(cursor) : undefined
       }
       ++offset
@@ -56,36 +59,46 @@ function CalendarBody (props: { month: DateTime, renderCell?: CellRenderFn }): R
 
   return (
     <tbody>
-      {grid.map((row, i) => <CalendarRow key={i} columns={row} />)}
+      {grid.map((row, i) => (
+        <CalendarRow key={i} columns={row} onClickCell={props.onClickCell} />
+      ))}
     </tbody>
   )
 }
 
-function CalendarRow (props: { columns: Array<CalendarDaySpec | undefined> }): ReactElement {
+function CalendarRow (props: { columns: Array<CalendarDaySpec | undefined>, onClickCell?: CellClickHandler }): ReactElement {
   return (
     <tr>
       {props.columns.map((col, i) => (
-        <CalendarCell key={i} spec={col} />
+        <CalendarCell key={i} spec={col} onClick={props.onClickCell} />
       ))}
     </tr>
   )
 }
 
-function CalendarCell (props: { spec?: CalendarDaySpec }): ReactElement {
-  if (props.spec == null) {
+function CalendarCell (props: { spec?: CalendarDaySpec, onClick?: CellClickHandler }): ReactElement {
+  const { spec, onClick } = props
+  const handleClick = useCallback(() => {
+    if (onClick != null && spec != null) {
+      onClick(spec.date)
+    }
+  }, [onClick, spec])
+
+  if (spec == null) {
     return <td className='Calendar-td inactive' />
   }
 
   return (
-    <td className='Calendar-td'>
-      {props.spec.day}
-      {props.spec.children}
+    <td className={clsx('Calendar-td', { clickable: onClick != null })} onClick={handleClick}>
+      {spec.date.day}
+      {spec.children}
     </td>
   )
 }
 
 interface Props {
   renderCell?: CellRenderFn
+  onClickCell?: CellClickHandler
 }
 
 export default function Calendar (props: Props): ReactElement {
@@ -115,7 +128,7 @@ export default function Calendar (props: Props): ReactElement {
       </div>
       <table className='Calendar-table'>
         <CalendarHeader />
-        <CalendarBody month={month} renderCell={props.renderCell} />
+        <CalendarBody month={month} renderCell={props.renderCell} onClickCell={props.onClickCell} />
       </table>
     </div>
   )

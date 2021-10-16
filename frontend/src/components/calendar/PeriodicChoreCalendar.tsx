@@ -1,7 +1,7 @@
 import './PeriodicChoreCalendar.css'
-import { ReactElement, useCallback, useMemo, useState } from 'react'
+import { MouseEventHandler, ReactElement, useCallback, useMemo, useState } from 'react'
 import { PeriodicChore, PeriodicChoreEntry } from '../../store/entities/periodic-chores'
-import Calendar, { CellRenderFn } from './Calendar'
+import Calendar, { CellClickHandler, CellRenderFn } from './Calendar'
 import { DateTime } from 'luxon'
 import { useEntityById } from '../../util/use-entity-by-id'
 import { selectMembers } from '../../store/entities/members'
@@ -46,22 +46,20 @@ function useEntryMap (items: readonly PeriodicChoreEntry[]): EntryMap {
   }, [items])
 }
 
+async function insertEntry (chore: PeriodicChore, entry: PeriodicChoreEntry): Promise<void> {
+  await api.periodicChores.update({ ...chore, entries: [...chore.entries, entry] })
+}
+
 async function updateEntry (chore: PeriodicChore, index: number, entry: PeriodicChoreEntry): Promise<void> {
   const newEntries = [...chore.entries]
   newEntries[index] = entry
-  await api.periodicChores.update({
-    ...chore,
-    entries: newEntries
-  })
+  await api.periodicChores.update({ ...chore, entries: newEntries })
 }
 
 async function deleteEntry (chore: PeriodicChore, index: number): Promise<void> {
   const newEntries = [...chore.entries]
   newEntries.splice(index, 1)
-  await api.periodicChores.update({
-    ...chore,
-    entries: newEntries
-  })
+  await api.periodicChores.update({ ...chore, entries: newEntries })
 }
 
 function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: number }): ReactElement {
@@ -70,7 +68,10 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
   const member = useEntityById(selectMembers, entry.memberId)
 
   const [editing, setEditing] = useState(false)
-  const startEditing = useParametrized(setEditing, true)
+  const startEditing: MouseEventHandler = useCallback(event => {
+    event.stopPropagation()
+    setEditing(true)
+  }, [])
   const cancelEditing = useParametrized(setEditing, false)
 
   const save = useCallback(async (updatedEntry: PeriodicChoreEntry) => {
@@ -85,7 +86,8 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
 
   return (
     <>
-      <button className='PeriodicChoreCalendar-entry'
+      <button type='button'
+              className='PeriodicChoreCalendar-entry'
               style={{ backgroundColor: member?.color }}
               onClick={startEditing}>
         {member?.name ?? '???'}
@@ -132,7 +134,34 @@ export default function PeriodicChoreCalendar (props: Props): ReactElement {
     ))
   }, [props.chore, map, planned])
 
+  const [creating, setCreating] = useState<DateTime | undefined>()
+  const cancelCreate = useParametrized(setCreating, undefined)
+  const create = useCallback(async (entry: PeriodicChoreEntry) => {
+    setCreating(undefined)
+    await insertEntry(props.chore, entry)
+  }, [props.chore])
+
+  const onClickCell: CellClickHandler = useCallback(date => {
+    const entryIndices = map.get(formatDate(date))
+    // only allow creation if no entry currently exists
+    if (entryIndices == null || entryIndices.length === 0) {
+      setCreating(date)
+    }
+  }, [map])
+
+  const calendar = useMemo(() => (
+    <Calendar renderCell={renderCell} onClickCell={onClickCell} />
+  ), [renderCell, onClickCell])
+
   return (
-    <Calendar renderCell={renderCell} />
+    <>
+      {calendar}
+      <EditEntryModal
+        active={creating != null}
+        createForDate={creating}
+        onSave={create}
+        onCancel={cancelCreate}
+      />
+    </>
   )
 }

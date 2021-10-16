@@ -43,6 +43,7 @@
       "sunday": "Sun"
     },
     "edit": "Edit entry",
+    "create": "Create an entry",
     "fields": {
       "date": "Date",
       "member": "Completed by"
