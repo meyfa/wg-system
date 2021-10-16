@@ -100,14 +100,14 @@ export default function ManualChoreBox (props: Props): ReactElement {
         {props.chore.name}
       </div>
       <div className='ManualChoreBox-actions'>
-        {isDue
-          ? (<BasicButton onClick={startMarkDone}>
-            {t('home.chores.markDone')}
-          </BasicButton>)
-          : (<BasicButton onClick={markDue}>
+        <BasicButton onClick={startMarkDone}>
+          {t('home.chores.markDone')}
+        </BasicButton>
+        {!isDue
+          ? (<BasicButton onClick={markDue}>
             {t('home.chores.markDue')}
           </BasicButton>)
-        }
+          : undefined}
       </div>
       <SelectMemberModal active={isSelectingMember} onSelect={confirmMarkDone} onCancel={cancelMarkDone} />
     </ChoreBox>
