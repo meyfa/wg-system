@@ -1,0 +1,20 @@
+.ItemTag {
+  display: inline-block;
+  margin-left: 24px;
+  font-size: 16px;
+  padding: 4px 12px;
+  background: #eaeaea;
+  border-radius: 2px;
+}
+
+.ItemTag + .ItemTag {
+  margin-left: 12px;
+}
+
+@media (max-width: 720px) {
+  .ItemTag {
+    display: block;
+    width: fit-content;
+    margin: 6px 0 0 !important;
+  }
+}

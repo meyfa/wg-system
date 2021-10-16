@@ -4,13 +4,17 @@ import EditPeriodicChoreModal from './EditPeriodicChoreModal'
 import EditableItem from '../items/EditableItem'
 import { PeriodicChore } from '../../store/entities/periodic-chores'
 import { EditModalRenderFn } from '../items/EditButton'
-import GroupTag from '../items/GroupTag'
+import ItemTag from '../items/ItemTag'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   chore: PeriodicChore
 }
 
 export default function PeriodicChoreItem (props: Props): ReactElement {
+  const { t } = useTranslation()
+
   const onDelete = useCallback(async () => await api.periodicChores.delete(props.chore._id), [props.chore._id])
 
   const renderModal: EditModalRenderFn = useCallback((active, hide) => {
@@ -24,7 +28,8 @@ export default function PeriodicChoreItem (props: Props): ReactElement {
   return (
     <EditableItem renderModal={renderModal}>
       {props.chore.name}
-      {props.chore.groups.map((id, i) => <GroupTag key={i} id={id} />)}
+      <ItemTag icon={faClock} text={t('periodic.everyNDays', { count: props.chore.period })} />
+      {props.chore.groups.map((id, i) => <ItemTag.Group key={i} id={id} />)}
     </EditableItem>
   )
 }

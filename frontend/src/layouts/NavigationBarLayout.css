@@ -4,7 +4,7 @@
 }
 
 .NavigationBarLayout.centered > .NavigationBarLayout-content {
-  width: 80%;
+  width: 100%;
   max-width: 800px;
   margin: 20px auto;
 }
@@ -13,12 +13,5 @@
   .NavigationBarLayout {
     margin-left: 0;
     margin-top: 60px;
-  }
-}
-
-@media (max-width: 560px) {
-  .NavigationBarLayout.centered > .NavigationBarLayout-content {
-    width: 100%;
-    margin: 20px 0;
   }
 }

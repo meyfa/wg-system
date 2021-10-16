@@ -7,7 +7,7 @@ import EditScoreboardModal from './EditScoreboardModal'
 import Empty from '../Empty'
 import ScoreboardItem from './ScoreboardItem'
 import Section from '../Section'
-import { faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSortAmountUp } from '@fortawesome/free-solid-svg-icons'
 import { EditModalRenderFn } from '../items/EditButton'
 
 export default function ScoreboardsSection (): ReactElement {
@@ -24,7 +24,7 @@ export default function ScoreboardsSection (): ReactElement {
   }, [])
 
   return (
-    <Section icon={faSortAmountUpAlt} title={t('scoreboards.title')} renderCreateModal={renderCreateModal}>
+    <Section icon={faSortAmountUp} title={t('scoreboards.title')} renderCreateModal={renderCreateModal}>
       {scoreboards.length === 0 ? <Empty message={t('scoreboards.empty')} /> : undefined}
       {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
     </Section>

@@ -6,7 +6,7 @@ import api from '../../api/api'
 import EditableItem from '../items/EditableItem'
 import clsx from 'clsx'
 import { EditModalRenderFn } from '../items/EditButton'
-import GroupTag from '../items/GroupTag'
+import ItemTag from '../items/ItemTag'
 
 interface Props {
   member: Member
@@ -27,7 +27,7 @@ export default function MemberItem (props: Props): ReactElement {
     <EditableItem className={clsx('MemberItem', { inactive: !props.member.active })} renderModal={renderModal}>
       <div className='MemberItem-color' style={{ background: props.member.color }} />
       {props.member.name}
-      {props.member.groups.map((id, i) => <GroupTag key={i} id={id} />)}
+      {props.member.groups.map((id, i) => <ItemTag.Group key={i} id={id} />)}
     </EditableItem>
   )
 }

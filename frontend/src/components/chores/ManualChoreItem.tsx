@@ -4,6 +4,7 @@ import api from '../../api/api'
 import EditManualChoreModal from './EditManualChoreModal'
 import EditableItem from '../items/EditableItem'
 import { EditModalRenderFn } from '../items/EditButton'
+import ItemTag from '../items/ItemTag'
 
 interface Props {
   chore: ManualChore
@@ -23,6 +24,7 @@ export default function ManualChoreItem (props: Props): ReactElement {
   return (
     <EditableItem renderModal={renderModal}>
       {props.chore.name}
+      <ItemTag.Scoreboard id={props.chore.scoreboardId} />
     </EditableItem>
   )
 }
