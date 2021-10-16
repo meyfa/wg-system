@@ -1,0 +1,17 @@
+.SettingsItem {
+  display: flex;
+  width: 100%;
+  padding: 16px 0;
+}
+
+.SettingsItem-text {
+  width: 30%;
+  min-width: 160px;
+  margin-right: 32px;
+  line-height: 2;
+  text-align: right;
+}
+
+.SettingsItem-content {
+  flex-grow: 1;
+}
