@@ -18,7 +18,7 @@
       "nextFormat": "{{name}}",
       "nextFormatDays": "{{name}} ({{days}} day(s) left)",
       "markDue": "Mark due",
-      "markDone": "Mark as done"
+      "markDone": "Mark done"
     },
     "scoreboards": {
       "help": "The person at the top should do the next chore.",

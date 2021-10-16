@@ -17,8 +17,8 @@
       "next": "Nächster Dienst",
       "nextFormat": "{{name}}",
       "nextFormatDays": "{{name}} (noch {{days}} Tag(e))",
-      "markDue": "Als fällig markieren",
-      "markDone": "Dienst eintragen"
+      "markDue": "Anfordern",
+      "markDone": "Eintragen"
     },
     "scoreboards": {
       "help": "Die Person weiter oben sollte den nächsten Dienst machen.",
