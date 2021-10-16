@@ -1,0 +1,9 @@
+@media (max-width: 480px) {
+  .EditButton > svg {
+    margin: 0;
+  }
+
+  .EditButton-label {
+    display: none;
+  }
+}

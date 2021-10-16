@@ -27,3 +27,25 @@ h2.Title-h {
 .Title-icon {
   margin-right: 0.75em;
 }
+
+@media (max-width: 560px) {
+  .Title {
+    margin: 0 0 24px;
+  }
+
+  .Title:not(:first-child) {
+    margin-top: 32px;
+  }
+
+  .Title-h {
+    margin-right: 20px;
+  }
+
+  h1.Title-h {
+    font-size: 28px;
+  }
+
+  h2.Title-h {
+    font-size: 20px;
+  }
+}
