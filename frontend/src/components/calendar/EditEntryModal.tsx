@@ -24,7 +24,8 @@ function useEntryEditor (value?: PeriodicChoreEntry): Editor<PeriodicChoreEntry>
     value,
     default: DEFAULT_ENTRY,
     validate: entry => {
-      return entry.date !== '' && entry.memberId !== '' && members.some(member => member._id === entry.memberId)
+      return entry.date !== '' && DateTime.fromISO(entry.date, { zone: 'utc' }).isValid &&
+        entry.memberId !== '' && members.some(member => member._id === entry.memberId)
     }
   })
 }
@@ -39,8 +40,9 @@ function formatDate (date: string): string {
 
 interface Props {
   active: boolean
-  entry: PeriodicChoreEntry
-  onDelete: () => void
+  entry?: PeriodicChoreEntry
+  createForDate?: DateTime
+  onDelete?: () => void
   onSave: (entry: PeriodicChoreEntry) => void
   onCancel: () => void
 }
@@ -54,22 +56,27 @@ export default function EditEntryModal (props: Props): ReactElement {
 
   const save = useParametrized(props.onSave, editor.value)
 
-  const members = useAppSelector(selectMembers)
+  useEffect(() => {
+    if (props.entry == null && props.createForDate != null) {
+      editor.update({ date: props.createForDate.toISO() })
+    }
+  }, [editor, props.entry, props.createForDate])
 
+  const members = useAppSelector(selectMembers)
   const memberOptions = useMemo(() => {
-    return members.filter(item => item.active || item._id === props.entry.memberId)
-  }, [members, props.entry.memberId])
+    return members.filter(item => item.active || item._id === props.entry?.memberId)
+  }, [members, props.entry?.memberId])
   const memberValue = useEntityById(selectMembers, editor.value.memberId)
 
   return (
     <EditModal active={props.active}
-               title={t('calendar.edit')}
+               title={props.entry == null ? t('calendar.create') : t('calendar.edit')}
                isValid={editor.isValid}
                onDelete={props.onDelete}
                onSave={save}
                onCancel={props.onCancel}>
       <FormRow label={t('calendar.fields.date')}>
-        <TextField disabled value={formatDate(props.entry.date)} />
+        <TextField disabled value={formatDate(editor.value.date)} />
       </FormRow>
       <FormRow label={t('calendar.fields.member')}>
         <BasicDropdown
