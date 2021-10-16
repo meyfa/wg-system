@@ -16,7 +16,8 @@
       "last": "Recently completed",
       "next": "Next up",
       "nextFormat": "{{name}}",
-      "nextFormatDays": "{{name}} ({{days}} day(s) left)",
+      "nextFormatDays_one": "{{name}} ({{count}} day left)",
+      "nextFormatDays_other": "{{name}} ({{count}} days left)",
       "markDue": "Mark due",
       "markDone": "Mark done"
     },
@@ -83,7 +84,9 @@
       "name": "Name",
       "period": "Due after ... days",
       "group": "Limit to group"
-    }
+    },
+    "everyNDays_one": "every day",
+    "everyNDays_other": "every {{count}} days"
   },
   "manual": {
     "title": "Manually set chores",

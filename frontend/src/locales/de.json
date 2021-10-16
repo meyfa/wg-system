@@ -16,7 +16,8 @@
       "last": "Zuletzt erledigt",
       "next": "Nächster Dienst",
       "nextFormat": "{{name}}",
-      "nextFormatDays": "{{name}} (noch {{days}} Tag(e))",
+      "nextFormatDays_one": "{{name}} (noch {{count}} Tag)",
+      "nextFormatDays_other": "{{name}} (noch {{count}} Tage)",
       "markDue": "Anfordern",
       "markDone": "Eintragen"
     },
@@ -83,7 +84,9 @@
       "name": "Name",
       "period": "Fällig nach ... Tagen",
       "group": "Einschränkung auf Gruppe"
-    }
+    },
+    "everyNDays_one": "jeden Tag",
+    "everyNDays_other": "alle {{count}} Tage"
   },
   "manual": {
     "title": "Situationsabhängige Aufgaben",

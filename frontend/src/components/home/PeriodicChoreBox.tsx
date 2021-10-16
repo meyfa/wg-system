@@ -53,7 +53,7 @@ function usePlannedEntryString (chore: PeriodicChore): string {
   }
   if (entry.dueDays != null) {
     const daysRemaining = Math.max(0, entry.dueDays)
-    return t('home.chores.nextFormatDays', { name: entry.member.name, days: daysRemaining })
+    return t('home.chores.nextFormatDays', { name: entry.member.name, count: daysRemaining })
   }
   return t('home.chores.nextFormat', { name: entry.member.name })
 }
