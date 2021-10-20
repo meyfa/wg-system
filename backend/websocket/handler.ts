@@ -28,4 +28,7 @@ export function handler (controllers: Record<string, Controller<unknown>>, ws: W
   for (const [name, controller] of Object.entries(controllers)) {
     subscribe(ws, name, controller)
   }
+
+  const heartbeat = setInterval(() => ws.ping(), 20000)
+  ws.on('close', () => clearInterval(heartbeat))
 }
