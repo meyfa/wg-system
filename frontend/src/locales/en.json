@@ -9,6 +9,7 @@
   },
   "noneOption": "none",
   "navigation": "Navigation",
+  "deleteConfirm": "Do you really want to delete this item?",
   "home": {
     "title": "Overview",
     "empty": "Nothing to show. If a task is configured, it will show up here.",

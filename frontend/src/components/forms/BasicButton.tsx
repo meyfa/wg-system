@@ -1,9 +1,9 @@
 import './BasicButton.css'
-import { PropsWithChildren, ReactElement } from 'react'
+import { MouseEventHandler, PropsWithChildren, ReactElement } from 'react'
 import clsx from 'clsx'
 
 interface BasicButtonProps {
-  onClick?: () => void
+  onClick?: MouseEventHandler
   className?: string
   disabled?: boolean
   primary?: boolean

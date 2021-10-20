@@ -1,0 +1,17 @@
+.DeleteButton-confirm {
+  max-width: 240px;
+  margin: 0 0 24px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.DeleteButton-descriptor {
+  max-width: 240px;
+  margin: 0 0 32px;
+  padding: 8px;
+  background: #eee;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: bold;
+  word-break: break-word;
+}
