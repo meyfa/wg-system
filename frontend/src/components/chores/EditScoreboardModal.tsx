@@ -32,6 +32,7 @@ export default function EditScoreboardModal (props: Props): ReactElement {
     <EditModal title={props.scoreboard != null ? t('scoreboards.edit') : t('scoreboards.create')}
                active={props.active}
                isValid={editor.isValid}
+               itemDescriptor={props.scoreboard?.name}
                onSave={save}
                onCancel={props.onCancel}
                onDelete={doDelete}>

@@ -32,6 +32,7 @@ export default function EditGroupModal (props: Props): ReactElement {
     <EditModal title={props.group != null ? t('groups.edit') : t('groups.create')}
                active={props.active}
                isValid={editor.isValid}
+               itemDescriptor={props.group?.name}
                onSave={save}
                onCancel={props.onCancel}
                onDelete={doDelete}>

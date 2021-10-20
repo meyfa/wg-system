@@ -64,6 +64,7 @@ export default function EditPeriodicChoreModal (props: Props): ReactElement {
     <EditModal title={props.chore != null ? t('periodic.edit') : t('periodic.create')}
                active={props.active}
                isValid={editor.isValid}
+               itemDescriptor={props.chore?.name}
                onSave={save}
                onCancel={props.onCancel}
                onDelete={doDelete}>

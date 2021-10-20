@@ -5,6 +5,7 @@ import BasicButton from '../forms/BasicButton'
 import { useTranslation } from 'react-i18next'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import Icon from '../Icon'
+import DeleteButton from '../items/DeleteButton'
 
 interface Props {
   active: boolean
@@ -13,6 +14,7 @@ interface Props {
   onSave: () => void
   onCancel: () => void
   onDelete?: () => void
+  itemDescriptor?: string
 }
 
 export default function EditModal (props: PropsWithChildren<Props>): ReactElement {
@@ -21,9 +23,7 @@ export default function EditModal (props: PropsWithChildren<Props>): ReactElemen
   const deleteButton = props.onDelete != null
     ? (
       <div className='EditModal-delete'>
-        <BasicButton warn onClick={props.onDelete} className='EditModal-delete'>
-          {t('basicActions.delete')}
-        </BasicButton>
+        <DeleteButton onDelete={props.onDelete} itemDescriptor={props.itemDescriptor} />
       </div>
       )
     : undefined

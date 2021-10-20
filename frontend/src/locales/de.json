@@ -9,6 +9,7 @@
   },
   "noneOption": "ohne",
   "navigation": "Navigation",
+  "deleteConfirm": "Möchtest du dieses Element wirklich löschen?",
   "home": {
     "title": "Übersicht",
     "empty": "Nichts anzuzeigen. Wenn eine Aufgabe erstellt wird, wird sie hier erscheinen.",
