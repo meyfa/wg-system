@@ -20,7 +20,11 @@ function useActiveScores (scores: readonly ScoreboardScore[]): ScoreboardScore[]
     return new Set(ids)
   }, [members])
 
-  return useMemo(() => scores.filter(item => activeMemberIds.has(item.memberId)), [scores, activeMemberIds])
+  return useMemo(() => {
+    return Array.from(activeMemberIds).map(id => {
+      return scores.find(item => item.memberId === id) ?? { memberId: id, offset: 0, score: Number.NEGATIVE_INFINITY }
+    })
+  }, [scores, activeMemberIds])
 }
 
 interface RelativeScore {
@@ -56,7 +60,7 @@ export default function ScoreboardBox (props: Props): ReactElement {
   const relativeScores = useRelativeScores(activeScores)
 
   const lowestScore = useMemo(() => {
-    return relativeScores.reduce((v, item) => Math.min(v, item.relativeScore), 0)
+    return relativeScores.reduce((v, item) => Math.min(v, item.relativeScore ?? 0), 0)
   }, [relativeScores])
 
   return (

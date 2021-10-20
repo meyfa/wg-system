@@ -8,6 +8,13 @@
   flex-grow: 1;
 }
 
+.ScoreRow-x {
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  color: #e64;
+}
+
 .ScoreRow-bar {
   width: 100px;
   height: 20px;
