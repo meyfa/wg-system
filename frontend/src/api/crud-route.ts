@@ -1,8 +1,8 @@
+import { Entity } from '../store/entity'
+
 /**
  * A REST route responsible for managing a specific type of entity via CRUD.
  */
-import { Entity } from '../store/entity'
-
 export class CrudRoute<EntityType extends Entity> {
   constructor (
     private readonly collectionUrl: string
