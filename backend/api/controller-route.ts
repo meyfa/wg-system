@@ -3,7 +3,7 @@ import { createHandler } from './create-handler'
 import { Controller } from '../controllers/controller'
 import { HTTP_CREATED } from './constants'
 
-export function createControllerRoute (controller: Controller<any>): Router {
+export function createControllerRoute<T = any> (controller: Controller<T>): Router {
   const router = Router()
 
   router.get('/', createHandler(async () => {
@@ -19,13 +19,12 @@ export function createControllerRoute (controller: Controller<any>): Router {
   }))
 
   router.put('/:id', createHandler(async (req) => {
-    await controller.update(req.params.id, req.body)
-    return {}
+    return { data: await controller.update(req.params.id, req.body) }
   }))
 
   router.delete('/:id', createHandler(async (req) => {
     await controller.delete(req.params.id)
-    return {}
+    return { data: {} }
   }))
 
   return router

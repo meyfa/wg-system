@@ -10,6 +10,19 @@ export class CrudRoute<EntityType extends Entity> {
   }
 
   /**
+   * Obtain the entire list of entities.
+   *
+   * @returns A Promise that resolves with the collection when the request completes.
+   */
+  async list (): Promise<EntityType[]> {
+    const response = await fetch(this.collectionUrl)
+    if (!response.ok) {
+      throw new Error('collection could not be retrieved')
+    }
+    return await response.json()
+  }
+
+  /**
    * Create a new entity. The entity will match the given specification, but it will have a
    * unique id set by the server (if an id is present on the provided specification,
    * it will be ignored).
