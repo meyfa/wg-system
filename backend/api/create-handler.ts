@@ -11,7 +11,6 @@ import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from './constan
  */
 function sendError (res: Response, code: number, message: string): void {
   res.status(code).json({
-    success: false,
     error: message
   })
 }
@@ -23,10 +22,7 @@ function sendError (res: Response, code: number, message: string): void {
  * @param result The result to send.
  */
 function sendResult (res: Response, result: HandlerResponse): void {
-  res.status(result.code ?? HTTP_OK).json({
-    success: true,
-    data: result.data
-  })
+  res.status(result.code ?? HTTP_OK).json(result.data ?? {})
 }
 
 export interface HandlerResponse<T = any> {
@@ -38,7 +34,7 @@ export interface HandlerResponse<T = any> {
   /**
    * The response data to be sent as JSON. If absent, no data is sent.
    */
-  data?: T
+  data: T
 }
 
 function isSyntaxErrorWithStatus (error: unknown): error is SyntaxError & { status: number } {

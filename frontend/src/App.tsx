@@ -12,13 +12,14 @@ import { membersActions } from './store/entities/members'
 import { manualChoresActions } from './store/entities/manual-chores'
 import { scoreboardsActions } from './store/entities/scoreboards'
 import { periodicChoresActions } from './store/entities/periodic-chores'
+import api from './api/api'
 
 export default function App (): ReactElement {
-  useApiSliceBridge('groups', groupsActions)
-  useApiSliceBridge('members', membersActions)
-  useApiSliceBridge('manual-chores', manualChoresActions)
-  useApiSliceBridge('scoreboards', scoreboardsActions)
-  useApiSliceBridge('periodic-chores', periodicChoresActions)
+  useApiSliceBridge(groupsActions, 'groups', api.groups)
+  useApiSliceBridge(membersActions, 'members', api.members)
+  useApiSliceBridge(manualChoresActions, 'manual-chores', api.manualChores)
+  useApiSliceBridge(scoreboardsActions, 'scoreboards', api.scoreboards)
+  useApiSliceBridge(periodicChoresActions, 'periodic-chores', api.periodicChores)
 
   return (
     <BrowserRouter>
