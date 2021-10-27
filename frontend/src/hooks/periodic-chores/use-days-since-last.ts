@@ -1,7 +1,13 @@
 import { PeriodicChore } from '../../store/entities/periodic-chores'
 import { useMostRecent } from './use-most-recent'
-import { useMemo } from 'react'
 import { DateTime } from 'luxon'
+import ms from 'ms'
+import { useIntervalMemo } from '../../util/use-interval-memo'
+
+/**
+ * The time before the 'days since last' value is recomputed automatically.
+ */
+const UPDATE_PERIOD = ms('1 hour')
 
 /**
  * For a give chore, determine the number of days since last completion.
@@ -12,7 +18,7 @@ import { DateTime } from 'luxon'
 export function useDaysSinceLast (chore: PeriodicChore): number | undefined {
   const last = useMostRecent(chore.entries)
 
-  return useMemo(() => {
+  return useIntervalMemo(UPDATE_PERIOD, () => {
     if (last == null) {
       return undefined
     }

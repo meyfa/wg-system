@@ -4,6 +4,13 @@ import { Member, selectMembers } from '../../store/entities/members'
 import { useMemo } from 'react'
 import { DateTime } from 'luxon'
 import { useMostRecent } from './use-most-recent'
+import ms from 'ms'
+import { useIntervalMemo } from '../../util/use-interval-memo'
+
+/**
+ * The time before the 'dueDays' value is recomputed automatically.
+ */
+const UPDATE_PERIOD = ms('1 hour')
 
 export interface PlannedEntry {
   member: Member
@@ -59,7 +66,7 @@ export function usePlannedEntry (chore: PeriodicChore): PlannedEntry | undefined
   const last = useMostRecent(chore.entries)
   const member = usePreferredMember(chore)
 
-  return useMemo(() => {
+  return useIntervalMemo(UPDATE_PERIOD, () => {
     if (member == null) {
       return undefined
     }
