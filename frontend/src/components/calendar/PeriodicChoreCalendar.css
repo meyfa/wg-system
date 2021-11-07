@@ -15,11 +15,11 @@
 .PeriodicChoreCalendar-entry:not(.planned):focus,
 .PeriodicChoreCalendar-entry:not(.planned):hover {
   border-color: #666;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 40%);
   cursor: pointer;
 }
 
 .PeriodicChoreCalendar-entry.planned {
-  opacity: 0.5;
+  opacity: 50%;
   font-style: italic;
 }

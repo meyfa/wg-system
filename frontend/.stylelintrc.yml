@@ -2,9 +2,9 @@ extends:
 - stylelint-config-standard
 
 ignoreFiles:
-- "**/*.ico"
-- "**/*.png"
-- "**/*.json"
+- '**/*.ico'
+- '**/*.png'
+- '**/*.json'
 
 rules:
   indentation: 2
@@ -12,3 +12,9 @@ rules:
   string-quotes: single
   no-duplicate-selectors: true
   color-hex-case: lower
+  font-family-name-quotes: always-unless-keyword
+  # stylelint-config-standard mandates lowercase kebab-case, but we want to follow React component names,
+  # so we allow things like 'NavigationBar-inner'
+  selector-class-pattern: ['^([A-Za-z][a-z0-9]*)+(-[a-z0-9]+)*$', {
+    message: 'Expected class selector to be Kebab-case'
+  }]

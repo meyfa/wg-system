@@ -13,7 +13,7 @@
 }
 
 .TextField:disabled {
-  opacity: 0.5;
+  opacity: 50%;
 }
 
 .TextField:not(:disabled):hover {
@@ -22,5 +22,5 @@
 
 .TextField:not(:disabled):focus {
   border-color: #000;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
 }
