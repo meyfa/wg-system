@@ -1,7 +1,14 @@
+# FOR DEVELOPMENT ONLY (building from source)
+# Use the compose file specified in README.md for regular deployments.
+
 version: '3.1'
 
 networks:
   internal:
+
+volumes:
+  mongodb_data:
+  mongodb_config:
 
 services:
 
@@ -10,11 +17,16 @@ services:
     container_name: wg_mongodb
     networks:
     - internal
+    volumes:
+    - 'mongodb_data:/data/db'
+    - 'mongodb_config:/data/configdb'
 
   wg_system:
     build: .
     image: wg-system
     container_name: wg_system
+    depends_on:
+    - mongodb
     networks:
     - internal
     ports:
