@@ -1,5 +1,6 @@
 {
   "lostConnection": "Trying to reconnect...",
+  "reloadPage": "reload page",
   "basicActions": {
     "add": "Add",
     "edit": "Edit",

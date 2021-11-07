@@ -1,5 +1,6 @@
 {
   "lostConnection": "Verbindungsaufbau...",
+  "reloadPage": "Seite neuladen",
   "basicActions": {
     "add": "Hinzufügen",
     "edit": "Bearbeiten",
