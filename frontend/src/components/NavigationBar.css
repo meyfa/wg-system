@@ -8,7 +8,7 @@
 
 .NavigationBar.active {
   width: 100vw;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0 0 0 / 50%);
 }
 
 .NavigationBar-inner {
@@ -17,12 +17,12 @@
   padding: 24px 0;
   background: #fff;
   overflow: hidden;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
 }
 
 .NavigationBar.active > .NavigationBar-inner {
   width: 300px;
-  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 16px 0 rgb(0 0 0 / 20%);
 }
 
 /* spacer */
@@ -94,7 +94,7 @@
 }
 
 .NavigationBar:not(.active) .NavigationBar-link:not(.active) .NavigationBar-link-icon {
-  opacity: 0.6;
+  opacity: 60%;
 }
 
 .NavigationBar-link-label {

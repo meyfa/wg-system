@@ -2,7 +2,7 @@
   padding: 12px;
   border-radius: 2px;
   background: #fff;
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 10%);
   overflow-x: auto;
 }
 
@@ -32,7 +32,7 @@
 .Calendar-head-btn:focus,
 .Calendar-head-btn:hover {
   border-color: #999;
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 10%);
 }
 
 .Calendar-head-month {
@@ -64,7 +64,7 @@
 }
 
 .Calendar-td.inactive {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgb(0 0 0 / 2%);
 }
 
 .Calendar-td.clickable {
