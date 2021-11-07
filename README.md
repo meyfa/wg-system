@@ -27,6 +27,10 @@ version: '3.1'
 networks:
   internal:
 
+volumes:
+  mongodb_data:
+  mongodb_config:
+
 services:
 
   mongodb:
@@ -35,11 +39,16 @@ services:
     restart: unless-stopped
     networks:
     - internal
+    volumes:
+    - 'mongodb_data:/data/db'
+    - 'mongodb_config:/data/configdb'
 
   wg_system:
     image: meyfa/wg-system:latest
     container_name: wg_system
     restart: unless-stopped
+    depends_on:
+    - mongodb
     networks:
     - internal
     ports:
