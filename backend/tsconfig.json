@@ -8,8 +8,8 @@
     "outDir": "./build"
   },
   "exclude": [
+    "node_modules",
     "test",
-    "dist",
-    "node_modules"
+    "build"
   ]
 }
