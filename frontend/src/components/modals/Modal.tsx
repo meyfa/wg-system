@@ -2,7 +2,7 @@ import './Modal.css'
 import { UIEvent, PropsWithChildren, ReactElement, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
-import { useScrollLock } from '../../util/use-scroll-lock'
+import { useScrollLock } from '../../hooks/use-scroll-lock'
 
 function preventBubbling (event: UIEvent): void {
   // Although we are in a portal, this is still sometimes necessary when dealing with buttons etc.

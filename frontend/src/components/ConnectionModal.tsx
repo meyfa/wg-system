@@ -1,7 +1,7 @@
 import './ConnectionModal.css'
 import { ReactElement, useEffect, useState } from 'react'
 import Modal from './modals/Modal'
-import { useConnectionStatusDebounced } from '../util/use-connection-status'
+import { useConnectionStatusDebounced } from '../hooks/use-connection-status'
 import { useTranslation } from 'react-i18next'
 
 /**

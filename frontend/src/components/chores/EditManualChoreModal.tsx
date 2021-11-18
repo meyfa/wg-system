@@ -7,9 +7,9 @@ import { useAppSelector } from '../../store/store'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
 import BasicDropdown from '../forms/BasicDropdown'
 import FormRow from '../forms/FormRow'
-import { useEntityById } from '../../util/use-entity-by-id'
+import { useEntityById } from '../../hooks/use-entity-by-id'
 import { useManualChoreEditor } from '../../editors/use-manual-chore-editor'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 
 function useScoreboardFormatter (): (item: Scoreboard | undefined) => string {
   const { t } = useTranslation()

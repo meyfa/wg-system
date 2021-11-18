@@ -1,7 +1,7 @@
 import './SelectMemberButton.css'
 import { CSSProperties, ReactElement, useMemo } from 'react'
 import { Member } from '../../store/entities/members'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 
 interface Props {
   member: Member

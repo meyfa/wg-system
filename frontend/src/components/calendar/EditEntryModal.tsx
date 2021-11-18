@@ -6,11 +6,11 @@ import { useAppSelector } from '../../store/store'
 import { Member, selectMembers } from '../../store/entities/members'
 import BasicDropdown from '../forms/BasicDropdown'
 import { PeriodicChoreEntry } from '../../store/entities/periodic-chores'
-import { useEntityById } from '../../util/use-entity-by-id'
+import { useEntityById } from '../../hooks/use-entity-by-id'
 import TextField from '../forms/TextField'
 import { Editor, useEditor } from '../../editors/use-editor'
 import { DateTime } from 'luxon'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 
 const DEFAULT_ENTRY: PeriodicChoreEntry = {
   date: DateTime.now().toUTC().toISO(),

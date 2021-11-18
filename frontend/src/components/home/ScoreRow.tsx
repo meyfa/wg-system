@@ -1,7 +1,7 @@
 import './ScoreRow.css'
 import { ReactElement } from 'react'
 import { selectMembers } from '../../store/entities/members'
-import { useEntityById } from '../../util/use-entity-by-id'
+import { useEntityById } from '../../hooks/use-entity-by-id'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Icon from '../Icon'
 

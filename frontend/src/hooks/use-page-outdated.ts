@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { getPageVersion } from '../get-page-version'
+import { getPageVersion } from '../util/get-page-version'
 import socket, { EVENT_PAGE_VERSION } from '../websocket/socket'
 
 function useRemotePageVersion (): string | undefined {

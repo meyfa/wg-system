@@ -3,7 +3,7 @@ import { ReactElement, useState } from 'react'
 import Icon from '../Icon'
 import { faEdit, faPlus } from '@fortawesome/free-solid-svg-icons'
 import BasicButton from '../forms/BasicButton'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 import { useTranslation } from 'react-i18next'
 
 export type EditModalRenderFn = (active: boolean, hide: () => void) => ReactElement

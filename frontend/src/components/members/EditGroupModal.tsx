@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import TextField from '../forms/TextField'
 import EditModal from '../modals/EditModal'
 import FormRow from '../forms/FormRow'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 import { Group } from '../../store/entities/groups'
 import { useGroupEditor } from '../../editors/use-group-editor'
 
