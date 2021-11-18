@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 import { DateTime } from 'luxon'
 import { useMostRecent } from './use-most-recent'
 import ms from 'ms'
-import { useIntervalMemo } from '../../util/use-interval-memo'
+import { useIntervalMemo } from '../use-interval-memo'
 
 /**
  * The time before the 'dueDays' value is recomputed automatically.

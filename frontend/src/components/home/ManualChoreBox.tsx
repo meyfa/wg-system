@@ -10,7 +10,7 @@ import clsx from 'clsx'
 import { SelectMemberModal } from './SelectMemberModal'
 import { Member } from '../../store/entities/members'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
-import { useEntityById } from '../../util/use-entity-by-id'
+import { useEntityById } from '../../hooks/use-entity-by-id'
 import { DateTime } from 'luxon'
 import Icon from '../Icon'
 

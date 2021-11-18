@@ -1,5 +1,5 @@
 import { Dispatch, DispatchWithoutAction, useEffect, useMemo, useState } from 'react'
-import { useSameObjectReference } from '../util/use-same-object-reference'
+import { useSameObjectReference } from '../hooks/use-same-object-reference'
 
 /**
  * Options that can be passed to the editor hook to customize it for a specific data type.

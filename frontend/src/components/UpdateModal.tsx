@@ -1,7 +1,7 @@
 import './UpdateModal.css'
 import { ReactElement } from 'react'
 import Modal from './modals/Modal'
-import { usePageOutdated } from '../util/use-page-outdated'
+import { usePageOutdated } from '../hooks/use-page-outdated'
 import { useTranslation } from 'react-i18next'
 import BasicButton from './forms/BasicButton'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'

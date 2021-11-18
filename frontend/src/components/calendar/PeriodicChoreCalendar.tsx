@@ -3,11 +3,11 @@ import { MouseEventHandler, ReactElement, useCallback, useMemo, useState } from 
 import { PeriodicChore, PeriodicChoreEntry } from '../../store/entities/periodic-chores'
 import Calendar, { CellClickHandler, CellRenderFn } from './Calendar'
 import { DateTime } from 'luxon'
-import { useEntityById } from '../../util/use-entity-by-id'
+import { useEntityById } from '../../hooks/use-entity-by-id'
 import { selectMembers } from '../../store/entities/members'
 import { PlannedEntry, usePlannedEntry } from '../../hooks/periodic-chores/use-planned-entry'
 import EditEntryModal from './EditEntryModal'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 import api from '../../api/api'
 
 type EntryMap = Map<string, readonly number[]>

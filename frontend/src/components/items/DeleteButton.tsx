@@ -1,7 +1,7 @@
 import './DeleteButton.css'
 import { ReactElement, useCallback, useState } from 'react'
 import BasicButton from '../forms/BasicButton'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 import Modal from '../modals/Modal'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import Icon from '../Icon'

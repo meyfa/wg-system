@@ -5,7 +5,7 @@ import EditModal from '../modals/EditModal'
 import { Scoreboard } from '../../store/entities/scoreboards'
 import FormRow from '../forms/FormRow'
 import { useScoreboardEditor } from '../../editors/use-scoreboard-editor'
-import { useParametrized } from '../../util/use-parametrized'
+import { useParametrized } from '../../hooks/use-parametrized'
 
 interface Props {
   active: boolean

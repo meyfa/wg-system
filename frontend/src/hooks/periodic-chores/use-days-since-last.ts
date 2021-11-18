@@ -2,7 +2,7 @@ import { PeriodicChore } from '../../store/entities/periodic-chores'
 import { useMostRecent } from './use-most-recent'
 import { DateTime } from 'luxon'
 import ms from 'ms'
-import { useIntervalMemo } from '../../util/use-interval-memo'
+import { useIntervalMemo } from '../use-interval-memo'
 
 /**
  * The time before the 'days since last' value is recomputed automatically.
