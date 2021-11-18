@@ -2,11 +2,34 @@
 
 const express = require('express')
 const path = require('path')
+const fs = require('fs')
 const { Server: WebSocketServer } = require('ws')
 
 const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = require('./backend/build/index')
 
+let pageVersionPromise
+
+/**
+ * Determine the most recent version of the main script chunk.
+ *
+ * @returns {Promise<string|undefined>} The version, or undefined if unable to determine.
+ */
+async function getPageVersion () {
+  if (pageVersionPromise == null) {
+    pageVersionPromise = Promise.resolve().then(async () => {
+      const html = await fs.promises.readFile(path.join(__dirname, './frontend/build/index.html'), 'utf8')
+      const match = html.match(/main\.([0-9a-f]+?)\.chunk\.js/)
+      if (match != null && match.length >= 2) {
+        return match[1]
+      }
+      return undefined
+    })
+  }
+  return await pageVersionPromise
+}
+
 async function start () {
+  const pageVersion = await getPageVersion()
   init(process.env)
 
   const app = express()
@@ -27,7 +50,7 @@ async function start () {
   const server = app.listen(8080, '::')
 
   const wsServer = new WebSocketServer({ noServer: true })
-  wsServer.on('connection', webSocketHandler)
+  wsServer.on('connection', socket => webSocketHandler(socket, pageVersion))
 
   server.on('upgrade', (req, socket, head) => {
     if (req.url === '/websocket' || req.url === '/websocket/') {

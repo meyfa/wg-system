@@ -1,5 +1,6 @@
 {
   "lostConnection": "Verbindungsaufbau...",
+  "outdated": "Eine neue Version ist verfügbar. Bitte aktualisiere die Seite, um bestmögliche Kompatibilität sicherzustellen.",
   "reloadPage": "Seite neuladen",
   "basicActions": {
     "add": "Hinzufügen",

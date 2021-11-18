@@ -24,7 +24,15 @@ function subscribe (ws: WebSocket, controllerName: string, controller: Controlle
   })
 }
 
-export function handler (controllers: Record<string, Controller<unknown>>, ws: WebSocket): void {
+export function handler (controllers: Record<string, Controller<unknown>>, ws: WebSocket, pageVersion?: string): void {
+  // if available, send page version to client immediately on connect
+  if (pageVersion != null) {
+    ws.send(JSON.stringify({
+      event: 'pageVersion',
+      data: pageVersion
+    }))
+  }
+
   for (const [name, controller] of Object.entries(controllers)) {
     subscribe(ws, name, controller)
   }
