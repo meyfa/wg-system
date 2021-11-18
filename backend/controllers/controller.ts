@@ -1,9 +1,9 @@
-import { EnforceDocument, Model, Types } from 'mongoose'
+import { HydratedDocument, Model, Types } from 'mongoose'
 import Joi, { ObjectSchema } from 'joi'
 import { BadRequestError, NotFoundError } from '../api/errors'
 import { TypedEmitter } from 'tiny-typed-emitter'
 
-export type Doc<EntityType> = EnforceDocument<EntityType, {}, {}>
+export type Doc<EntityType> = HydratedDocument<EntityType>
 
 export type ControllerListener<EntityType> = (item: Doc<EntityType>) => any
 

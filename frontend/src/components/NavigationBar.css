@@ -94,7 +94,7 @@
 }
 
 .NavigationBar:not(.active) .NavigationBar-link:not(.active) .NavigationBar-link-icon {
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .NavigationBar-link-label {

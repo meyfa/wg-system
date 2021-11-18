@@ -11,20 +11,20 @@ interface NavItem {
   icon: IconDefinition
   label: string
   path: string
-  exact: boolean
+  end: boolean
 }
 
 const NAVIGATION: NavItem[][] = [
   [
-    { icon: faHome, label: 'home.title', path: '/', exact: true }
+    { icon: faHome, label: 'home.title', path: '/', end: true }
   ],
   [
-    { icon: faCalendarAlt, label: 'calendar.title', path: '/calendar', exact: false }
+    { icon: faCalendarAlt, label: 'calendar.title', path: '/calendar', end: false }
   ],
   [
-    { icon: faUsers, label: 'members.title', path: '/members', exact: true },
-    { icon: faBroom, label: 'chores.title', path: '/chores', exact: true },
-    { icon: faCog, label: 'settings.title', path: '/settings', exact: true }
+    { icon: faUsers, label: 'members.title', path: '/members', end: true },
+    { icon: faBroom, label: 'chores.title', path: '/chores', end: true },
+    { icon: faCog, label: 'settings.title', path: '/settings', end: true }
   ]
 ]
 
@@ -40,7 +40,7 @@ function NavigationBarLink (props: { item: NavItem, onClick?: MouseEventHandler<
   const { item, onClick } = props
 
   return (
-    <NavLink exact={item.exact} to={item.path} className='NavigationBar-link' onClick={onClick}>
+    <NavLink end={item.end} to={item.path} className='NavigationBar-link' onClick={onClick}>
       <span className='NavigationBar-link-icon'>
         <Icon icon={item.icon} />
       </span>
