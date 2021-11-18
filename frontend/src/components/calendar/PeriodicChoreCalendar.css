@@ -20,6 +20,6 @@
 }
 
 .PeriodicChoreCalendar-entry.planned {
-  opacity: 50%;
+  opacity: 0.5;
   font-style: italic;
 }

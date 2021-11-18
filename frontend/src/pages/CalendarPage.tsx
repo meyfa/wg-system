@@ -1,6 +1,6 @@
 import { ReactElement, useCallback } from 'react'
 import NavigationBarLayout from '../layouts/NavigationBarLayout'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAppSelector } from '../store/store'
 import { PeriodicChore, selectPeriodicChores } from '../store/entities/periodic-chores'
 import { useEntityById } from '../util/use-entity-by-id'
@@ -14,22 +14,18 @@ function formatChore (chore: PeriodicChore): string {
   return chore.name
 }
 
-interface Params {
-  choreId?: string
-}
-
 export default function CalendarPage (): ReactElement {
   const { t } = useTranslation()
 
-  const params = useParams<Params>()
+  const params = useParams<'choreId'>()
 
   const periodicChores = useAppSelector(selectPeriodicChores)
   const chore = useEntityById(selectPeriodicChores, params.choreId)
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const handleSelect = useCallback((item: PeriodicChore) => {
-    history.push(`/calendar/${item._id}`)
-  }, [history])
+    navigate(`/calendar/${item._id}`)
+  }, [navigate])
 
   return (
     <NavigationBarLayout centered>

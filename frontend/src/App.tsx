@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import CalendarPage from './pages/CalendarPage'
 import MembersPage from './pages/MembersPage'
@@ -23,36 +23,19 @@ export default function App (): ReactElement {
 
   return (
     <BrowserRouter>
-      <Switch>
-        {/* home page */}
-        <Route exact path='/'>
-          <HomePage />
+      <Routes>
+        <Route path='/'>
+          <Route index element={<HomePage />} />
+          <Route path='calendar' element={<CalendarPage />}>
+            <Route index element={<CalendarPage />} />
+            <Route path=':choreId' element={<CalendarPage />} />
+          </Route>
+          <Route path='members' element={<MembersPage />} />
+          <Route path='chores' element={<ChoresPage />} />
+          <Route path='settings' element={<SettingsPage />} />
         </Route>
-
-        {/* calendar page */}
-        <Route exact path='/calendar'>
-          <CalendarPage />
-        </Route>
-        <Route exact path='/calendar/:choreId'>
-          <CalendarPage />
-        </Route>
-
-        {/* settings pages */}
-        <Route exact path='/members'>
-          <MembersPage />
-        </Route>
-        <Route exact path='/chores'>
-          <ChoresPage />
-        </Route>
-        <Route exact path='/settings'>
-          <SettingsPage />
-        </Route>
-
-        {/* page not found */}
-        <Route>
-          <Redirect to='/' />
-        </Route>
-      </Switch>
+        <Route path='*' element={<Navigate replace to='/' />} />
+      </Routes>
 
       {/* an overlay over the whole page displayed when connection is lost */}
       <ConnectionModal />
