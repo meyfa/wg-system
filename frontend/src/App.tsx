@@ -6,6 +6,7 @@ import MembersPage from './pages/MembersPage'
 import ChoresPage from './pages/ChoresPage'
 import SettingsPage from './pages/SettingsPage'
 import ConnectionModal from './components/ConnectionModal'
+import UpdateModal from './components/UpdateModal'
 import { useApiSliceBridge } from './api-slice-bridge'
 import { groupsActions } from './store/entities/groups'
 import { membersActions } from './store/entities/members'
@@ -37,8 +38,8 @@ export default function App (): ReactElement {
         <Route path='*' element={<Navigate replace to='/' />} />
       </Routes>
 
-      {/* an overlay over the whole page displayed when connection is lost */}
       <ConnectionModal />
+      <UpdateModal />
     </BrowserRouter>
   )
 }

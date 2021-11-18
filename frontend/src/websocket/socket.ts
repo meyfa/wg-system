@@ -3,6 +3,7 @@ import { EventEmitter } from 'events'
 export const EVENT_CONNECT = 'connect'
 export const EVENT_DISCONNECT = 'disconnect'
 export const EVENT_MESSAGE = 'message'
+export const EVENT_PAGE_VERSION = 'pageVersion'
 
 export interface Message {
   event: string
@@ -19,6 +20,7 @@ export class Socket extends EventEmitter {
   private readonly reconnectDelay: number
 
   private ws: WebSocket | undefined
+  private _reportedPageVersion: string | undefined
 
   /**
    * Create a socket connector for the given URL.
@@ -55,7 +57,13 @@ export class Socket extends EventEmitter {
     this.ws.addEventListener('error', () => this.handleClose())
     this.ws.addEventListener('close', () => this.handleClose())
     this.ws.addEventListener('message', (event: MessageEvent<string>) => {
-      this.emit(EVENT_MESSAGE, JSON.parse(event.data))
+      const parsed = JSON.parse(event.data)
+      if (parsed != null && parsed.event === 'pageVersion') {
+        this._reportedPageVersion = typeof parsed.data === 'string' ? parsed.data : undefined
+        this.emit(EVENT_PAGE_VERSION, this._reportedPageVersion)
+        return
+      }
+      this.emit(EVENT_MESSAGE, parsed)
     })
   }
 
@@ -65,6 +73,17 @@ export class Socket extends EventEmitter {
     if (this.reconnectDelay >= 0) {
       setTimeout(() => this.connect(), this.reconnectDelay)
     }
+  }
+
+  /**
+   * Obtain the previously reported page version. When this changes at some point,
+   * an event will be emitted.
+   *
+   * @returns The previously reported page version, if any.
+   * @see EVENT_PAGE_VERSION
+   */
+  get reportedPageVersion (): string | undefined {
+    return this._reportedPageVersion
   }
 }
 
