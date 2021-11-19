@@ -7,10 +7,32 @@ const { Server: WebSocketServer } = require('ws')
 
 const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = require('./backend/build/index')
 
+/**
+ * Match all occurrences of the given RegExp.
+ * The result is an array of match arrays, which differs from a simple global match where the array is only
+ * a single level deep and capture groups are excluded.
+ *
+ * @param str The string to search.
+ * @param regex The regular expression to execute.
+ * @returns {string[][]} An array of match results, where each entry is an array of groups for a single match.
+ */
+function matchAll (str, regex) {
+  const matches = []
+  let match
+  do {
+    match = regex.exec(str)
+    if (match != null) {
+      matches.push(match)
+    }
+  } while (match != null)
+  return matches
+}
+
 let pageVersionPromise
 
 /**
- * Determine the most recent version of the main script chunk.
+ * Determine the page version, that is, the sorted, comma-separated list of all JS and CSS chunk identifiers present in
+ * the main HTML file.
  *
  * @returns {Promise<string|undefined>} The version, or undefined if unable to determine.
  */
@@ -18,11 +40,8 @@ async function getPageVersion () {
   if (pageVersionPromise == null) {
     pageVersionPromise = Promise.resolve().then(async () => {
       const html = await fs.promises.readFile(path.join(__dirname, './frontend/build/index.html'), 'utf8')
-      const match = html.match(/main\.([0-9a-f]+?)\.chunk\.js/)
-      if (match != null && match.length >= 2) {
-        return match[1]
-      }
-      return undefined
+      const hashes = matchAll(html, /[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/g).map(m => m[1])
+      return hashes.length > 0 ? hashes.sort().join() : undefined
     })
   }
   return await pageVersionPromise
