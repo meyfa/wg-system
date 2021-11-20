@@ -1,17 +1,17 @@
 .SettingsBox {
-  margin: 10px 0;
-  padding: 0 12px;
+  margin: 0.6rem 0;
+  padding: 0 0.75rem;
   align-items: center;
   background: #fff;
-  border: 2px solid transparent;
-  border-radius: 2px;
-  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 10%);
+  border: 0.125rem solid transparent;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 10%);
 }
 
 .SettingsBox > hr {
   display: block;
   margin: 0;
-  height: 2px;
+  height: 0.125rem;
   border: none;
   background: #e8e8e8;
 }

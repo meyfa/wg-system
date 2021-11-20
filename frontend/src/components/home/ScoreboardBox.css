@@ -1,6 +1,6 @@
 .ScoreboardBox-title {
-  font-size: 24px;
-  margin-bottom: 12px;
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
   white-space: nowrap;
   line-height: 1;
 }
@@ -11,7 +11,7 @@
 
 .ScoreboardBox-info {
   display: inline-block;
-  margin-left: 16px;
+  margin-left: 0.5em;
   padding: 0 0.25em;
   font: inherit;
   font-size: 0.8em;
@@ -26,6 +26,6 @@
 .ScoreboardBox-info:focus,
 .ScoreboardBox-info:hover {
   opacity: 1;
-  outline: 2px solid #bbb;
-  outline-offset: 2px;
+  outline: 0.125rem solid #bbb;
+  outline-offset: 0.125rem;
 }

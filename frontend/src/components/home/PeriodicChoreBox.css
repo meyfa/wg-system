@@ -1,16 +1,16 @@
 .PeriodicChoreBox-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   white-space: nowrap;
   line-height: 1;
 }
 
 .PeriodicChoreBox-urgency {
-  margin-right: 8px;
+  margin-right: 0.3em;
 }
 
 .PeriodicChoreBox-calendar {
   display: inline-block;
-  margin-left: 16px;
+  margin-left: 0.5em;
   padding: 0 0.25em;
   font: inherit;
   color: inherit;
@@ -20,10 +20,10 @@
 .PeriodicChoreBox-calendar:focus,
 .PeriodicChoreBox-calendar:hover {
   opacity: 1;
-  outline: 2px solid #bbb;
-  outline-offset: 2px;
+  outline: 0.125rem solid #bbb;
+  outline-offset: 0.125rem;
 }
 
 .PeriodicChoreBox-detail {
-  margin: 10px 0;
+  margin: 0.6em 0;
 }
