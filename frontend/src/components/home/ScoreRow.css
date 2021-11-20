@@ -1,7 +1,7 @@
 .ScoreRow {
   display: flex;
-  margin: 4px 0;
-  line-height: 20px;
+  margin: 0.25em 0;
+  line-height: 1.25;
 }
 
 .ScoreRow-name {
@@ -9,28 +9,28 @@
 }
 
 .ScoreRow-x {
-  width: 100px;
-  height: 20px;
+  width: 6rem;
+  height: 1.25em;
   text-align: center;
   color: #e64;
 }
 
 .ScoreRow-bar {
-  width: 100px;
-  height: 20px;
+  width: 6rem;
+  height: 1.25em;
   background: #c0e0d0;
 }
 
 .ScoreRow-bar-inner {
   display: block;
   height: 100%;
-  padding-left: 8px;
-  font-size: 14px;
+  padding-left: 0.5em;
+  font-size: 0.875em;
   font-weight: bold;
   background: #e95;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 25rem) {
   .ScoreRow {
     display: block;
   }

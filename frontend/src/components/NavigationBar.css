@@ -4,6 +4,8 @@
   top: 0;
   height: 100vh;
   z-index: 10;
+
+  --NavigationBar-thickness: 3.75rem;
 }
 
 .NavigationBar.active {
@@ -12,24 +14,26 @@
 }
 
 .NavigationBar-inner {
-  width: 60px;
+  width: var(--NavigationBar-thickness);
   height: 100%;
-  padding: 24px 0;
+  padding: 1.5rem 0;
   background: #fff;
   overflow: hidden;
-  box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
+  box-shadow: 0 0 0.3rem 0 rgb(0 0 0 / 15%);
 }
 
 .NavigationBar.active > .NavigationBar-inner {
-  width: 300px;
-  box-shadow: 0 0 16px 0 rgb(0 0 0 / 20%);
+  width: 18rem;
+  max-width: 90vw;
+  box-shadow: 0 0 1rem 0 rgb(0 0 0 / 20%);
+  overflow-y: auto;
 }
 
 /* spacer */
 
 .NavigationBar-sep {
   border: none;
-  height: 16px;
+  height: 1rem;
   margin: 0;
 }
 
@@ -40,9 +44,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 40px;
+  height: 2.5rem;
   margin: 0;
-  padding: 0 16px;
+  padding: 0 1rem;
   font: inherit;
   color: inherit;
   border: none;
@@ -58,7 +62,7 @@
 .NavigationBar-toggle-label {
   flex-grow: 1;
   text-align: left;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .NavigationBar:not(.active) .NavigationBar-toggle-label {
@@ -69,8 +73,8 @@
 
 .NavigationBar-link {
   display: flex;
-  height: 40px;
-  line-height: 40px;
+  height: 2.5rem;
+  line-height: 2.5rem;
   text-decoration: none;
   color: inherit;
   white-space: nowrap;
@@ -88,7 +92,7 @@
 }
 
 .NavigationBar-link-icon {
-  width: 60px;
+  width: var(--NavigationBar-thickness);
   flex-shrink: 0;
   text-align: center;
 }
@@ -99,7 +103,7 @@
 
 .NavigationBar-link-label {
   display: inline-block;
-  margin-left: 8px;
+  margin-left: 0.5rem;
   flex-grow: 1;
   text-align: left;
 }
@@ -108,16 +112,16 @@
   display: none;
 }
 
-@media (max-width: 560px) {
+@media (max-height: 22rem) {
   .NavigationBar:not(.active) {
     width: 100vw;
-    height: 60px;
-    line-height: 60px;
+    height: var(--NavigationBar-thickness);
+    line-height: var(--NavigationBar-thickness);
   }
 
   .NavigationBar:not(.active) .NavigationBar-inner {
     width: 100%;
-    height: 60px;
+    height: var(--NavigationBar-thickness);
     padding: 0;
   }
 
@@ -127,13 +131,13 @@
 
   .NavigationBar:not(.active) .NavigationBar-toggle {
     display: inline-flex;
-    width: 60px;
+    width: var(--NavigationBar-thickness);
     height: 100%;
   }
 
   .NavigationBar:not(.active) .NavigationBar-link {
     display: inline-flex;
-    width: 60px;
+    width: var(--NavigationBar-thickness);
     height: 100%;
     line-height: inherit;
   }

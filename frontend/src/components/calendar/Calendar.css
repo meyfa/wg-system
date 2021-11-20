@@ -1,28 +1,29 @@
 .Calendar {
-  padding: 12px;
-  border-radius: 2px;
+  font-size: 1rem;
+  padding: 0.75em;
+  border-radius: 0.125rem;
   background: #fff;
-  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 10%);
   overflow-x: auto;
 }
 
 .Calendar-head {
-  font-size: 20px;
-  margin: 0 0 16px;
+  font-size: 1.25em;
+  margin: 0 0 0.75em;
   text-align: center;
   white-space: nowrap;
 }
 
 .Calendar-head-btn {
   display: inline-block;
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   margin: 0;
   padding: 0;
   font: inherit;
-  line-height: 28px;
+  line-height: 1.75rem;
   color: inherit;
-  border: 2px solid transparent;
+  border: 0.125rem solid transparent;
   border-radius: 50%;
   background: none;
   outline: none;
@@ -32,35 +33,35 @@
 .Calendar-head-btn:focus,
 .Calendar-head-btn:hover {
   border-color: #999;
-  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 10%);
 }
 
 .Calendar-head-month {
   display: inline-block;
-  min-width: 200px;
-  margin: 0 16px;
+  min-width: 10em;
+  margin: 0 0.75em;
 }
 
 .Calendar-table {
   table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
-  min-width: 600px;
+  min-width: 36rem;
 }
 
 .Calendar-th {
-  padding: 4px 0 8px;
-  font-size: 20px;
+  padding: 0.2em 0 0.4em;
+  font-size: 1.25em;
   font-weight: normal;
   text-align: center;
 }
 
 .Calendar-td {
-  height: 64px;
-  padding: 4px 0;
+  height: 4em;
+  padding: 0.25em 0;
   text-align: center;
   vertical-align: top;
-  border: 2px solid #eee;
+  border: 0.125rem solid #eee;
 }
 
 .Calendar-td.inactive {
@@ -73,5 +74,5 @@
 
 .Calendar-td.clickable:focus,
 .Calendar-td.clickable:hover {
-  outline: 2px solid #ccc;
+  outline: 0.125rem solid #ccc;
 }

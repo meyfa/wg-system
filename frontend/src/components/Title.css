@@ -1,26 +1,26 @@
 .Title {
   display: block;
-  margin: 0 0 32px;
+  margin: 0 0 2rem;
 }
 
 .Title:not(:first-child) {
-  margin-top: 48px;
+  margin-top: 3rem;
 }
 
 .Title-h {
   display: inline-block;
-  margin: 0 48px 0 0;
+  margin: 0 3rem 0 0;
   line-height: 1;
   vertical-align: middle;
 }
 
 h1.Title-h {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 400;
 }
 
 h2.Title-h {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -28,24 +28,24 @@ h2.Title-h {
   margin-right: 0.75em;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 35rem) {
   .Title {
-    margin: 0 0 24px;
+    margin: 0 0 1.5rem;
   }
 
   .Title:not(:first-child) {
-    margin-top: 32px;
+    margin-top: 2rem;
   }
 
   .Title-h {
-    margin-right: 20px;
+    margin-right: 1.25rem;
   }
 
   h1.Title-h {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   h2.Title-h {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }

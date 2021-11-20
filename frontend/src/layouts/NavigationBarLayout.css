@@ -1,17 +1,17 @@
 .NavigationBarLayout {
-  margin-left: 60px;
-  padding: 16px;
+  margin-left: 3.75rem;
+  padding: 1rem;
 }
 
 .NavigationBarLayout.centered > .NavigationBarLayout-content {
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
+  max-width: 50rem;
+  margin: 1.25rem auto;
 }
 
-@media (max-width: 560px) {
+@media (max-height: 22rem) {
   .NavigationBarLayout {
     margin-left: 0;
-    margin-top: 60px;
+    margin-top: 3.75rem;
   }
 }

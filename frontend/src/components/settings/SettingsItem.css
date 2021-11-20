@@ -1,13 +1,13 @@
 .SettingsItem {
   display: flex;
   width: 100%;
-  padding: 16px 0;
+  padding: 1rem 0;
 }
 
 .SettingsItem-text {
   width: 30%;
-  min-width: 160px;
-  margin-right: 32px;
+  min-width: 10rem;
+  margin-right: 2rem;
   line-height: 2;
   text-align: right;
 }

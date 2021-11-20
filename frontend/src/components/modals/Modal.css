@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   background-color: #0005;
-  padding: 24px 24px 72px;
+  padding: 1.5rem 1.5rem 4.5rem;
   display: none;
   overflow-y: auto;
 }
@@ -23,19 +23,19 @@
   position: relative;
   max-width: 100%;
   margin: auto;
-  padding: 24px 32px;
+  padding: 1.5rem 2rem;
   background-color: #fff;
-  box-shadow: 0 0 24px 0 rgb(0 0 0 / 25%);
-  border-radius: 4px;
+  box-shadow: 0 0 1.5rem 0 rgb(0 0 0 / 25%);
+  border-radius: 0.25rem;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 45rem) {
   .Modal {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
   .Modal-container {
-    padding: 16px;
+    padding: 1rem;
   }
 }

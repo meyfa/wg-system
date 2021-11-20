@@ -1,4 +1,6 @@
 .UrgencyIndicator {
   display: inline-block;
-  width: 26px;
+  width: 1.1em;
+  position: relative;
+  top: -0.1em;
 }

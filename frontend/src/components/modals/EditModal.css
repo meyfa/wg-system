@@ -1,23 +1,23 @@
 .EditModal-title {
-  margin: 0 0 24px;
-  padding: 0 0 16px;
-  border-bottom: 2px solid #ddd;
+  margin: 0 0 1.5rem;
+  padding: 0 0 1rem;
+  border-bottom: 0.125rem solid #ddd;
   font-weight: bold;
 }
 
 .EditModal-title > svg {
-  margin-right: 12px;
+  margin-right: 0.75rem;
 }
 
 .EditModal-actions {
   display: flex;
   justify-content: center;
-  margin: 24px 0 0;
-  padding: 16px 0 0;
-  border-top: 2px solid #ddd;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 0.125rem solid #ddd;
 }
 
 .EditModal-delete {
   flex-grow: 1;
-  margin-right: 32px;
+  margin-right: 2rem;
 }

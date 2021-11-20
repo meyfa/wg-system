@@ -16,5 +16,8 @@ rules:
   # stylelint-config-standard mandates lowercase kebab-case, but we want to follow React component names,
   # so we allow things like 'NavigationBar-inner'
   selector-class-pattern: ['^([A-Za-z][a-z0-9]*)+(-[a-z0-9]+)*$', {
-    message: 'Expected class selector to be Kebab-case'
+    message: 'Expected class selector to be KeBab-case'
+  }]
+  custom-property-pattern: ['^([A-Za-z][a-z0-9]*)+(-[a-z0-9]+)*$', {
+    message: 'Expected custom property name to be KeBab-case'
   }]

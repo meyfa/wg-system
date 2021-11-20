@@ -1,21 +1,21 @@
 .EditableItem {
   display: flex;
-  margin: 10px 0;
-  padding: 12px;
+  margin: 0.6rem 0;
+  padding: 0.75rem;
   align-items: center;
   background: #fff;
-  border: 2px solid transparent;
-  border-radius: 2px;
-  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 10%);
+  border: 0.125rem solid transparent;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.5rem 1rem 0 rgb(0 0 0 / 10%);
 }
 
 .EditableItem-name {
   flex-grow: 1;
-  font-size: 20px;
+  font-size: 1.25rem;
   vertical-align: middle;
 }
 
 .EditableItem-actions {
-  margin-left: 8px;
+  margin-left: 0.5rem;
   text-align: right;
 }
