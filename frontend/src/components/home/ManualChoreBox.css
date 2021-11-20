@@ -1,5 +1,7 @@
 .ManualChoreBox-title {
   font-size: 24px;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .ManualChoreBox-icon {
@@ -15,5 +17,5 @@
 }
 
 .ManualChoreBox-actions {
-  margin-top: 16px;
+  margin-top: 12px;
 }

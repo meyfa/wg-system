@@ -1,0 +1,10 @@
+.DialogModal-text {
+  max-width: 24rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.DialogModal-buttons {
+  margin: 1rem 0 0;
+  text-align: center;
+}

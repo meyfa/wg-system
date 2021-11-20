@@ -1,11 +1,15 @@
 import './ScoreboardBox.css'
-import { ReactElement, useMemo } from 'react'
+import { ReactElement, useMemo, useState } from 'react'
 import { Scoreboard, ScoreboardScore } from '../../store/entities/scoreboards'
 import ChoreBox from './ChoreBox'
 import { useTranslation } from 'react-i18next'
 import ScoreRow from './ScoreRow'
 import { useAppSelector } from '../../store/store'
 import { selectMembers } from '../../store/entities/members'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import Icon from '../Icon'
+import InfoModal from '../modals/InfoModal'
+import { useParametrized } from '../../hooks/use-parametrized'
 
 /**
  * A filter hook that limits a given array of scores to only contain scores for active members.
@@ -63,17 +67,22 @@ export default function ScoreboardBox (props: Props): ReactElement {
     return relativeScores.reduce((v, item) => Math.min(v, item.relativeScore ?? 0), 0)
   }, [relativeScores])
 
+  const [isInfoActive, setInfoActive] = useState(false)
+  const openInfo = useParametrized(setInfoActive, true)
+  const closeInfo = useParametrized(setInfoActive, false)
+
   return (
     <ChoreBox className='ScoreboardBox'>
       <div className='ScoreboardBox-title'>
         {props.scoreboard.name}
+        <button className='ScoreboardBox-info' onClick={openInfo}>
+          <Icon icon={faInfoCircle} />
+        </button>
       </div>
       {relativeScores.map((row, i) => (
         <ScoreRow key={i} memberId={row.memberId} relativeScore={row.relativeScore} lowestScore={lowestScore} />
       ))}
-      <div className='ScoreboardBox-info'>
-        {relativeScores.length > 0 ? t('home.scoreboards.help') : t('home.scoreboards.empty')}
-      </div>
+      <InfoModal text={t('home.scoreboards.help')} active={isInfoActive} onConfirm={closeInfo} />
     </ChoreBox>
   )
 }

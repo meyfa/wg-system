@@ -1,6 +1,7 @@
 .PeriodicChoreBox-title {
   font-size: 24px;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .PeriodicChoreBox-urgency {
