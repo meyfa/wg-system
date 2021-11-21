@@ -1,10 +1,12 @@
 .BasicDropdown {
   display: inline-block;
-  height: calc(2.2em + 0.125rem);
-  padding: 0 0.7em;
+  height: var(--form-height);
+  margin: 0;
+  padding: 0 0.6rem;
   font: inherit;
   font-size: 1rem;
   line-height: 1;
+  vertical-align: middle;
   font-weight: 600;
   background: #fff;
   border: 0.0625rem solid #aaa;

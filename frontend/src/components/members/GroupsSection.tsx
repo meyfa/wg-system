@@ -8,6 +8,7 @@ import { EditModalRenderFn } from '../items/EditButton'
 import api from '../../api/api'
 import EditGroupModal from './EditGroupModal'
 import { useTranslation } from 'react-i18next'
+import Empty from '../Empty'
 
 export default function GroupsSection (): ReactElement {
   const { t } = useTranslation()
@@ -24,6 +25,7 @@ export default function GroupsSection (): ReactElement {
 
   return (
     <Section icon={faUserTag} title={t('members.groups')} renderCreateModal={renderCreateModal}>
+      {groups.length === 0 && <Empty message={t('groups.empty')} />}
       {groups.map(group => <GroupItem key={group._id} group={group} />)}
     </Section>
   )

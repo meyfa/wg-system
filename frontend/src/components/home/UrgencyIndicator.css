@@ -1,6 +1,22 @@
 .UrgencyIndicator {
+  margin-right: 0.3em;
+}
+
+.UrgencyIndicator.circular {
   display: inline-block;
   width: 1.1em;
   position: relative;
   top: -0.1em;
+}
+
+.UrgencyIndicator.simple {
+  font-size: 1.1em;
+}
+
+.UrgencyIndicator.simple.good {
+  color: #7ae293;
+}
+
+.UrgencyIndicator.simple.bad {
+  color: #f05353;
 }

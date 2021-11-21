@@ -1,28 +1,32 @@
 .ColorPicker {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
+  vertical-align: middle;
+  background: #fff;
+  gap: 0.2rem;
+  padding: 0.25rem;
 }
 
 .ColorPicker-btn {
   display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 0.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
   padding: 0;
   font: inherit;
   background: none;
-  border: none;
-  border-radius: 0;
-  outline: 0.125rem solid transparent;
-  outline-offset: 0.125rem;
+  border: 0.125rem solid transparent;
+  border-radius: 25%;
   cursor: pointer;
+  transform: scale(0.86);
 }
 
+.ColorPicker-btn.selected,
 .ColorPicker-btn:active,
 .ColorPicker-btn:hover {
-  outline-color: #aaa;
+  transform: none;
+  border-radius: 8%;
 }
 
 .ColorPicker-btn.selected {
-  outline-color: #000;
+  border-color: #000;
 }

@@ -1,18 +1,15 @@
-import './ManualChoreBox.css'
 import { ReactElement, useCallback, useState } from 'react'
 import { ManualChore } from '../../store/entities/manual-chores'
 import ChoreBox from './ChoreBox'
 import BasicButton from '../forms/BasicButton'
 import { useTranslation } from 'react-i18next'
 import api from '../../api/api'
-import { faCheckCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import clsx from 'clsx'
 import { SelectMemberModal } from './SelectMemberModal'
 import { Member } from '../../store/entities/members'
 import { Scoreboard, selectScoreboards } from '../../store/entities/scoreboards'
 import { useEntityById } from '../../hooks/use-entity-by-id'
 import { DateTime } from 'luxon'
-import Icon from '../Icon'
+import UrgencyIndicator from './UrgencyIndicator'
 
 /**
  * Increase the score of a specific member on the given scoreboard by 1.
@@ -90,24 +87,18 @@ export default function ManualChoreBox (props: Props): ReactElement {
 
   const cancelMarkDone = useCallback(() => setSelectingMember(false), [])
 
+  const title = (
+    <>
+      <UrgencyIndicator urgency={isDue} />
+      {props.chore.name}
+    </>
+  )
+
   return (
-    <ChoreBox className='ManualChoreBox' urgent={isDue}>
-      <div className='ManualChoreBox-title'>
-        <Icon
-          className={clsx('ManualChoreBox-icon', { good: !isDue, bad: isDue })}
-          icon={isDue ? faExclamationTriangle : faCheckCircle}
-        />
-        {props.chore.name}
-      </div>
-      <div className='ManualChoreBox-actions'>
-        <BasicButton onClick={startMarkDone}>
-          {t('home.chores.markDone')}
-        </BasicButton>
-        {!isDue
-          ? (<BasicButton onClick={markDue}>
-            {t('home.chores.markDue')}
-          </BasicButton>)
-          : undefined}
+    <ChoreBox urgent={isDue} title={title}>
+      <div>
+        <BasicButton onClick={startMarkDone}>{t('home.chores.markDone')}</BasicButton>
+        {!isDue && <BasicButton onClick={markDue}>{t('home.chores.markDue')}</BasicButton>}
       </div>
       <SelectMemberModal active={isSelectingMember} onSelect={confirmMarkDone} onCancel={cancelMarkDone} />
     </ChoreBox>

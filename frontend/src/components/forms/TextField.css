@@ -1,10 +1,11 @@
 .TextField {
-  height: 2.25rem;
-  padding: 0 0.75rem;
+  height: var(--form-height);
+  padding: 0 0.6rem;
   font: inherit;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1;
+  vertical-align: middle;
   background: #fff;
   border: 0.125rem solid #bbb;
   border-radius: 0.125rem;

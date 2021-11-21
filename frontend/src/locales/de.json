@@ -34,7 +34,7 @@
   "calendar": {
     "title": "Kalender",
     "empty": {
-      "noChores": "Keine Aufgaben mit Kalender sind konfiguriert.",
+      "noChores": "Bisher wurden keine Aufgaben mit Kalender konfiguriert.",
       "unselected": "Wähle eine Aufgabe aus, um den Kalender anzuzeigen.",
       "noItems": "Der Kalender ist noch leer."
     },
@@ -55,6 +55,7 @@
     }
   },
   "groups": {
+    "empty": "Es wurden noch keine Gruppen erstellt.",
     "edit": "Gruppe bearbeiten",
     "create": "Gruppe erstellen",
     "fields": {
@@ -66,7 +67,7 @@
     "groups": "Gruppen",
     "active": "Aktuelle Mitbewohner",
     "former": "Ehemalige Mitbewohner",
-    "empty": "Es sind aktuell keine Mitbewohner hinzugefügt.",
+    "empty": "Es wurden noch keine Mitbewohner hinzugefügt.",
     "edit": "Mitbewohner-Info ändern",
     "create": "Mitbewohner hinzufügen",
     "fields": {
@@ -81,7 +82,7 @@
   },
   "periodic": {
     "title": "Abwechselnde Aufgaben",
-    "empty": "Es sind noch keine Aufgaben erstellt.",
+    "empty": "Es wurden noch keine Aufgaben erstellt.",
     "edit": "Aufgabe bearbeiten",
     "create": "Aufgabe erstellen",
     "fields": {
@@ -94,7 +95,7 @@
   },
   "manual": {
     "title": "Situationsabhängige Aufgaben",
-    "empty": "Es sind noch keine Aufgaben erstellt.",
+    "empty": "Es wurden noch keine Aufgaben erstellt.",
     "edit": "Aufgabe bearbeiten",
     "create": "Aufgabe erstellen",
     "fields": {
@@ -104,7 +105,7 @@
   },
   "scoreboards": {
     "title": "Punktelisten",
-    "empty": "Es sind noch keine Punktelisten erstellt.",
+    "empty": "Es wurden noch keine Punktelisten erstellt.",
     "edit": "Punkteliste bearbeiten",
     "create": "Punkteliste erstellen",
     "fields": {

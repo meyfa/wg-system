@@ -5,6 +5,7 @@
   font-size: 1.5rem;
   font-weight: 300;
   color: #555;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.125rem 0.5rem 0 rgb(0 0 0 / 16%);
+  background: #fff4;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }

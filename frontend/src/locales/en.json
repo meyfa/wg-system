@@ -55,6 +55,7 @@
     }
   },
   "groups": {
+    "empty": "No groups have been created yet.",
     "edit": "Edit group",
     "create": "Create a group",
     "fields": {

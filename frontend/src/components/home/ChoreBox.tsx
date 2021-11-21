@@ -3,7 +3,9 @@ import {
   CSSProperties,
   PropsWithChildren,
   ReactElement,
-  RefObject, useCallback,
+  ReactNode,
+  RefObject,
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -32,8 +34,9 @@ function useOffsetHeight<E extends HTMLElement> (ref: RefObject<E>): number | un
 }
 
 interface Props {
-  className?: string
+  title: ReactNode
   urgent?: boolean
+  className?: string
 }
 
 export default function ChoreBox (props: PropsWithChildren<Props>): ReactElement {
@@ -50,6 +53,7 @@ export default function ChoreBox (props: PropsWithChildren<Props>): ReactElement
     <div ref={box}
          className={clsx('ChoreBox', props.className, { urgent: props.urgent })}
          style={style}>
+      <div className='ChoreBox-title'>{props.title}</div>
       {props.children}
     </div>
   )
