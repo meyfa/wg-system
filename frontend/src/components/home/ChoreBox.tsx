@@ -17,7 +17,9 @@ function useOffsetHeight<E extends HTMLElement> (ref: RefObject<E>): number | un
 
   const recompute = useCallback(() => {
     if (ref.current != null) {
+      ref.current.style.alignSelf = 'start'
       setHeight(ref.current.offsetHeight)
+      ref.current.style.alignSelf = ''
     }
   }, [ref])
 
@@ -42,7 +44,7 @@ export default function ChoreBox (props: PropsWithChildren<Props>): ReactElement
   const height = useOffsetHeight(box)
 
   const style: CSSProperties = useMemo(() => {
-    const rows = height != null ? Math.ceil(height / 120) : 1
+    const rows = height != null ? Math.ceil(height / 40) : 1
     return { gridRowEnd: `span ${rows}` }
   }, [height])
 
