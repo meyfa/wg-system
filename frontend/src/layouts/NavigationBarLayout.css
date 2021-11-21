@@ -1,5 +1,5 @@
 .NavigationBarLayout {
-  margin-left: 3.75rem;
+  margin-left: var(--nav-thickness);
   padding: 1rem;
 }
 
@@ -9,9 +9,9 @@
   margin: 1.25rem auto;
 }
 
-@media (max-height: 22rem) or (max-width: 35rem) {
+@media (max-height: 20rem) or (max-width: 35rem) {
   .NavigationBarLayout {
     margin-left: 0;
-    margin-top: 3.75rem;
+    margin-top: var(--nav-thickness);
   }
 }

@@ -8,14 +8,13 @@ import { useTranslation } from 'react-i18next'
 import BasicButton from '../forms/BasicButton'
 import api from '../../api/api'
 import { SelectMemberModal } from './SelectMemberModal'
-import { Link } from 'react-router-dom'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { DateTime } from 'luxon'
 import UrgencyIndicator from './UrgencyIndicator'
-import Icon from '../Icon'
 import { useMostRecent } from '../../hooks/periodic-chores/use-most-recent'
 import { useUrgency } from '../../hooks/periodic-chores/use-urgency'
 import { usePlannedEntry } from '../../hooks/periodic-chores/use-planned-entry'
+import ChoreDetailButton from './ChoreDetailButton'
 
 /**
  * After this much progress has been made towards the next due-date, show the chore as being urgent.
@@ -100,15 +99,16 @@ export default function PeriodicChoreBox (props: Props): ReactElement {
     }
   }, [props.chore])
 
+  const title = (
+    <>
+      <UrgencyIndicator urgency={urgency} />
+      {props.chore.name}
+      <ChoreDetailButton icon={faCalendarAlt} link={`/calendar/${props.chore._id}`} />
+    </>
+  )
+
   return (
-    <ChoreBox className='PeriodicChoreBox' urgent={urgency > URGENCY_THRESHOLD}>
-      <div className='PeriodicChoreBox-title'>
-        <UrgencyIndicator className='PeriodicChoreBox-urgency' urgency={urgency} />
-        {props.chore.name}
-        <Link to={`/calendar/${props.chore._id}`} className='PeriodicChoreBox-calendar'>
-          <Icon icon={faCalendarAlt} />
-        </Link>
-      </div>
+    <ChoreBox urgent={urgency > URGENCY_THRESHOLD} title={title}>
       <div className='PeriodicChoreBox-detail'>
         {t('home.chores.last')}<br />
         {recentlyCompleted}
@@ -118,9 +118,7 @@ export default function PeriodicChoreBox (props: Props): ReactElement {
         {planned}
       </div>
       <div>
-        <BasicButton onClick={startMarkDone}>
-          {t('home.chores.markDone')}
-        </BasicButton>
+        <BasicButton onClick={startMarkDone}>{t('home.chores.markDone')}</BasicButton>
       </div>
       <SelectMemberModal active={isSelectingMember} onSelect={confirmMarkDone} onCancel={cancelMarkDone} />
     </ChoreBox>

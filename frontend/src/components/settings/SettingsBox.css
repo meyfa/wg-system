@@ -3,9 +3,8 @@
   padding: 0 0.75rem;
   align-items: center;
   background: #fff;
-  border: 0.125rem solid transparent;
-  border-radius: 0.125rem;
-  box-shadow: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 10%);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
 }
 
 .SettingsBox > hr {

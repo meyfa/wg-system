@@ -1,5 +1,5 @@
 import './NavigationBar.css'
-import { Fragment, MouseEventHandler, ReactElement, useCallback, useState } from 'react'
+import { MouseEventHandler, ReactElement, useCallback, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { faBars, faBroom, faCalendarAlt, faCog, faHome, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
@@ -14,25 +14,13 @@ interface NavItem {
   end: boolean
 }
 
-const NAVIGATION: NavItem[][] = [
-  [
-    { icon: faHome, label: 'home.title', path: '/', end: true }
-  ],
-  [
-    { icon: faCalendarAlt, label: 'calendar.title', path: '/calendar', end: false }
-  ],
-  [
-    { icon: faUsers, label: 'members.title', path: '/members', end: true },
-    { icon: faBroom, label: 'chores.title', path: '/chores', end: true },
-    { icon: faCog, label: 'settings.title', path: '/settings', end: true }
-  ]
+const NAVIGATION: NavItem[] = [
+  { icon: faHome, label: 'home.title', path: '/', end: true },
+  { icon: faCalendarAlt, label: 'calendar.title', path: '/calendar', end: false },
+  { icon: faUsers, label: 'members.title', path: '/members', end: true },
+  { icon: faBroom, label: 'chores.title', path: '/chores', end: true },
+  { icon: faCog, label: 'settings.title', path: '/settings', end: true }
 ]
-
-function NavigationBarSeparator (): ReactElement {
-  return (
-    <hr className='NavigationBar-sep' />
-  )
-}
 
 function NavigationBarLink (props: { item: NavItem, onClick?: MouseEventHandler<HTMLElement> }): ReactElement {
   const { t } = useTranslation()
@@ -68,11 +56,8 @@ export default function NavigationBar (): ReactElement {
           <Icon icon={active ? faTimes : faBars} />
         </button>
         {/* item groups */}
-        {NAVIGATION.map((group, i) => (
-          <Fragment key={i}>
-            <NavigationBarSeparator />
-            {group.map((item, j) => <NavigationBarLink key={j} item={item} onClick={close} />)}
-          </Fragment>
+        {NAVIGATION.map((item, i) => (
+          <NavigationBarLink key={i} item={item} onClick={close} />
         ))}
       </div>
     </div>

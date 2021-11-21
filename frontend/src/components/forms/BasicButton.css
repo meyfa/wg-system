@@ -1,12 +1,13 @@
 .BasicButton {
   display: inline-block;
-  height: calc(2.4em + 0.125rem);
+  height: var(--form-height);
   margin: 0 0.25rem;
-  padding: 0 0.7em;
+  padding: 0 0.6rem;
   font: inherit;
   font-size: 0.875rem;
   font-weight: bold;
-  line-height: 2.4;
+  line-height: calc(var(--form-height) - 0.125rem);
+  vertical-align: middle;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
@@ -50,5 +51,5 @@
 
 /* FontAwesome icon in button */
 .BasicButton > svg {
-  margin: 0 0.5rem 0 0;
+  margin-right: 0.5em;
 }
