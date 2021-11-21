@@ -119,6 +119,7 @@
     display: inline-flex;
     width: var(--nav-thickness);
     height: 100%;
+    vertical-align: top;
   }
 
   .NavigationBar:not(.active) .NavigationBar-link {
