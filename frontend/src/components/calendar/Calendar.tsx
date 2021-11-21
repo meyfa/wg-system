@@ -5,6 +5,7 @@ import { DateTime } from 'luxon'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import Icon from '../Icon'
 import clsx from 'clsx'
+import { useCurrentDay } from '../../hooks/periodic-chores/use-current-day'
 
 export type CellRenderFn = (date: DateTime) => ReactNode
 export type CellClickHandler = (date: DateTime) => void
@@ -84,12 +85,15 @@ function CalendarCell (props: { spec?: CalendarDaySpec, onClick?: CellClickHandl
     }
   }, [onClick, spec])
 
+  const today = useCurrentDay()
+  const isToday = useMemo(() => spec?.date != null && spec.date.hasSame(today, 'day'), [spec, today])
+
   if (spec == null) {
     return <td className='Calendar-td inactive' />
   }
 
   return (
-    <td className={clsx('Calendar-td', { clickable: onClick != null })} onClick={handleClick}>
+    <td className={clsx('Calendar-td', { clickable: onClick != null, current: isToday })} onClick={handleClick}>
       {spec.date.day}
       {spec.children}
     </td>
