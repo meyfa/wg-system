@@ -1,13 +1,13 @@
 .PeriodicChoreCalendar-entry {
   display: block;
-  width: 100%;
-  margin: 0;
+  width: calc(100% - 0.5rem);
+  margin: 0 auto;
   padding: 0.25em;
   font: inherit;
   font-weight: bold;
   background: #eee;
-  border: 0.125rem solid #fff;
-  border-radius: 0.25rem;
+  border: 0.125rem solid transparent;
+  border-radius: 0.125rem;
   outline: none;
   text-shadow: 0 0 0.125rem #fff;
 }
@@ -22,4 +22,5 @@
 .PeriodicChoreCalendar-entry.planned {
   opacity: 0.5;
   font-style: italic;
+  pointer-events: none;
 }

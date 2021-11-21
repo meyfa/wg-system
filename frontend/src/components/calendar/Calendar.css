@@ -62,6 +62,8 @@
   text-align: center;
   vertical-align: top;
   border: 0.125rem solid #eee;
+  outline: 0.2rem solid transparent;
+  outline-offset: -0.2rem;
 }
 
 .Calendar-td.inactive {
@@ -74,5 +76,10 @@
 
 .Calendar-td.clickable:focus,
 .Calendar-td.clickable:hover {
-  outline: 0.125rem solid #ccc;
+  background: #f4f9ff;
+  outline-color: #81a4f5;
+}
+
+.Calendar-td.current {
+  outline-color: #666;
 }
