@@ -79,6 +79,7 @@ export default function ScoreboardBox (props: Props): ReactElement {
 
   return (
     <ChoreBox title={title}>
+      {relativeScores.length === 0 ? t('home.scoreboards.empty') : undefined}
       {relativeScores.map((row, i) => (
         <ScoreRow key={i} memberId={row.memberId} relativeScore={row.relativeScore} lowestScore={lowestScore} />
       ))}

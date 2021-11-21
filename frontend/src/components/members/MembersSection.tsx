@@ -28,7 +28,7 @@ export default function MembersSection (): ReactElement {
   return (
     <>
       <Section icon={faUser} title={t('members.active')} renderCreateModal={renderCreateModal}>
-        {activeMembers.length === 0 ? <Empty message={t('members.empty')} /> : undefined}
+        {activeMembers.length === 0 && <Empty message={t('members.empty')} />}
         {activeMembers.map(member => <MemberItem key={member._id} member={member} />)}
       </Section>
       {inactiveMembers.length > 0
