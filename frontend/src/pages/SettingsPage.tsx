@@ -7,8 +7,10 @@ import BasicDropdown from '../components/forms/BasicDropdown'
 import SettingsItem from '../components/settings/SettingsItem'
 import SettingsInfo from '../components/settings/SettingsInfo'
 
-function formatLanguage (lang: string): string {
-  return lang
+function useLanguageFormatter (): (lang: string) => string {
+  const { t } = useTranslation()
+
+  return useCallback(lang => t('language', { lng: lang }), [t])
 }
 
 export default function SettingsPage (): ReactElement {
@@ -21,6 +23,8 @@ export default function SettingsPage (): ReactElement {
   const changeLanguage = useCallback(async (value) => {
     await i18n.changeLanguage(value)
   }, [i18n])
+
+  const formatLanguage = useLanguageFormatter()
 
   return (
     <NavigationBarLayout centered>
