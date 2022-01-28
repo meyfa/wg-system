@@ -24,7 +24,7 @@ const periodicChoresController = new PeriodicChoreController({
   member: membersController
 })
 
-const controllers: Record<string, Controller<unknown>> = {
+const controllers: Record<string, Controller<any>> = {
   groups: groupsController,
   members: membersController,
   scoreboards: scoreboardsController,
