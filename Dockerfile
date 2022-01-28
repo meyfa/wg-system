@@ -1,5 +1,5 @@
 # dependencies
-FROM node:17-alpine as dependencies
+FROM node:16-alpine as dependencies
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -20,7 +20,7 @@ COPY frontend ./frontend
 RUN npm run build -w frontend
 
 # execution
-FROM node:17-alpine
+FROM node:16-alpine
 WORKDIR /usr/src/app
 
 # - install PRODUCTION dependencies
