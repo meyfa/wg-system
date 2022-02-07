@@ -1,0 +1,19 @@
+# exclude everything
+*
+
+# only include what we need
+!LICENSE
+!**/package.json
+!**/package-lock.json
+!server.js
+!backend
+!frontend
+
+# stuff from backend and frontend that we don't want
+*/build
+**/node_modules
+**/.gitignore
+
+# note: this is required by react-scripts
+# **/.eslintrc.yml
+# **/.stylelintrc.yml
