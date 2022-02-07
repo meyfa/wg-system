@@ -37,5 +37,8 @@ COPY --from=build-frontend /usr/src/app/frontend/build ./frontend/build
 # - ports
 EXPOSE 8080
 
+# - run as non-root user
+USER node
+
 # - start the server ("production" skips the build step)
 CMD ["npm", "run", "production"]
