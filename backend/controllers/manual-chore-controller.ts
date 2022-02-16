@@ -1,7 +1,7 @@
-import { Controller, Doc } from './controller'
+import { Controller, Doc } from './controller.js'
 import { QueryCursor } from 'mongoose'
-import { ManualChore, manualChoreModel, manualChoreValidator } from '../models/manual-chore'
-import { Scoreboard } from '../models/scoreboard'
+import { ManualChore, manualChoreModel, manualChoreValidator } from '../models/manual-chore.js'
+import { Scoreboard } from '../models/scoreboard.js'
 
 export interface ManualChoreDependencies {
   scoreboard: Controller<Scoreboard>

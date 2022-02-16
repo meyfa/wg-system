@@ -1,22 +1,22 @@
-import { model, Schema, Types } from 'mongoose'
+import mongoose from 'mongoose'
 import Joi from 'joi'
-import { idValidator } from './common'
-import { memberModel } from './member'
-import { groupModel } from './group'
+import { idValidator } from './common.js'
+import { memberModel } from './member.js'
+import { groupModel } from './group.js'
 
 export interface PeriodicChoreEntry {
-  memberId: Types.ObjectId
+  memberId: mongoose.Types.ObjectId
   date: string
 }
 
 export interface PeriodicChore {
   name: string
   period: number
-  groups: Types.ObjectId[]
+  groups: mongoose.Types.ObjectId[]
   entries: PeriodicChoreEntry[]
 }
 
-export const periodicChoreModel = model('PeriodicChore', new Schema<PeriodicChore>({
+export const periodicChoreModel = mongoose.model('PeriodicChore', new mongoose.Schema<PeriodicChore>({
   name: {
     type: String,
     required: true
@@ -28,7 +28,7 @@ export const periodicChoreModel = model('PeriodicChore', new Schema<PeriodicChor
   },
   groups: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: groupModel
     }
   ],
@@ -36,7 +36,7 @@ export const periodicChoreModel = model('PeriodicChore', new Schema<PeriodicChor
     {
       _id: false,
       memberId: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: memberModel
       },

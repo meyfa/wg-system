@@ -1,7 +1,7 @@
-import { Controller, Doc } from './controller'
-import { Member } from '../models/member'
+import { Controller, Doc } from './controller.js'
+import { Member } from '../models/member.js'
 import { QueryCursor } from 'mongoose'
-import { Scoreboard, scoreboardModel, scoreboardValidator } from '../models/scoreboard'
+import { Scoreboard, scoreboardModel, scoreboardValidator } from '../models/scoreboard.js'
 
 export interface ScoreboardDependencies {
   member: Controller<Member>

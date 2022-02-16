@@ -1,6 +1,6 @@
-import { HydratedDocument, Model, Types } from 'mongoose'
+import mongoose, { HydratedDocument, Model } from 'mongoose'
 import Joi, { ObjectSchema } from 'joi'
-import { BadRequestError, NotFoundError } from '../api/errors'
+import { BadRequestError, NotFoundError } from '../api/errors.js'
 import { TypedEmitter } from 'tiny-typed-emitter'
 
 export type Doc<EntityType> = HydratedDocument<EntityType>
@@ -37,7 +37,7 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
   }
 
   async find (id: string): Promise<Doc<EntityType>> {
-    if (!Types.ObjectId.isValid(id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
     const item = await this.model.findById(id)
@@ -55,7 +55,7 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
   }
 
   async update (id: string, data: any): Promise<Doc<EntityType>> {
-    if (!Types.ObjectId.isValid(id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
     const item = await this.find(id)
@@ -66,7 +66,7 @@ export class Controller<EntityType> extends TypedEmitter<ControllerEvents<Entity
   }
 
   async delete (id: string): Promise<Doc<EntityType>> {
-    if (!Types.ObjectId.isValid(id)) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new NotFoundError()
     }
     const item = await this.model.findByIdAndDelete(id)

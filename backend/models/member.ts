@@ -1,7 +1,7 @@
-import { model, Schema, Types } from 'mongoose'
+import mongoose from 'mongoose'
 import Joi from 'joi'
-import { idValidator } from './common'
-import { groupModel } from './group'
+import { idValidator } from './common.js'
+import { groupModel } from './group.js'
 
 const HEX_COLOR_REGEXP = /^#[0-9a-fA-F]{6}$/
 
@@ -9,10 +9,10 @@ export interface Member {
   name: string
   color: string
   active: boolean
-  groups: Types.ObjectId[]
+  groups: mongoose.Types.ObjectId[]
 }
 
-export const memberModel = model('Member', new Schema<Member>({
+export const memberModel = mongoose.model('Member', new mongoose.Schema<Member>({
   name: {
     type: String,
     required: true
@@ -28,7 +28,7 @@ export const memberModel = model('Member', new Schema<Member>({
   },
   groups: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: groupModel
     }
   ]

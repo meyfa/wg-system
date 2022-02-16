@@ -1,8 +1,8 @@
 import { ErrorRequestHandler, Router } from 'express'
-import { createHandler, handleError } from './create-handler'
-import { NotFoundError } from './errors'
-import { Controller } from '../controllers/controller'
-import { createControllerRoute } from './controller-route'
+import { createHandler, handleError } from './create-handler.js'
+import { NotFoundError } from './errors.js'
+import { Controller } from '../controllers/controller.js'
+import { createControllerRoute } from './controller-route.js'
 
 export function createRouter (controllers: Record<string, Controller<unknown>>): Router {
   const router = Router()

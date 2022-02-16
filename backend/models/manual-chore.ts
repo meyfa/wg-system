@@ -1,15 +1,15 @@
-import { model, Schema, Types } from 'mongoose'
+import mongoose from 'mongoose'
 import Joi from 'joi'
-import { scoreboardModel } from './scoreboard'
-import { idValidator } from './common'
+import { scoreboardModel } from './scoreboard.js'
+import { idValidator } from './common.js'
 
 export interface ManualChore {
   name: string
   dueSince: number
-  scoreboardId: Types.ObjectId | null
+  scoreboardId: mongoose.Types.ObjectId | null
 }
 
-export const manualChoreModel = model('ManualChore', new Schema<ManualChore>({
+export const manualChoreModel = mongoose.model('ManualChore', new mongoose.Schema<ManualChore>({
   name: {
     type: String,
     required: true
@@ -20,7 +20,7 @@ export const manualChoreModel = model('ManualChore', new Schema<ManualChore>({
     min: 0
   },
   scoreboardId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     required: false,
     ref: scoreboardModel
   }

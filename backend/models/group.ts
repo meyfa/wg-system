@@ -1,12 +1,12 @@
-import { model, Schema } from 'mongoose'
+import mongoose from 'mongoose'
 import Joi from 'joi'
-import { idValidator } from './common'
+import { idValidator } from './common.js'
 
 export interface Group {
   name: string
 }
 
-export const groupModel = model('Group', new Schema<Group>({
+export const groupModel = mongoose.model('Group', new mongoose.Schema<Group>({
   name: {
     type: String,
     required: true
