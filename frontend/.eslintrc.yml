@@ -1,22 +1,22 @@
 extends:
-- standard-with-typescript
-- react-app
-- plugin:react/recommended
-- plugin:react/jsx-runtime
+  - standard-with-typescript
+  - react-app
+  - plugin:react/recommended
+  - plugin:react/jsx-runtime
 
 parserOptions:
   project: './tsconfig.json'
 
 ignorePatterns:
-- 'src/react-app-env.d.ts'
+  - 'src/react-app-env.d.ts'
 
 rules:
-  jsx-quotes: [ error, prefer-single ]
-  'react/jsx-indent': [ error, 2 ]
-  'react/jsx-wrap-multilines': [ warn, {
+  jsx-quotes: [error, prefer-single]
+  'react/jsx-indent': [error, 2]
+  'react/jsx-wrap-multilines': [warn, {
     return: parens-new-line,
     arrow: parens-new-line
-  } ]
+  }]
   'react/void-dom-elements-no-children': [error]
   'react/no-unstable-nested-components': [error]
   'react/prop-types': [error, {

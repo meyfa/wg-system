@@ -10,6 +10,8 @@ import { createRouter, createErrorHandler } from './api/api'
 import { handler as wsHandler } from './websocket/handler'
 import { MemberController } from './controllers/member-controller'
 
+export { Environment } from './environment'
+
 const groupsController = new Controller(groupModel, groupValidator)
 const membersController = new MemberController({
   group: groupsController
