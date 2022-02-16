@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { memberModel } from './member.js'
+import { MEMBER_MODEL_NAME } from './member.js'
 import Joi from 'joi'
 import { idValidator } from './common.js'
 
@@ -14,7 +14,9 @@ export interface Scoreboard {
   scores: ScoreboardEntry[]
 }
 
-export const scoreboardModel = mongoose.model('Scoreboard', new mongoose.Schema<Scoreboard>({
+export const SCOREBOARD_MODEL_NAME = 'Scoreboard'
+
+export const scoreboardSchema = new mongoose.Schema<Scoreboard>({
   name: {
     type: String,
     required: true
@@ -25,7 +27,7 @@ export const scoreboardModel = mongoose.model('Scoreboard', new mongoose.Schema<
       memberId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: memberModel
+        ref: MEMBER_MODEL_NAME
       },
       offset: {
         type: Number,
@@ -37,7 +39,7 @@ export const scoreboardModel = mongoose.model('Scoreboard', new mongoose.Schema<
       }
     }
   ]
-}))
+})
 
 export const scoreboardValidator = Joi.object({
   _id: idValidator.required(),

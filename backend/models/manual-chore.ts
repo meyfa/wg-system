@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import Joi from 'joi'
-import { scoreboardModel } from './scoreboard.js'
+import { SCOREBOARD_MODEL_NAME } from './scoreboard.js'
 import { idValidator } from './common.js'
 
 export interface ManualChore {
@@ -9,7 +9,9 @@ export interface ManualChore {
   scoreboardId: mongoose.Types.ObjectId | null
 }
 
-export const manualChoreModel = mongoose.model('ManualChore', new mongoose.Schema<ManualChore>({
+export const MANUAL_CHORE_MODEL_NAME = 'ManualChore'
+
+export const manualChoreSchema = new mongoose.Schema<ManualChore>({
   name: {
     type: String,
     required: true
@@ -22,9 +24,9 @@ export const manualChoreModel = mongoose.model('ManualChore', new mongoose.Schem
   scoreboardId: {
     type: mongoose.Schema.Types.ObjectId,
     required: false,
-    ref: scoreboardModel
+    ref: SCOREBOARD_MODEL_NAME
   }
-}))
+})
 
 export const manualChoreValidator = Joi.object({
   _id: idValidator.required(),

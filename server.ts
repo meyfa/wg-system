@@ -5,7 +5,7 @@ import fs from 'fs'
 import { WebSocketServer } from 'ws'
 
 // this works because 'backend' is listed as a workspace in package.json
-import { init, createApiRouter, createApiErrorHandler, webSocketHandler, Environment } from 'backend'
+import { init, Environment } from 'backend'
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -48,7 +48,7 @@ async function getPageVersion (): Promise<string | undefined> {
 
 async function start (): Promise<void> {
   const pageVersion = await getPageVersion()
-  await init(process.env as Environment)
+  const { createApiRouter, createApiErrorHandler, webSocketHandler } = await init(process.env as Environment)
 
   const app = express()
 

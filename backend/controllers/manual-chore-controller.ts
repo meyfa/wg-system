@@ -1,6 +1,11 @@
 import { Controller, Doc } from './controller.js'
-import { QueryCursor } from 'mongoose'
-import { ManualChore, manualChoreModel, manualChoreValidator } from '../models/manual-chore.js'
+import mongoose, { QueryCursor } from 'mongoose'
+import {
+  MANUAL_CHORE_MODEL_NAME,
+  ManualChore,
+  manualChoreSchema,
+  manualChoreValidator
+} from '../models/manual-chore.js'
 import { Scoreboard } from '../models/scoreboard.js'
 
 export interface ManualChoreDependencies {
@@ -8,12 +13,12 @@ export interface ManualChoreDependencies {
 }
 
 export class ManualChoreController extends Controller<ManualChore> {
-  constructor (dependencies: ManualChoreDependencies) {
-    super(manualChoreModel, manualChoreValidator)
+  constructor (db: mongoose.Connection, dependencies: ManualChoreDependencies) {
+    super(db.model(MANUAL_CHORE_MODEL_NAME, manualChoreSchema), manualChoreValidator)
 
     // unset scoreboards when they are deleted
     dependencies.scoreboard.on('deleted', async (other) => {
-      const cursor: QueryCursor<Doc<ManualChore>> = manualChoreModel.find({
+      const cursor: QueryCursor<Doc<ManualChore>> = this.model.find({
         scoreboardId: other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {
