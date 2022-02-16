@@ -75,14 +75,14 @@ is really just intended for development.
 
 Some hints on developing this project follow. This is irrelevant when all you want to do is run your own instance.
 
-The entire project is written in JavaScript and TypeScript. You should have a recent version of Node (16 or later)
-and NPM installed. Since we are using NPM Workspaces, NPM 7 or later is required.
+The entire project is written in TypeScript. You should have a recent version of Node (16 or later) and NPM installed.
+Since we are using NPM Workspaces, NPM 7 or later is required.
 
 - The `backend` workspace contains the database connection and everything else required to make the system work,
   such as an API.
 - The `frontend` workspace contains a React app that is the user interface.
-- Finally, there is the `server.js` file used to bootstrap the backend and also serve compiled frontend files.
-  This is written in plain JavaScript for simplicity reasons.
+- Finally, there is the `server.ts` file used to bootstrap the backend and also serve compiled frontend files. This
+  is the entrypoint for the root package.
 
 ### Start scripts
 
@@ -103,7 +103,7 @@ There are many great editor integrations for ESLint, Stylelint and TypeScript; u
 
 ### Dependency management
 
-To install a new dependency, you have to decide: is it needed everywhere, like ESLint? Is it required by `server.js`?
+To install a new dependency, you have to decide: is it needed everywhere, like ESLint? Is it required by `server.ts`?
 If the answer was 'yes' to at least one of these questions, install the dependency to the root folder
 (e.g. `npm i express`).
 Otherwise, install it to the appropriate workspace: `npm i -w frontend react`.
