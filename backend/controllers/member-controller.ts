@@ -1,5 +1,5 @@
 import { Controller, Doc } from './controller.js'
-import { Member, memberModel, memberValidator } from '../models/member.js'
+import { Member, MEMBER_MODEL_NAME, memberSchema, memberValidator } from '../models/member.js'
 import mongoose, { QueryCursor } from 'mongoose'
 import { Group } from '../models/group.js'
 
@@ -15,12 +15,12 @@ export interface MemberDependencies {
 }
 
 export class MemberController extends Controller<Member> {
-  constructor (dependencies: MemberDependencies) {
-    super(memberModel, memberValidator)
+  constructor (db: mongoose.Connection, dependencies: MemberDependencies) {
+    super(db.model(MEMBER_MODEL_NAME, memberSchema), memberValidator)
 
     // remove groups for members when they are deleted
     dependencies.group.on('deleted', async (other) => {
-      const cursor: QueryCursor<Doc<Member>> = memberModel.find({
+      const cursor: QueryCursor<Doc<Member>> = this.model.find({
         groups: other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {

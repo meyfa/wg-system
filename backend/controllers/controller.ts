@@ -14,7 +14,7 @@ export interface ControllerEvents<EntityType> {
 }
 
 export class Controller<EntityType> extends TypedEmitter<ControllerEvents<EntityType>> {
-  private readonly model: Model<EntityType>
+  protected readonly model: Model<EntityType>
   private readonly schema: ObjectSchema
 
   constructor (model: Model<EntityType>, schema: ObjectSchema) {

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 import Joi from 'joi'
 import { idValidator } from './common.js'
-import { memberModel } from './member.js'
-import { groupModel } from './group.js'
+import { MEMBER_MODEL_NAME } from './member.js'
+import { GROUP_MODEL_NAME } from './group.js'
 
 export interface PeriodicChoreEntry {
   memberId: mongoose.Types.ObjectId
@@ -16,7 +16,9 @@ export interface PeriodicChore {
   entries: PeriodicChoreEntry[]
 }
 
-export const periodicChoreModel = mongoose.model('PeriodicChore', new mongoose.Schema<PeriodicChore>({
+export const PERIODIC_CHORE_MODEL_NAME = 'PeriodicChore'
+
+export const periodicChoreSchema = new mongoose.Schema<PeriodicChore>({
   name: {
     type: String,
     required: true
@@ -29,7 +31,7 @@ export const periodicChoreModel = mongoose.model('PeriodicChore', new mongoose.S
   groups: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: groupModel
+      ref: GROUP_MODEL_NAME
     }
   ],
   entries: [
@@ -38,7 +40,7 @@ export const periodicChoreModel = mongoose.model('PeriodicChore', new mongoose.S
       memberId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: memberModel
+        ref: MEMBER_MODEL_NAME
       },
       date: {
         type: String,
@@ -46,7 +48,7 @@ export const periodicChoreModel = mongoose.model('PeriodicChore', new mongoose.S
       }
     }
   ]
-}))
+})
 
 export const periodicChoreValidator = Joi.object({
   _id: idValidator.required(),

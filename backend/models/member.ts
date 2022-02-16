@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import Joi from 'joi'
 import { idValidator } from './common.js'
-import { groupModel } from './group.js'
+import { GROUP_MODEL_NAME } from './group.js'
 
 const HEX_COLOR_REGEXP = /^#[0-9a-fA-F]{6}$/
 
@@ -12,7 +12,9 @@ export interface Member {
   groups: mongoose.Types.ObjectId[]
 }
 
-export const memberModel = mongoose.model('Member', new mongoose.Schema<Member>({
+export const MEMBER_MODEL_NAME = 'Member'
+
+export const memberSchema = new mongoose.Schema<Member>({
   name: {
     type: String,
     required: true
@@ -29,10 +31,10 @@ export const memberModel = mongoose.model('Member', new mongoose.Schema<Member>(
   groups: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: groupModel
+      ref: GROUP_MODEL_NAME
     }
   ]
-}))
+})
 
 export const memberValidator = Joi.object({
   _id: idValidator.required(),
