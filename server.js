@@ -5,7 +5,8 @@ const path = require('path')
 const fs = require('fs')
 const { Server: WebSocketServer } = require('ws')
 
-const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = require('./backend/build/index')
+// this works because 'backend' is listed as a workspace in package.json
+const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = require('backend')
 
 /**
  * Match all occurrences of the given RegExp.
