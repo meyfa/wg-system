@@ -7,7 +7,7 @@ COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
 RUN npm ci
 
-# backend and frontend are built separately to enable aggressive caching and parallelism
+# each component is built separately to enable aggressive caching and parallelism
 
 # build the backend
 FROM dependencies as build-backend
@@ -18,6 +18,14 @@ RUN npm run build -w backend
 FROM dependencies as build-frontend
 COPY frontend ./frontend
 RUN npm run build -w frontend
+
+# now build the entire server
+FROM dependencies as build
+COPY --from=build-backend /usr/src/app/backend ./backend
+COPY --from=build-frontend /usr/src/app/frontend ./frontend
+COPY server.ts ./
+COPY tsconfig.json ./
+RUN npm run build
 
 # execution
 FROM node:16-alpine
@@ -30,9 +38,9 @@ COPY frontend/package*.json ./frontend/
 RUN npm ci --production
 
 # - add the already compiled code
-COPY server.js ./
-COPY --from=build-backend /usr/src/app/backend/build ./backend/build
-COPY --from=build-frontend /usr/src/app/frontend/build ./frontend/build
+COPY --from=build /usr/src/app/backend/build ./backend/build
+COPY --from=build /usr/src/app/frontend/build ./frontend/build
+COPY --from=build /usr/src/app/build ./build
 
 # - ports
 EXPOSE 8080

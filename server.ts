@@ -1,12 +1,13 @@
-'use strict'
-
-const express = require('express')
-const path = require('path')
-const fs = require('fs')
-const { Server: WebSocketServer } = require('ws')
+import express from 'express'
+import path from 'path'
+import fs from 'fs'
+import { WebSocketServer } from 'ws'
 
 // this works because 'backend' is listed as a workspace in package.json
-const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = require('backend')
+import { init, createApiRouter, createApiErrorHandler, webSocketHandler, Environment } from 'backend'
+
+// after compilation, this file ends up in './build', so the root is one level up
+const PROJECT_ROOT = path.join(__dirname, '..')
 
 /**
  * Match all occurrences of the given RegExp.
@@ -15,9 +16,9 @@ const { init, createApiRouter, createApiErrorHandler, webSocketHandler } = requi
  *
  * @param str The string to search.
  * @param regex The regular expression to execute.
- * @returns {string[][]} An array of match results, where each entry is an array of groups for a single match.
+ * @returns An array of match results, where each entry is an array of groups for a single match.
  */
-function matchAll (str, regex) {
+function matchAll (str: string, regex: RegExp): RegExpExecArray[] {
   const matches = []
   let match
   do {
@@ -29,28 +30,21 @@ function matchAll (str, regex) {
   return matches
 }
 
-let pageVersionPromise
-
 /**
  * Determine the page version, that is, the sorted, comma-separated list of all JS and CSS chunk identifiers present in
  * the main HTML file.
  *
- * @returns {Promise<string|undefined>} The version, or undefined if unable to determine.
+ * @returns The version, or undefined if unable to determine.
  */
-async function getPageVersion () {
-  if (pageVersionPromise == null) {
-    pageVersionPromise = Promise.resolve().then(async () => {
-      const html = await fs.promises.readFile(path.join(__dirname, './frontend/build/index.html'), 'utf8')
-      const hashes = matchAll(html, /[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/g).map(m => m[1])
-      return hashes.length > 0 ? hashes.sort().join() : undefined
-    })
-  }
-  return await pageVersionPromise
+async function getPageVersion (): Promise<string | undefined> {
+  const html = await fs.promises.readFile(path.join(PROJECT_ROOT, './frontend/build/index.html'), 'utf8')
+  const hashes = matchAll(html, /[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/g).map(m => m[1])
+  return hashes.length > 0 ? hashes.sort().join() : undefined
 }
 
-async function start () {
+async function start (): Promise<void> {
   const pageVersion = await getPageVersion()
-  init(process.env)
+  await init(process.env as Environment)
 
   const app = express()
 
@@ -61,7 +55,7 @@ async function start () {
   app.use(express.static('./frontend/build'))
   // redirect all other requests to index.html for React-Router to handle
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './frontend/build/index.html'))
+    res.sendFile(path.join(PROJECT_ROOT, './frontend/build/index.html'))
   })
 
   // this will catch errors in express itself, and things missed by the routes
@@ -79,4 +73,4 @@ async function start () {
   })
 }
 
-start()
+void start()

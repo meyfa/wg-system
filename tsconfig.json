@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "outDir": "./build"
+  },
+  "include": [
+    "server.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "build",
+    "backend",
+    "frontend"
+  ]
+}
