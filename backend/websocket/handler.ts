@@ -1,5 +1,5 @@
 import WebSocket from 'ws'
-import { Controller, ControllerListener } from '../controllers/controller'
+import { Controller, ControllerListener } from '../controllers/controller.js'
 
 function subscribe (ws: WebSocket, controllerName: string, controller: Controller<unknown>): void {
   const sendEvent = (type: string, item: any): void => {

@@ -1,16 +1,16 @@
 import mongoose from 'mongoose'
-import { Environment } from './environment'
-import { Controller } from './controllers/controller'
-import { groupModel, groupValidator } from './models/group'
-import { ScoreboardController } from './controllers/scoreboard-controller'
-import { ManualChoreController } from './controllers/manual-chore-controller'
-import { PeriodicChoreController } from './controllers/periodic-chore-controller'
+import { Environment } from './environment.js'
+import { Controller } from './controllers/controller.js'
+import { groupModel, groupValidator } from './models/group.js'
+import { ScoreboardController } from './controllers/scoreboard-controller.js'
+import { ManualChoreController } from './controllers/manual-chore-controller.js'
+import { PeriodicChoreController } from './controllers/periodic-chore-controller.js'
 
-import { createRouter, createErrorHandler } from './api/api'
-import { handler as wsHandler } from './websocket/handler'
-import { MemberController } from './controllers/member-controller'
+import { createRouter, createErrorHandler } from './api/api.js'
+import { handler as wsHandler } from './websocket/handler.js'
+import { MemberController } from './controllers/member-controller.js'
 
-export { Environment } from './environment'
+export { Environment } from './environment.js'
 
 const groupsController = new Controller(groupModel, groupValidator)
 const membersController = new MemberController({

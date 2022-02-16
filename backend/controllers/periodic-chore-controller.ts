@@ -1,6 +1,6 @@
-import { Controller, Doc } from './controller'
-import { PeriodicChore, periodicChoreModel, periodicChoreValidator } from '../models/periodic-chore'
-import { Member } from '../models/member'
+import { Controller, Doc } from './controller.js'
+import { PeriodicChore, periodicChoreModel, periodicChoreValidator } from '../models/periodic-chore.js'
+import { Member } from '../models/member.js'
 import { QueryCursor } from 'mongoose'
 
 export interface PeriodicChoreDependencies {

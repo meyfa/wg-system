@@ -1,4 +1,4 @@
-import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from './constants'
+import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from './constants.js'
 
 /**
  * A special type of error that is intentionally thrown by the API.

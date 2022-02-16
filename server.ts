@@ -1,10 +1,14 @@
 import express from 'express'
+import { fileURLToPath } from 'url'
 import path from 'path'
 import fs from 'fs'
 import { WebSocketServer } from 'ws'
 
 // this works because 'backend' is listed as a workspace in package.json
 import { init, createApiRouter, createApiErrorHandler, webSocketHandler, Environment } from 'backend'
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // after compilation, this file ends up in './build', so the root is one level up
 const PROJECT_ROOT = path.join(__dirname, '..')

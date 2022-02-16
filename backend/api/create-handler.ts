@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from 'express'
-import { ApiError } from './errors'
-import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from './constants'
+import { ApiError } from './errors.js'
+import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from './constants.js'
 
 /**
  * Respond with an error message.

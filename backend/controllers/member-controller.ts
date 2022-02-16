@@ -1,9 +1,9 @@
-import { Controller, Doc } from './controller'
-import { Member, memberModel, memberValidator } from '../models/member'
-import { QueryCursor, Types } from 'mongoose'
-import { Group } from '../models/group'
+import { Controller, Doc } from './controller.js'
+import { Member, memberModel, memberValidator } from '../models/member.js'
+import mongoose, { QueryCursor } from 'mongoose'
+import { Group } from '../models/group.js'
 
-function removeObjectId (ids: readonly Types.ObjectId[], remove: Types.ObjectId): Types.ObjectId[] {
+function removeObjectId<T extends mongoose.Types.ObjectId> (ids: readonly T[], remove: T): T[] {
   // this is to avoid a linter error, because for some reason typescript-eslint thinks that
   // id.equals does not result in a boolean if its parameter is of type 'any', which,
   // again for some reason unknown to me, other._id seems to be (Mongoose, what did you do?)

@@ -1,10 +1,10 @@
-import { model, Schema, Types } from 'mongoose'
-import { memberModel } from './member'
+import mongoose from 'mongoose'
+import { memberModel } from './member.js'
 import Joi from 'joi'
-import { idValidator } from './common'
+import { idValidator } from './common.js'
 
 export interface ScoreboardEntry {
-  memberId: Types.ObjectId
+  memberId: mongoose.Types.ObjectId
   offset: number
   score: number
 }
@@ -14,7 +14,7 @@ export interface Scoreboard {
   scores: ScoreboardEntry[]
 }
 
-export const scoreboardModel = model('Scoreboard', new Schema<Scoreboard>({
+export const scoreboardModel = mongoose.model('Scoreboard', new mongoose.Schema<Scoreboard>({
   name: {
     type: String,
     required: true
@@ -23,7 +23,7 @@ export const scoreboardModel = model('Scoreboard', new Schema<Scoreboard>({
     {
       _id: false,
       memberId: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: memberModel
       },
