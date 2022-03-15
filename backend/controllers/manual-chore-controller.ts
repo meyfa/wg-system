@@ -1,5 +1,5 @@
-import { Controller, Doc } from './controller.js'
-import mongoose, { QueryCursor } from 'mongoose'
+import { Controller } from './controller.js'
+import mongoose from 'mongoose'
 import {
   MANUAL_CHORE_MODEL_NAME,
   ManualChore,
@@ -18,7 +18,7 @@ export class ManualChoreController extends Controller<ManualChore> {
 
     // unset scoreboards when they are deleted
     dependencies.scoreboard.on('deleted', async (other) => {
-      const cursor: QueryCursor<Doc<ManualChore>> = this.model.find({
+      const cursor = this.model.find({
         scoreboardId: other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {

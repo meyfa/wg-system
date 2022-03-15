@@ -1,6 +1,6 @@
-import { Controller, Doc } from './controller.js'
+import { Controller } from './controller.js'
 import { Member } from '../models/member.js'
-import mongoose, { QueryCursor } from 'mongoose'
+import mongoose from 'mongoose'
 import { Scoreboard, SCOREBOARD_MODEL_NAME, scoreboardSchema, scoreboardValidator } from '../models/scoreboard.js'
 
 export interface ScoreboardDependencies {
@@ -13,7 +13,7 @@ export class ScoreboardController extends Controller<Scoreboard> {
 
     // remove scores for members when they are deleted
     dependencies.member.on('deleted', async (other) => {
-      const cursor: QueryCursor<Doc<Scoreboard>> = this.model.find({
+      const cursor = this.model.find({
         'scores.memberId': other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {

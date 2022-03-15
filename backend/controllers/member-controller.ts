@@ -1,6 +1,6 @@
-import { Controller, Doc } from './controller.js'
+import { Controller } from './controller.js'
 import { Member, MEMBER_MODEL_NAME, memberSchema, memberValidator } from '../models/member.js'
-import mongoose, { QueryCursor } from 'mongoose'
+import mongoose from 'mongoose'
 import { Group } from '../models/group.js'
 
 function removeObjectId<T extends mongoose.Types.ObjectId> (ids: readonly T[], remove: T): T[] {
@@ -20,7 +20,7 @@ export class MemberController extends Controller<Member> {
 
     // remove groups for members when they are deleted
     dependencies.group.on('deleted', async (other) => {
-      const cursor: QueryCursor<Doc<Member>> = this.model.find({
+      const cursor = this.model.find({
         groups: other._id
       }).cursor()
       await cursor.eachAsync(async (item) => {
