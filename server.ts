@@ -14,27 +14,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = path.join(__dirname, '..')
 
 /**
- * Match all occurrences of the given RegExp.
- * The result is an array of match arrays, which differs from a simple global match where the array is only
- * a single level deep and capture groups are excluded.
- *
- * @param str The string to search.
- * @param regex The regular expression to execute.
- * @returns An array of match results, where each entry is an array of groups for a single match.
- */
-function matchAll (str: string, regex: RegExp): RegExpExecArray[] {
-  const matches = []
-  let match
-  do {
-    match = regex.exec(str)
-    if (match != null) {
-      matches.push(match)
-    }
-  } while (match != null)
-  return matches
-}
-
-/**
  * Determine the page version, that is, the sorted, comma-separated list of all JS and CSS chunk identifiers present in
  * the main HTML file.
  *
@@ -42,7 +21,7 @@ function matchAll (str: string, regex: RegExp): RegExpExecArray[] {
  */
 async function getPageVersion (): Promise<string | undefined> {
   const html = await fs.promises.readFile(path.join(PROJECT_ROOT, './frontend/build/index.html'), 'utf8')
-  const hashes = matchAll(html, /[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/g).map(m => m[1])
+  const hashes = Array.from(html.matchAll(/[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/g), m => m[1])
   return hashes.length > 0 ? hashes.sort().join() : undefined
 }
 
