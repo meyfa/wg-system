@@ -48,5 +48,6 @@ EXPOSE 8080
 # - run as non-root user
 USER node
 
-# - start the server ("production" skips the build step)
-CMD ["npm", "run", "production"]
+# start the server (this is similar to "npm run production", but NPM does not
+# forward signals correctly, while Node does)
+CMD ["node", "build/server.js"]

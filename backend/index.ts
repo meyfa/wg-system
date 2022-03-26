@@ -18,6 +18,7 @@ export interface Backend {
   readonly createApiRouter: () => Router
   readonly createApiErrorHandler: typeof createErrorHandler
   readonly webSocketHandler: (ws: WebSocket, pageVersion?: string) => void
+  readonly stop: () => Promise<void>
 }
 
 function createControllers (db: mongoose.Connection): Record<string, Controller<any>> {
@@ -55,6 +56,7 @@ export async function init (env: Environment): Promise<Backend> {
   return {
     createApiRouter: createRouter.bind(undefined, controllers),
     createApiErrorHandler: createErrorHandler,
-    webSocketHandler: wsHandler.bind(undefined, controllers)
+    webSocketHandler: wsHandler.bind(undefined, controllers),
+    stop: async () => await db.close()
   }
 }
