@@ -20,7 +20,7 @@ export default function SettingsPage (): ReactElement {
     ? Object.keys(i18n.options.resources)
     : []
 
-  const changeLanguage = useCallback(async (value) => {
+  const changeLanguage = useCallback(async (value: string) => {
     await i18n.changeLanguage(value)
   }, [i18n])
 
