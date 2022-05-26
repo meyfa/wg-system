@@ -46,6 +46,6 @@
   "dependencies": {
     "express": "4.18.1",
     "omniwheel": "0.2.0",
-    "ws": "8.6.0"
+    "ws": "8.7.0"
   }
 }
