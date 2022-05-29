@@ -50,7 +50,7 @@
     "eslint-plugin-react-hooks": "4.5.0",
     "http-proxy-middleware": "2.0.6",
     "react-scripts": "4.0.3",
-    "stylelint": "14.7.1",
+    "stylelint": "14.8.5",
     "stylelint-config-standard": "25.0.0"
   }
 }
