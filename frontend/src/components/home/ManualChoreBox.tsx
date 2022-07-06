@@ -71,21 +71,25 @@ export default function ManualChoreBox (props: Props): ReactElement {
 
   const [isSelectingMember, setSelectingMember] = useState(false)
 
-  const startMarkDone = useCallback(async () => {
+  const startMarkDone = useCallback(() => {
     // when no scoreboard exists for the chore, do not show the modal
     if (props.chore.scoreboardId == null) {
-      await markDone()
+      void markDone()
       return
     }
     setSelectingMember(true)
   }, [props.chore.scoreboardId, markDone])
 
-  const confirmMarkDone = useCallback(async (member?: Member) => {
+  const confirmMarkDone = useCallback((member?: Member) => {
     setSelectingMember(false)
-    await markDone(member)
+    void markDone(member)
   }, [markDone])
 
   const cancelMarkDone = useCallback(() => setSelectingMember(false), [])
+
+  const markDueSync = useCallback(() => {
+    void markDue()
+  }, [markDue])
 
   const title = (
     <>
@@ -98,7 +102,7 @@ export default function ManualChoreBox (props: Props): ReactElement {
     <ChoreBox urgent={isDue} title={title}>
       <div>
         <BasicButton onClick={startMarkDone}>{t('home.chores.markDone')}</BasicButton>
-        {!isDue && <BasicButton onClick={markDue}>{t('home.chores.markDue')}</BasicButton>}
+        {!isDue && <BasicButton onClick={markDueSync}>{t('home.chores.markDue')}</BasicButton>}
       </div>
       <SelectMemberModal active={isSelectingMember} onSelect={confirmMarkDone} onCancel={cancelMarkDone} />
     </ChoreBox>

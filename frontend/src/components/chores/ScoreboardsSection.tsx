@@ -16,8 +16,8 @@ export default function ScoreboardsSection (): ReactElement {
   const scoreboards = useAppSelector(selectScoreboards)
 
   const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
-    const create = async (entity: Scoreboard): Promise<void> => {
-      await api.scoreboards.create(entity)
+    const create = (entity: Scoreboard): void => {
+      void api.scoreboards.create(entity)
       hide()
     }
     return <EditScoreboardModal active={active} onSave={create} onCancel={hide} />

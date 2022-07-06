@@ -16,8 +16,8 @@ export default function ManualChoresSection (): ReactElement {
   const manualChores = useAppSelector(selectManualChores)
 
   const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
-    const create = async (entity: ManualChore): Promise<void> => {
-      await api.manualChores.create(entity)
+    const create = (entity: ManualChore): void => {
+      void api.manualChores.create(entity)
       hide()
     }
     return <EditManualChoreModal active={active} onSave={create} onCancel={hide} />

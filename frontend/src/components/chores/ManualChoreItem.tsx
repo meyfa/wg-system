@@ -11,12 +11,14 @@ interface Props {
 }
 
 export default function ManualChoreItem (props: Props): ReactElement {
-  const onDelete = useCallback(async () => await api.manualChores.delete(props.chore._id), [props.chore._id])
+  const onDelete = useCallback(() => {
+    void api.manualChores.delete(props.chore._id)
+  }, [props.chore._id])
 
   const renderModal: EditModalRenderFn = useCallback((active, hide) => {
-    const save = async (entity: ManualChore): Promise<void> => {
+    const save = (entity: ManualChore): void => {
       hide()
-      await api.manualChores.update(entity)
+      void api.manualChores.update(entity)
     }
     return <EditManualChoreModal chore={props.chore} active={active} onSave={save} onCancel={hide} onDelete={onDelete} />
   }, [props.chore, onDelete])

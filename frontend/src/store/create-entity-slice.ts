@@ -37,7 +37,7 @@ export function createEntitySlice<T extends Entity> (name: string, comparer: Com
   }
 
   return createSlice({
-    name: name,
+    name,
     initialState: [] as T[],
     reducers: {
       setEntities: (entities, action) => [...action.payload].sort(comp),

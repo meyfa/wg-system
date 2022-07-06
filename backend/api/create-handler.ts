@@ -75,6 +75,7 @@ export function handleError (error: unknown, res: Response): void {
  * @returns The request handler.
  */
 export function createHandler (fn: (req: Request) => HandlerResponse | Promise<HandlerResponse>): RequestHandler {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return async (req: Request, res: Response): Promise<void> => {
     try {
       const result = await fn(req)

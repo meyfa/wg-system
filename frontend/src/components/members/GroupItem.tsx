@@ -11,12 +11,14 @@ interface Props {
 }
 
 export default function GroupItem (props: Props): ReactElement {
-  const onDelete = useCallback(async () => await api.groups.delete(props.group._id), [props.group._id])
+  const onDelete = useCallback(() => {
+    void api.groups.delete(props.group._id)
+  }, [props.group._id])
 
   const renderModal: EditModalRenderFn = useCallback((active, hide) => {
-    const save = async (entity: Group): Promise<void> => {
+    const save = (entity: Group): void => {
       hide()
-      await api.groups.update(entity)
+      void api.groups.update(entity)
     }
     return <EditGroupModal group={props.group} active={active} onSave={save} onCancel={hide} onDelete={onDelete} />
   }, [props.group, onDelete])

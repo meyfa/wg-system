@@ -16,9 +16,9 @@ export default function GroupsSection (): ReactElement {
   const groups = useAppSelector(selectGroups)
 
   const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
-    const create = async (entity: Group): Promise<void> => {
+    const create = (entity: Group): void => {
       hide()
-      await api.groups.create(entity)
+      void api.groups.create(entity)
     }
     return <EditGroupModal active={active} onSave={create} onCancel={hide} />
   }, [])

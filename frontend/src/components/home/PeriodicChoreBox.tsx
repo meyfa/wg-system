@@ -92,10 +92,10 @@ export default function PeriodicChoreBox (props: Props): ReactElement {
   const startMarkDone = useCallback(() => setSelectingMember(true), [])
   const cancelMarkDone = useCallback(() => setSelectingMember(false), [])
 
-  const confirmMarkDone = useCallback(async (member?: Member) => {
+  const confirmMarkDone = useCallback((member?: Member) => {
     setSelectingMember(false)
     if (member != null) {
-      await addEntry(props.chore, member)
+      void addEntry(props.chore, member)
     }
   }, [props.chore])
 

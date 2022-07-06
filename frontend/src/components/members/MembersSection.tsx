@@ -18,9 +18,9 @@ export default function MembersSection (): ReactElement {
   const inactiveMembers = useMemo(() => members.filter(item => !item.active), [members])
 
   const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
-    const create = async (entity: Member): Promise<void> => {
+    const create = (entity: Member): void => {
       hide()
-      await api.members.create(entity)
+      void api.members.create(entity)
     }
     return <EditMemberModal active={active} onSave={create} onCancel={hide} />
   }, [])
