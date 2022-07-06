@@ -6,8 +6,8 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore . && tsc --noEmit",
-    "lint-fix": "eslint --fix --ignore-path .gitignore . && tsc --noEmit",
+    "lint": "tsc --noEmit && eslint --ignore-path .gitignore .",
+    "lint-fix": "tsc --noEmit && eslint --fix --ignore-path .gitignore .",
     "build": "rimraf build && tsc"
   },
   "dependencies": {

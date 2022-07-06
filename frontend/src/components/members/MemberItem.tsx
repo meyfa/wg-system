@@ -13,12 +13,14 @@ interface Props {
 }
 
 export default function MemberItem (props: Props): ReactElement {
-  const onDelete = useCallback(async () => await api.members.delete(props.member._id), [props.member._id])
+  const onDelete = useCallback(() => {
+    void api.members.delete(props.member._id)
+  }, [props.member._id])
 
   const renderModal: EditModalRenderFn = useCallback((active, hide) => {
-    const save = async (entity: Member): Promise<void> => {
+    const save = (entity: Member): void => {
       hide()
-      await api.members.update(entity)
+      void api.members.update(entity)
     }
     return <EditMemberModal member={props.member} active={active} onSave={save} onCancel={hide} onDelete={onDelete} />
   }, [props.member, onDelete])

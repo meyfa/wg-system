@@ -1,5 +1,5 @@
 extends:
-  - standard-with-typescript
+  - '@meyfa/eslint-config'
   - react-app
   - plugin:react/recommended
   - plugin:react/jsx-runtime
@@ -11,6 +11,7 @@ ignorePatterns:
   - 'src/react-app-env.d.ts'
 
 rules:
+  'import/extensions': [error, never, { json: always }]
   jsx-quotes: [error, prefer-single]
   'react/jsx-indent': [error, 2]
   'react/jsx-wrap-multilines': [warn, {

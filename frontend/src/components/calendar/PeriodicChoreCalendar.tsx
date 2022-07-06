@@ -74,14 +74,14 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
   }, [])
   const cancelEditing = useParametrized(setEditing, false)
 
-  const save = useCallback(async (updatedEntry: PeriodicChoreEntry) => {
+  const save = useCallback((updatedEntry: PeriodicChoreEntry) => {
     setEditing(false)
-    await updateEntry(props.chore, props.entryIndex, updatedEntry)
+    void updateEntry(props.chore, props.entryIndex, updatedEntry)
   }, [props.chore, props.entryIndex])
 
-  const onDelete = useCallback(async () => {
+  const onDelete = useCallback(() => {
     setEditing(false)
-    await deleteEntry(props.chore, props.entryIndex)
+    void deleteEntry(props.chore, props.entryIndex)
   }, [props.chore, props.entryIndex])
 
   return (
@@ -140,9 +140,9 @@ export default function PeriodicChoreCalendar (props: Props): ReactElement {
 
   const [creating, setCreating] = useState<DateTime | undefined>()
   const cancelCreate = useParametrized(setCreating, undefined)
-  const create = useCallback(async (entry: PeriodicChoreEntry) => {
+  const create = useCallback((entry: PeriodicChoreEntry) => {
     setCreating(undefined)
-    await insertEntry(props.chore, entry)
+    void insertEntry(props.chore, entry)
   }, [props.chore])
 
   const onClickCell: CellClickHandler = useCallback(date => {

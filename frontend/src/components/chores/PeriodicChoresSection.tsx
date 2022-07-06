@@ -16,8 +16,8 @@ export default function PeriodicChoresSection (): ReactElement {
   const periodicChores = useAppSelector(selectPeriodicChores)
 
   const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
-    const create = async (entity: PeriodicChore): Promise<void> => {
-      await api.periodicChores.create(entity)
+    const create = (entity: PeriodicChore): void => {
+      void api.periodicChores.create(entity)
       hide()
     }
     return <EditPeriodicChoreModal active={active} onSave={create} onCancel={hide} />
