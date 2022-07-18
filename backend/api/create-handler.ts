@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from 'express'
 import { ApiError } from './errors.js'
-import { HTTP_BAD_REQUEST, HTTP_INTERNAL_SERVER_ERROR, HTTP_OK } from './constants.js'
+import { HttpStatus } from 'omniwheel'
 
 /**
  * Respond with an error message.
@@ -22,14 +22,14 @@ function sendError (res: Response, code: number, message: string): void {
  * @param result The result to send.
  */
 function sendResult (res: Response, result: HandlerResponse): void {
-  res.status(result.code ?? HTTP_OK).json(result.data ?? {})
+  res.status(result.code ?? HttpStatus.OK).json(result.data ?? {})
 }
 
 export interface HandlerResponse<T = any> {
   /**
-   * The response code. Defaults to HTTP_OK (200).
+   * The response code. Defaults to OK (200).
    */
-  code?: number
+  code?: HttpStatus
 
   /**
    * The response data to be sent as JSON. If absent, no data is sent.
@@ -51,13 +51,13 @@ function isSyntaxErrorWithStatus (error: unknown): error is SyntaxError & { stat
 export function handleError (error: unknown, res: Response): void {
   if (isSyntaxErrorWithStatus(error) && error.status >= 400 && error.status < 500) {
     // JSON input error
-    sendError(res, HTTP_BAD_REQUEST, 'malformed input')
+    sendError(res, HttpStatus.BAD_REQUEST, 'malformed input')
   } else if (error instanceof ApiError) {
     // one of our own errors
     sendError(res, error.code, error.message)
   } else {
     console.error(error)
-    sendError(res, HTTP_INTERNAL_SERVER_ERROR, 'internal error')
+    sendError(res, HttpStatus.INTERNAL_SERVER_ERROR, 'internal error')
   }
 }
 

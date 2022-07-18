@@ -1,8 +1,8 @@
-import { HTTP_BAD_REQUEST, HTTP_NOT_FOUND } from './constants.js'
+import { HttpStatus } from 'omniwheel'
 
 /**
  * A special type of error that is intentionally thrown by the API.
- * It includes a HTTP status code and a message string.
+ * It includes an HTTP status code and a message string.
  *
  * Any error not inheriting from this class will be considered a bug and results in status code 500 to be sent,
  * without revealing the error message.
@@ -21,7 +21,7 @@ export class ApiError extends Error {
  */
 export class BadRequestError extends ApiError {
   constructor (message: string) {
-    super(HTTP_BAD_REQUEST, message)
+    super(HttpStatus.BAD_REQUEST, message)
   }
 }
 
@@ -30,6 +30,6 @@ export class BadRequestError extends ApiError {
  */
 export class NotFoundError extends ApiError {
   constructor (object: string = 'resource') {
-    super(HTTP_NOT_FOUND, `${object} not found`)
+    super(HttpStatus.NOT_FOUND, `${object} not found`)
   }
 }
