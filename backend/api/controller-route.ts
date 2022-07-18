@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { createHandler } from './create-handler.js'
 import { Controller } from '../controllers/controller.js'
-import { HTTP_CREATED } from './constants.js'
+import { HttpStatus } from 'omniwheel'
 
 export function createControllerRoute<T = any> (controller: Controller<T>): Router {
   const router = Router()
@@ -11,7 +11,7 @@ export function createControllerRoute<T = any> (controller: Controller<T>): Rout
   }))
 
   router.post('/', createHandler(async (req) => {
-    return { code: HTTP_CREATED, data: await controller.create(req.body) }
+    return { code: HttpStatus.CREATED, data: await controller.create(req.body) }
   }))
 
   router.get('/:id', createHandler(async (req) => {
