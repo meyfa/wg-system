@@ -13,7 +13,7 @@ volumes:
 services:
 
   mongodb:
-    image: mongo:5
+    image: mongo:6
     container_name: wg_mongodb
     networks:
     - internal
