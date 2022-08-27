@@ -14,6 +14,7 @@ export function useConnectionStatus (): boolean {
     const disconnectListener = (): void => setConnected(false)
     socket.on('connect', connectListener)
     socket.on('disconnect', disconnectListener)
+    setConnected(socket.connected)
     return () => {
       socket.off('connect', connectListener)
       socket.off('disconnect', disconnectListener)

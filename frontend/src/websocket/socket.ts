@@ -50,29 +50,45 @@ export class Socket extends EventEmitter {
     if (this.ws != null) {
       return
     }
-    this.ws = new WebSocket(this.url)
-    this.ws.addEventListener('open', () => {
-      this.emit(EVENT_CONNECT)
-    })
-    this.ws.addEventListener('error', () => this.handleClose())
-    this.ws.addEventListener('close', () => this.handleClose())
-    this.ws.addEventListener('message', (event: MessageEvent<string>) => {
-      const parsed = JSON.parse(event.data)
-      if (parsed != null && parsed.event === 'pageVersion') {
-        this._reportedPageVersion = typeof parsed.data === 'string' ? parsed.data : undefined
-        this.emit(EVENT_PAGE_VERSION, this._reportedPageVersion)
-        return
-      }
-      this.emit(EVENT_MESSAGE, parsed)
-    })
+    const ws = this.ws = new WebSocket(this.url)
+    ws.addEventListener('open', () => this.handleOpen(ws))
+    ws.addEventListener('error', () => this.handleClose(ws))
+    ws.addEventListener('close', () => this.handleClose(ws))
+    ws.addEventListener('message', (event) => this.handleMessage(ws, event))
   }
 
-  private handleClose (): void {
-    this.emit(EVENT_DISCONNECT)
+  private handleOpen (source: WebSocket): void {
+    // This check prevents event handling for WebSocket instances that are no longer in use.
+    if (source !== this.ws) {
+      return
+    }
+    this.emit(EVENT_CONNECT)
+  }
+
+  private handleClose (source: WebSocket): void {
+    // This check prevents event handling for WebSocket instances that are no longer in use.
+    if (source !== this.ws) {
+      return
+    }
     this.ws = undefined
+    this.emit(EVENT_DISCONNECT)
     if (this.reconnectDelay >= 0) {
       setTimeout(() => this.connect(), this.reconnectDelay)
     }
+  }
+
+  private handleMessage (source: WebSocket, event: MessageEvent<string>): void {
+    // This check prevents event handling for WebSocket instances that are no longer in use.
+    if (source !== this.ws) {
+      return
+    }
+    const parsed = JSON.parse(event.data)
+    if (parsed != null && parsed.event === 'pageVersion') {
+      this._reportedPageVersion = typeof parsed.data === 'string' ? parsed.data : undefined
+      this.emit(EVENT_PAGE_VERSION, this._reportedPageVersion)
+      return
+    }
+    this.emit(EVENT_MESSAGE, parsed)
   }
 
   /**
