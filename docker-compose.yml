@@ -16,20 +16,20 @@ services:
     image: mongo:6
     container_name: wg_mongodb
     networks:
-    - internal
+      - internal
     volumes:
-    - 'mongodb_data:/data/db'
-    - 'mongodb_config:/data/configdb'
+      - 'mongodb_data:/data/db'
+      - 'mongodb_config:/data/configdb'
 
   wg_system:
     build: .
     image: wg-system
     container_name: wg_system
     depends_on:
-    - mongodb
+      - mongodb
     networks:
-    - internal
+      - internal
     ports:
-    - '8080:8080'
+      - '8080:8080'
     environment:
       MONGODB_URI: 'mongodb://wg_mongodb/wgsystem'
