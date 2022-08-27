@@ -1,5 +1,5 @@
 import { ReactElement, useCallback } from 'react'
-import api from '../../api/api'
+import { api } from '../../api/api'
 import EditPeriodicChoreModal from './EditPeriodicChoreModal'
 import EditableItem from '../items/EditableItem'
 import { PeriodicChore } from '../../store/entities/periodic-chores'

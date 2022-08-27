@@ -89,7 +89,5 @@ export class Socket extends EventEmitter {
 
 const url = window.location.origin.replace(/^http/, 'ws') + '/websocket/'
 
-const socket = new Socket(url, 5000)
+export const socket = new Socket(url, 5000)
 socket.connect()
-
-export default socket

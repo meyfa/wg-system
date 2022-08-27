@@ -8,7 +8,7 @@ import { selectMembers } from '../../store/entities/members'
 import { PlannedEntry, usePlannedEntry } from '../../hooks/periodic-chores/use-planned-entry'
 import EditEntryModal from './EditEntryModal'
 import { useParametrized } from '../../hooks/use-parametrized'
-import api from '../../api/api'
+import { api } from '../../api/api'
 
 type EntryMap = Map<string, readonly number[]>
 

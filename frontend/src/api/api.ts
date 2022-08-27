@@ -28,5 +28,4 @@ export class Api {
 
 const url = window.location.origin + '/api/'
 
-const api = new Api(url)
-export default api
+export const api = new Api(url)
