@@ -1,4 +1,4 @@
-import socket from '../websocket/socket'
+import { socket } from '../websocket/socket'
 import { useEffect, useState } from 'react'
 
 /**

@@ -2,7 +2,7 @@ import { Entity } from './store/entity'
 import { useCallback, useEffect } from 'react'
 import { EntitySliceActions } from './store/create-entity-slice'
 import { useAppDispatch } from './store/store'
-import socket, { EVENT_MESSAGE, Message } from './websocket/socket'
+import { EVENT_MESSAGE, Message, socket } from './websocket/socket'
 import { CrudRoute } from './api/crud-route'
 import { useConnectionStatus } from './hooks/use-connection-status'
 

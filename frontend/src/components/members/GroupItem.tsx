@@ -1,6 +1,6 @@
 import './MemberItem.css'
 import { ReactElement, useCallback } from 'react'
-import api from '../../api/api'
+import { api } from '../../api/api'
 import EditableItem from '../items/EditableItem'
 import { EditModalRenderFn } from '../items/EditButton'
 import { Group } from '../../store/entities/groups'

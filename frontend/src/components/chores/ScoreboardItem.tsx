@@ -1,6 +1,6 @@
 import { ReactElement, useCallback } from 'react'
 import { Scoreboard } from '../../store/entities/scoreboards'
-import api from '../../api/api'
+import { api } from '../../api/api'
 import EditScoreboardModal from './EditScoreboardModal'
 import EditableItem from '../items/EditableItem'
 import { EditModalRenderFn } from '../items/EditButton'

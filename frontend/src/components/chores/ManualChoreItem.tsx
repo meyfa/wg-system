@@ -1,6 +1,6 @@
 import { ManualChore } from '../../store/entities/manual-chores'
 import { ReactElement, useCallback } from 'react'
-import api from '../../api/api'
+import { api } from '../../api/api'
 import EditManualChoreModal from './EditManualChoreModal'
 import EditableItem from '../items/EditableItem'
 import { EditModalRenderFn } from '../items/EditButton'
