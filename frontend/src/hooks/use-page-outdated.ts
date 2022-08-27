@@ -8,6 +8,7 @@ function useRemotePageVersion (): string | undefined {
   useEffect(() => {
     const listener = (version: string | undefined): void => setVersion(version)
     socket.on(EVENT_PAGE_VERSION, listener)
+    setVersion(socket.reportedPageVersion)
     return () => {
       socket.off(EVENT_PAGE_VERSION, listener)
     }
