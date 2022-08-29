@@ -7,7 +7,7 @@ import { useState } from 'react'
  * @param object The object with most recent properties.
  * @returns Always the same reference, but with updated properties.
  */
-export function useSameObjectReference<T> (object: T): T {
+export function useSameObjectReference<T extends {}> (object: T): T {
   const [state] = useState<T>(object)
   Object.assign(state, object)
   return state
