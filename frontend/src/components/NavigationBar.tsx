@@ -1,30 +1,13 @@
 import './NavigationBar.css'
 import { MouseEventHandler, ReactElement, useCallback, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { faBars, faBroom, faCalendarAlt, faCog, faHome, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons'
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import Icon from './Icon'
-
-interface NavItem {
-  icon: IconDefinition
-  label: string
-  path: string
-  end: boolean
-}
-
-const NAVIGATION: NavItem[] = [
-  { icon: faHome, label: 'home.title', path: '/', end: true },
-  { icon: faCalendarAlt, label: 'calendar.title', path: '/calendar', end: false },
-  { icon: faUsers, label: 'members.title', path: '/members', end: true },
-  { icon: faBroom, label: 'chores.title', path: '/chores', end: true },
-  { icon: faCog, label: 'settings.title', path: '/settings', end: true }
-]
+import { NavItem, useNavItems } from '../navigation'
 
 function NavigationBarLink (props: { item: NavItem, onClick?: MouseEventHandler<HTMLElement> }): ReactElement {
-  const { t } = useTranslation()
-
   const { item, onClick } = props
 
   return (
@@ -32,7 +15,7 @@ function NavigationBarLink (props: { item: NavItem, onClick?: MouseEventHandler<
       <span className='NavigationBar-link-icon'>
         <Icon icon={item.icon} />
       </span>
-      <span className='NavigationBar-link-label'>{t(item.label)}</span>
+      <span className='NavigationBar-link-label'>{item.label}</span>
     </NavLink>
   )
 }
@@ -47,6 +30,8 @@ export default function NavigationBar (): ReactElement {
 
   const handleClickInner: MouseEventHandler = useCallback(event => event.stopPropagation(), [])
 
+  const navItems = useNavItems()
+
   return (
     <div className={clsx('NavigationBar', { active })} onClick={close}>
       <div className='NavigationBar-inner' onClick={handleClickInner}>
@@ -56,7 +41,7 @@ export default function NavigationBar (): ReactElement {
           <Icon icon={active ? faTimes : faBars} />
         </button>
         {/* item groups */}
-        {NAVIGATION.map((item, i) => (
+        {navItems.map((item, i) => (
           <NavigationBarLink key={i} item={item} onClick={close} />
         ))}
       </div>

@@ -15,7 +15,7 @@ type CalendarGrid = Array<Array<CalendarDaySpec | undefined>>
 /**
  * Keys for week-day translations, found at `calendar.week.${weekday}`
  */
-const WEEKDAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+const WEEKDAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const
 
 function CalendarHeader (): ReactElement {
   const { t } = useTranslation()
