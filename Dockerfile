@@ -35,7 +35,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
-RUN npm ci --production
+RUN npm ci --omit=dev
 
 # - add the already compiled code
 COPY --from=build /usr/src/app/backend/build ./backend/build
