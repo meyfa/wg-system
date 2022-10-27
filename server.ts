@@ -1,10 +1,10 @@
-import { onTermination, promisifiedClose, promisifiedListen } from 'omniwheel'
-import express, { Application } from 'express'
+import { onTermination } from 'omniwheel'
+import { fastify, FastifyInstance } from 'fastify'
+import fastifyStatic from '@fastify/static'
+import fastifyWebSocket from '@fastify/websocket'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import fs from 'fs'
-import { WebSocketServer } from 'ws'
-import { Server } from 'http'
 
 // this works because 'backend' is listed as a workspace in package.json
 import { init, Environment, Backend } from 'backend'
@@ -34,55 +34,54 @@ async function createBackend (): Promise<Backend> {
   return backend
 }
 
-async function createApp (backend: Backend): Promise<Application> {
-  const app = express()
+async function createApp (backend: Backend): Promise<FastifyInstance> {
+  const app = fastify()
 
-  app.use(express.json())
+  app.setErrorHandler(backend.createApiErrorHandler())
+  await app.register(backend.createApiRouter(), { prefix: '/api' })
 
-  // the project needs to be built (`npm run build-all`) before these paths can work!
-  app.use('/api', backend.createApiRouter())
-  app.use(express.static('./frontend/build'))
-  // redirect all other requests to index.html for React-Router to handle
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(PROJECT_ROOT, './frontend/build/index.html'))
+  // the project needs to be built (`npm run build-all`) before this path can work!
+  await app.register(fastifyStatic, {
+    root: path.join(PROJECT_ROOT, './frontend/build')
   })
 
-  // this will catch errors in express itself, and things missed by the routes
-  app.use(backend.createApiErrorHandler())
+  // rewrite all other requests to index.html for React-Router to handle
+  app.setNotFoundHandler(async (req, reply) => await reply.sendFile('index.html'))
 
-  return app
+  return await app
 }
 
-async function startServer (app: Application): Promise<Server> {
-  const server = await promisifiedListen(app, 8080, '::')
-  onTermination(async () => await promisifiedClose(server))
-
-  return server
-}
-
-async function setupWebSockets (server: Server, backend: Backend): Promise<void> {
+async function setupWebSockets (server: FastifyInstance, backend: Backend): Promise<void> {
   const pageVersion = await getPageVersion()
 
-  const wsServer = new WebSocketServer({ noServer: true })
-
-  wsServer.on('connection', socket => backend.webSocketHandler(socket, pageVersion))
-
-  server.on('upgrade', (req, socket, head) => {
-    if (req.url === '/websocket' || req.url === '/websocket/') {
-      wsServer.handleUpgrade(req, socket, head, ws => wsServer.emit('connection', ws, req))
+  await app.register(fastifyWebSocket, {
+    options: {
+      // explicitly forbid all routes except '/websocket' and '/websocket/'
+      verifyClient: (info, next) => next(info.req.url === '/websocket' || info.req.url === '/websocket/')
     }
   })
 
+  app.get('/websocket', { websocket: true }, ({ socket }) => backend.webSocketHandler(socket, pageVersion))
+  app.get('/websocket/', { websocket: true }, ({ socket }) => backend.webSocketHandler(socket, pageVersion))
+
   onTermination(() => {
-    for (const client of wsServer.clients) {
+    for (const client of app.websocketServer.clients) {
       // 1001 = "going away" (https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1)
       client.close(1001)
     }
-    wsServer.close()
+    app.websocketServer.close()
   })
+}
+
+async function startServer (app: FastifyInstance): Promise<void> {
+  await app.listen({
+    port: 8080,
+    host: '::'
+  })
+  onTermination(async () => await app.close())
 }
 
 const backend = await createBackend()
 const app = await createApp(backend)
-const server = await startServer(app)
-await setupWebSockets(server, backend)
+await setupWebSockets(app, backend)
+await startServer(app)

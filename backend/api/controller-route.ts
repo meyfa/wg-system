@@ -1,31 +1,26 @@
-import { Router } from 'express'
-import { createHandler } from './create-handler.js'
+import { FastifyPluginAsync } from 'fastify'
 import { Controller } from '../controllers/controller.js'
 import { HttpStatus } from 'omniwheel'
 
-export function createControllerRoute<T = any> (controller: Controller<T>): Router {
-  const router = Router()
+export const createControllerRoute = <T = any>(controller: Controller<T>): FastifyPluginAsync => async (app) => {
+  app.get('/', async () => {
+    return await controller.list()
+  })
 
-  router.get('/', createHandler(async () => {
-    return { data: await controller.list() }
-  }))
+  app.post('/', async (req, reply) => {
+    return await reply.code(HttpStatus.CREATED).send(await controller.create(req.body))
+  })
 
-  router.post('/', createHandler(async (req) => {
-    return { code: HttpStatus.CREATED, data: await controller.create(req.body) }
-  }))
+  app.get<{ Params: { id: string } }>('/:id', async (req) => {
+    return await controller.find(req.params.id)
+  })
 
-  router.get('/:id', createHandler(async (req) => {
-    return { data: await controller.find(req.params.id) }
-  }))
+  app.put<{ Params: { id: string } }>('/:id', async (req) => {
+    return await controller.update(req.params.id, req.body)
+  })
 
-  router.put('/:id', createHandler(async (req) => {
-    return { data: await controller.update(req.params.id, req.body) }
-  }))
-
-  router.delete('/:id', createHandler(async (req) => {
+  app.delete<{ Params: { id: string } }>('/:id', async (req) => {
     await controller.delete(req.params.id)
-    return { data: {} }
-  }))
-
-  return router
+    return {}
+  })
 }

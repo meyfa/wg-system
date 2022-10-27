@@ -105,7 +105,7 @@ There are many great editor integrations for ESLint, Stylelint and TypeScript; u
 
 To install a new dependency, you have to decide: is it needed everywhere, like ESLint? Is it required by `server.ts`?
 If the answer was 'yes' to at least one of these questions, install the dependency to the root folder
-(e.g. `npm i express`).
+(e.g. `npm i fastify`).
 Otherwise, install it to the appropriate workspace: `npm i -w frontend react`.
 
 Due to how workspaces work, if at any point a `package-lock.json` or `node_modules` is created in one of the

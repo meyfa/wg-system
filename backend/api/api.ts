@@ -1,33 +1,41 @@
-import { ErrorRequestHandler, Router } from 'express'
-import { createHandler, handleError } from './create-handler.js'
-import { NotFoundError } from './errors.js'
+import { FastifyError, FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify'
+import { ApiError, BadRequestError, InternalServerError, NotFoundError } from './errors.js'
 import { Controller } from '../controllers/controller.js'
 import { createControllerRoute } from './controller-route.js'
 
-export function createRouter (controllers: Record<string, Controller<unknown>>): Router {
-  const router = Router()
+export type ErrorHandler = (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => Promise<void>
 
+export const createRouter = (controllers: Record<string, Controller<unknown>>): FastifyPluginAsync => async (app) => {
   // blank index route
-  router.get('/', createHandler(() => ({ data: {} })))
+  app.get('/', () => ({}))
 
   // controller routes
   for (const [name, controller] of Object.entries(controllers)) {
-    router.use(`/${name}`, createControllerRoute(controller))
+    await app.register(createControllerRoute(controller), { prefix: `/${name}` })
   }
 
   // 404 fallback
-  router.use(createHandler(() => {
-    throw new NotFoundError('route')
-  }))
-
-  return router
+  app.all('/*', async (req, reply) => reply.callNotFound())
+  app.setNotFoundHandler(async (req, reply) => await sendError(reply, new NotFoundError('route')))
 }
 
-export function createErrorHandler (): ErrorRequestHandler {
-  return (err, req, res, next) => {
-    if (res.headersSent) {
-      return next(err)
+export function createErrorHandler (): ErrorHandler {
+  return async (error, req, reply) => {
+    if (error instanceof SyntaxError && error.statusCode != null && error.statusCode >= 400 && error.statusCode < 500) {
+      // JSON input error
+      return await sendError(reply, new BadRequestError('malformed input'))
+    } else if (error instanceof ApiError) {
+      // one of our own errors
+      return await sendError(reply, error)
+    } else {
+      console.error(error)
+      return await sendError(reply, new InternalServerError())
     }
-    handleError(err, res)
   }
+}
+
+async function sendError (reply: FastifyReply, error: ApiError): Promise<FastifyReply> {
+  return await reply.code(error.code).send({
+    error: error.message
+  })
 }
