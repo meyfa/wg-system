@@ -33,3 +33,12 @@ export class NotFoundError extends ApiError {
     super(HttpStatus.NOT_FOUND, `${object} not found`)
   }
 }
+
+/**
+ * An ApiError to be thrown in case something goes wrong on the server.
+ */
+export class InternalServerError extends ApiError {
+  constructor () {
+    super(HttpStatus.INTERNAL_SERVER_ERROR, 'internal_server_error')
+  }
+}
