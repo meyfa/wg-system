@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@fastify/static": "6.5.0",
-    "@fastify/websocket": "7.1.0",
+    "@fastify/websocket": "7.1.1",
     "fastify": "4.9.2",
     "omniwheel": "0.4.0",
     "ws": "8.8.1"
