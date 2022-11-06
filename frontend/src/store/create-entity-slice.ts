@@ -21,7 +21,7 @@ export interface EntitySliceReducers<T extends Entity> extends SliceCaseReducers
   deleteEntity: CaseReducer<T[], PayloadAction<string>>
 }
 
-export type EntitySliceActions<T extends Entity> = CaseReducerActions<EntitySliceReducers<T>>
+export type EntitySliceActions<T extends Entity> = CaseReducerActions<EntitySliceReducers<T>, string>
 
 export function createEntitySlice<T extends Entity> (name: string, comparer: Comparer<T> = defaultComparer): Slice<T[], EntitySliceReducers<T>> {
   const comp = comparer as Comparer<T | Draft<T>>
