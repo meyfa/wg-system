@@ -90,7 +90,7 @@ Both the backend and frontend need to be compiled before they can be used. This 
 To then start the server, use `npm run production`. Alternatively, `npm start` is a shortcut to do both things at once.
 
 For frontend development, use `npm run dev` to get the backend up and running as well as obtain a temporary web
-server with hot-reloading capability at port `3000`. Note that the command has to be re-run when the backend is
+server with hot-reloading capability at port `5173`. Note that the command has to be re-run when the backend is
 changed because hot-reloading the backend would be infinitely more complex.
 
 ### Quality control
