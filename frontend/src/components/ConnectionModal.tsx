@@ -1,4 +1,3 @@
-import './ConnectionModal.css'
 import { ReactElement, useEffect, useState } from 'react'
 import Modal from './modals/Modal'
 import { useConnectionStatusDebounced } from '../hooks/use-connection-status'
@@ -39,9 +38,11 @@ export default function ConnectionModal (): ReactElement {
   return (
     <Modal important active={!connected}>
       {t('lostConnection')}
-      {isReloadAllowed
-        ? <button className='ConnectionModal-reload' onClick={reloadPage}>{t('reloadPage')}</button>
-        : undefined}
+      {isReloadAllowed && (
+        <button onClick={reloadPage} className='block mt-4 mx-auto p-1 text-sm underline text-gray-600 cursor-pointer'>
+          {t('reloadPage')}
+        </button>
+      )}
     </Modal>
   )
 }
