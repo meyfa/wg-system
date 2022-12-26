@@ -5,7 +5,7 @@ extends:
   - plugin:react/jsx-runtime
 
 parserOptions:
-  project: './tsconfig.json'
+  project: './tsconfig.lint.json'
 
 ignorePatterns:
   - 'src/react-app-env.d.ts'

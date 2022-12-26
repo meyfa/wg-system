@@ -12,9 +12,6 @@
 
 # stuff from backend and frontend that we don't want
 */build
+*/dist
 **/node_modules
 **/.gitignore
-
-# note: this is required by react-scripts
-# **/.eslintrc.yml
-# **/.stylelintrc.yml
