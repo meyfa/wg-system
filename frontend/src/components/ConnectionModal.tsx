@@ -16,8 +16,7 @@ const ALLOWED_DISCONNECT_TIME = 3000
 const DELAY_BEFORE_ENABLE_RELOAD = 5000
 
 function reloadPage (): void {
-  // eslint-disable-next-line no-restricted-globals
-  location.reload()
+  window.location.reload()
 }
 
 export default function ConnectionModal (): ReactElement {

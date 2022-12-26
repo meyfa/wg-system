@@ -1,14 +1,14 @@
-import './PeriodicChoreCalendar.css'
 import { MouseEventHandler, ReactElement, useCallback, useMemo, useState } from 'react'
 import { PeriodicChore, PeriodicChoreEntry } from '../../store/entities/periodic-chores'
 import Calendar, { CellClickHandler, CellRenderFn } from './Calendar'
 import { DateTime } from 'luxon'
 import { useEntityById } from '../../hooks/use-entity-by-id'
-import { selectMembers } from '../../store/entities/members'
+import { Member, selectMembers } from '../../store/entities/members'
 import { PlannedEntry, usePlannedEntry } from '../../hooks/periodic-chores/use-planned-entry'
 import EditEntryModal from './EditEntryModal'
 import { useParametrized } from '../../hooks/use-parametrized'
 import { api } from '../../api/api'
+import clsx from 'clsx'
 
 type EntryMap = Map<string, readonly number[]>
 
@@ -86,12 +86,7 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
 
   return (
     <>
-      <button type='button'
-              className='PeriodicChoreCalendar-entry'
-              style={{ backgroundColor: member?.color }}
-              onClick={startEditing}>
-        {member?.name ?? '???'}
-      </button>
+      <PeriodicChoreCalendarEntryButton onClick={startEditing} member={member} />
       <EditEntryModal
         active={editing}
         entry={entry}
@@ -103,12 +98,27 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
   )
 }
 
-function PeriodicChoreCalendarPlannedEntry (props: { entry: PlannedEntry }): ReactElement {
-  const member = props.entry.member
-
+function PeriodicChoreCalendarEntryButton (
+  props: {
+    member: Member | undefined
+    onClick?: MouseEventHandler
+    isPlanned?: boolean
+  }
+): ReactElement {
   return (
-    <button className='PeriodicChoreCalendar-entry planned' style={{ backgroundColor: member.color }}>
-      {member.name}
+    <button
+      type='button'
+      onClick={props.onClick}
+      className={clsx(
+        'block mx-auto w-[calc(100%-0.5rem)] p-1 font-bold bg-gray-100 border-2 border-transparent outline-none',
+        props.isPlanned === true ? 'opacity-50 italic pointer-events-none' : 'cursor-pointer hocus:border-gray-600'
+      )}
+      style={{
+        backgroundColor: props.member?.color,
+        textShadow: '0 0 0.125rem #fff'
+      }}
+    >
+      {props.member?.name ?? '???'}
     </button>
   )
 }
@@ -116,7 +126,7 @@ function PeriodicChoreCalendarPlannedEntry (props: { entry: PlannedEntry }): Rea
 function useCellRenderer (chore: PeriodicChore, map: EntryMap, planned?: PlannedEntry): CellRenderFn {
   return useCallback(date => {
     if (planned?.dueDate != null && date.hasSame(planned.dueDate, 'day')) {
-      return <PeriodicChoreCalendarPlannedEntry entry={planned} />
+      return <PeriodicChoreCalendarEntryButton member={planned.member} isPlanned />
     }
     const entryIndices = map.get(formatDate(date))
     if (entryIndices == null) {

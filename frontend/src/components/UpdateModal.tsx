@@ -7,8 +7,7 @@ import Icon from './Icon'
 import DialogModal from './modals/DialogModal'
 
 function reloadPage (): void {
-  // eslint-disable-next-line no-restricted-globals
-  location.reload()
+  window.location.reload()
 }
 
 export default function UpdateModal (): ReactElement {
