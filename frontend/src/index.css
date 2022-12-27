@@ -9,10 +9,7 @@
 }
 
 :root {
-  --form-height: 2.25rem;
   --nav-thickness: 3.75rem;
-  --card-radius: 0.125rem;
-  --card-shadow: 0 0.375rem 0.75rem 0 rgb(0 0 0 / 10%);
 }
 
 body {

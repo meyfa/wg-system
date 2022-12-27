@@ -1,4 +1,3 @@
-import './ItemTag.css'
 import { ReactElement } from 'react'
 import Icon from '../Icon'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
@@ -17,7 +16,7 @@ export default function ItemTag (props: Props): ReactElement {
     return <></>
   }
   return (
-    <div className='ItemTag'>
+    <div className='block md:inline-block w-fit md:w-auto md:ml-4 mt-1.5 md:mt-0 text-base px-3 py-1 bg-gray-200 rounded'>
       <Icon icon={props.icon} /> {props.text}
     </div>
   )

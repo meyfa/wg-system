@@ -1,7 +1,0 @@
-.BasicCheckbox {
-  width: 2rem;
-  height: calc(var(--form-height) * 0.6);
-  margin: 0;
-  line-height: var(--form-height);
-  vertical-align: middle;
-}

@@ -1,4 +1,3 @@
-import './DeleteButton.css'
 import { ReactElement, useCallback, useState } from 'react'
 import BasicButton from '../forms/BasicButton'
 import { useParametrized } from '../../hooks/use-parametrized'
@@ -28,17 +27,21 @@ export default function DeleteButton (props: Props): ReactElement {
         {t('basicActions.delete')}
       </BasicButton>
       <Modal active={modalOpen}>
-        <div className='DeleteButton-confirm'>
+        <div className='max-w-[15rem] mb-6 text-xl center'>
           {t('deleteConfirm')}
         </div>
-        {props.itemDescriptor != null
-          ? <div className='DeleteButton-descriptor'>{props.itemDescriptor}</div>
-          : undefined}
+        {props.itemDescriptor != null && (
+          <div className='max-w-[15rem] mb-8 p-2 bg-gray-200 rounded text-center font-bold break-words'>
+            {props.itemDescriptor}
+          </div>
+        )}
         <BasicButton warn onClick={handleDelete}>
-          <Icon icon={faCheck} /> {t('basicActions.delete')}
+          <Icon icon={faCheck} className='mr-4' />
+          {t('basicActions.delete')}
         </BasicButton>
         <BasicButton onClick={hideModal}>
-          <Icon icon={faTimes} /> {t('basicActions.cancel')}
+          <Icon icon={faTimes} className='mr-4' />
+          {t('basicActions.cancel')}
         </BasicButton>
       </Modal>
     </>

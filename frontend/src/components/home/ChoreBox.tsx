@@ -1,6 +1,4 @@
-import './ChoreBox.css'
 import {
-  CSSProperties,
   PropsWithChildren,
   ReactElement,
   ReactNode,
@@ -8,7 +6,6 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
-  useMemo,
   useRef,
   useState
 } from 'react'
@@ -38,24 +35,24 @@ function useOffsetHeight<E extends HTMLElement> (ref: RefObject<E>): number | un
 interface Props {
   title: ReactNode
   urgent?: boolean
-  className?: string
 }
 
 export default function ChoreBox (props: PropsWithChildren<Props>): ReactElement {
   const box = useRef<HTMLDivElement>(null)
-
   const height = useOffsetHeight(box)
 
-  const style: CSSProperties = useMemo(() => {
-    const rows = height != null ? Math.ceil(height / 40) : 1
-    return { gridRowEnd: `span ${rows}` }
-  }, [height])
-
   return (
-    <div ref={box}
-         className={clsx('ChoreBox', props.className, { urgent: props.urgent })}
-         style={style}>
-      <div className='ChoreBox-title'>{props.title}</div>
+    <div
+      ref={box}
+      className={clsx(
+        'p-2 rounded shadow-lg border-t-4',
+        props.urgent === true ? 'bg-rose-50 border-t-red-500' : 'bg-white border-t-transparent'
+      )}
+      style={{ gridRowEnd: height != null ? `span ${Math.ceil(height / 40)}` : 'span 1' }}
+    >
+      <div className='text-2xl leading-none mb-3'>
+        {props.title}
+      </div>
       {props.children}
     </div>
   )

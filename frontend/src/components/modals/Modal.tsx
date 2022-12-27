@@ -1,4 +1,3 @@
-import './Modal.css'
 import { UIEvent, PropsWithChildren, ReactElement, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
@@ -24,8 +23,16 @@ export default function Modal (props: PropsWithChildren<Props>): ReactElement {
   }
 
   return createPortal((
-    <div ref={ref} className={clsx('Modal', { active: props.active, important: props.important })} onClick={preventBubbling}>
-      <div className='Modal-container'>
+    <div
+      ref={ref}
+      className={clsx(
+        'w-screen h-screen fixed top-0 left-0 bg-black/30 pt-6 px-3 md:px-6 pb-16 overflow-y-auto',
+        props.active ? 'flex' : 'hidden',
+        props.important === true ? 'z-50' : 'z-40'
+      )}
+      onClick={preventBubbling}
+    >
+      <div className='relative max-w-full m-auto p-4 md:p-8 bg-white shadow-2xl rounded'>
         {props.children}
       </div>
     </div>
