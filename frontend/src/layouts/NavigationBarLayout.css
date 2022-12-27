@@ -1,17 +1,9 @@
 .NavigationBarLayout {
-  margin-left: var(--nav-thickness);
-  padding: 1rem;
-}
-
-.NavigationBarLayout.centered > .NavigationBarLayout-content {
-  width: 100%;
-  max-width: 50rem;
-  margin: 1.25rem auto;
+  @apply ml-[var(--nav-thickness)] p-4;
 }
 
 @media (max-height: 20rem) or (max-width: 35rem) {
   .NavigationBarLayout {
-    margin-left: 0;
-    margin-top: var(--nav-thickness);
+    @apply ml-0 mt-[var(--nav-thickness)];
   }
 }

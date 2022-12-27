@@ -1,10 +1,8 @@
-import './MemberItem.css'
 import { ReactElement, useCallback } from 'react'
 import { Member } from '../../store/entities/members'
 import EditMemberModal from './EditMemberModal'
 import { api } from '../../api/api'
 import EditableItem from '../items/EditableItem'
-import clsx from 'clsx'
 import { EditModalRenderFn } from '../items/EditButton'
 import ItemTag from '../items/ItemTag'
 
@@ -26,9 +24,14 @@ export default function MemberItem (props: Props): ReactElement {
   }, [props.member, onDelete])
 
   return (
-    <EditableItem className={clsx('MemberItem', { inactive: !props.member.active })} renderModal={renderModal}>
-      <div className='MemberItem-color' style={{ background: props.member.color }} />
-      {props.member.name}
+    <EditableItem renderModal={renderModal}>
+      <span
+        className='inline-block w-8 h-8 mr-4 rounded align-middle'
+        style={{ background: props.member.active ? props.member.color : '#d0d0d0' }}
+      />
+      <span className={props.member.active ? '' : 'text-gray-400'}>
+        {props.member.name}
+      </span>
       {props.member.groups.map((id, i) => <ItemTag.Group key={i} id={id} />)}
     </EditableItem>
   )

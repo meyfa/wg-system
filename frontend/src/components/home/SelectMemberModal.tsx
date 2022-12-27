@@ -1,4 +1,3 @@
-import './SelectMemberModal.css'
 import { ReactElement, useMemo } from 'react'
 import Modal from '../modals/Modal'
 import { useTranslation } from 'react-i18next'
@@ -21,13 +20,13 @@ export function SelectMemberModal (props: Props): ReactElement {
 
   return (
     <Modal active={props.active}>
-      <div className='SelectMemberModal-title'>
+      <div className='mt-2 mb-8 text-center text-2xl'>
         {t('home.selectMember')}
       </div>
-      <div className='SelectMemberModal-choices'>
+      <div className='grid max-w-4xl my-4 gap-2 grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]'>
         {activeMembers.map(item => <SelectMemberButton key={item._id} member={item} onSelect={props.onSelect} />)}
       </div>
-      <div className='SelectMemberModal-actions'>
+      <div className='mt-6 text-center'>
         <BasicButton onClick={props.onCancel}>
           {t('basicActions.cancel')}
         </BasicButton>

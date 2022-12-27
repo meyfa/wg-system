@@ -1,21 +1,17 @@
-import './EditableItem.css'
-import { CSSProperties, PropsWithChildren, ReactElement } from 'react'
-import clsx from 'clsx'
+import { PropsWithChildren, ReactElement } from 'react'
 import EditButton, { EditModalRenderFn } from './EditButton'
 
 interface Props {
-  className?: string
-  style?: CSSProperties
   renderModal: EditModalRenderFn
 }
 
 export default function EditableItem (props: PropsWithChildren<Props>): ReactElement {
   return (
-    <div className={clsx('EditableItem', props.className)} style={props.style}>
-      <div className='EditableItem-name'>
+    <div className='flex my-2 p-3 items-center bg-white rounded shadow-lg'>
+      <div className='grow text-xl align-middle'>
         {props.children}
       </div>
-      <div className='EditableItem-actions'>
+      <div className='ml-2 text-right'>
         <EditButton renderModal={props.renderModal} />
       </div>
     </div>

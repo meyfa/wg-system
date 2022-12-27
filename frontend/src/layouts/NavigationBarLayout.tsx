@@ -9,9 +9,9 @@ interface Props {
 
 export default function NavigationBarLayout (props: PropsWithChildren<Props>): ReactElement {
   return (
-    <div className={clsx('NavigationBarLayout', { centered: props.centered })}>
+    <div className='NavigationBarLayout'>
       <NavigationBar />
-      <div className='NavigationBarLayout-content'>
+      <div className={clsx(props.centered === true && 'w-full max-w-3xl my-5 mx-auto')}>
         {props.children}
       </div>
     </div>

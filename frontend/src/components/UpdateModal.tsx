@@ -18,7 +18,7 @@ export default function UpdateModal (): ReactElement {
   return (
     <DialogModal important active={outdated} text={t('outdated')}>
       <BasicButton primary onClick={reloadPage}>
-        <Icon icon={faRedo} />
+        <Icon icon={faRedo} className='mr-4' />
         {t('reloadPage')}
       </BasicButton>
     </DialogModal>

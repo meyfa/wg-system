@@ -1,4 +1,3 @@
-import './PeriodicChoreBox.css'
 import { ReactElement, useCallback, useState } from 'react'
 import ChoreBox from './ChoreBox'
 import { PeriodicChore } from '../../store/entities/periodic-chores'
@@ -109,11 +108,11 @@ export default function PeriodicChoreBox (props: Props): ReactElement {
 
   return (
     <ChoreBox urgent={urgency > URGENCY_THRESHOLD} title={title}>
-      <div className='PeriodicChoreBox-detail'>
+      <div className='leading-tight mb-2'>
         {t('home.chores.last')}<br />
         {recentlyCompleted}
       </div>
-      <div className='PeriodicChoreBox-detail'>
+      <div className='leading-tight mb-2'>
         {t('home.chores.next')}<br />
         {planned}
       </div>

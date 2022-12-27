@@ -1,4 +1,3 @@
-import './ColorPicker.css'
 import { ReactElement } from 'react'
 import clsx from 'clsx'
 
@@ -21,11 +20,14 @@ interface Props {
 
 export default function ColorPicker (props: Props): ReactElement {
   return (
-    <div className='ColorPicker'>
+    <div className='inline-flex align-middle flex-wrap gap-1 p-1'>
       {COLOR_OPTIONS.map(color => (
         <button
           key={color}
-          className={clsx('ColorPicker-btn', { selected: props.value === color })}
+          className={clsx(
+            'w-7 h-7 border-2 border-transparent cursor-pointer',
+            props.value === color ? 'rounded scale-100 border-black' : 'rounded-lg scale-90 hocus:rounded hocus:scale-100'
+          )}
           style={{ backgroundColor: color }}
           onClick={() => props.onPick(color)}
         />

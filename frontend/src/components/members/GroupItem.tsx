@@ -1,4 +1,3 @@
-import './MemberItem.css'
 import { ReactElement, useCallback } from 'react'
 import { api } from '../../api/api'
 import EditableItem from '../items/EditableItem'

@@ -1,4 +1,3 @@
-import './UrgencyIndicator.css'
 import { ReactElement } from 'react'
 import clsx from 'clsx'
 import { faCheckCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
@@ -37,7 +36,6 @@ function UrgencyIndicatorCirclePath (props: {
 
 interface Props {
   urgency: number | boolean
-  className?: string
 }
 
 export default function UrgencyIndicator (props: Props): ReactElement {
@@ -45,7 +43,7 @@ export default function UrgencyIndicator (props: Props): ReactElement {
   if (typeof props.urgency === 'boolean') {
     return (
       <Icon
-        className={clsx('UrgencyIndicator', 'simple', { good: !props.urgency, bad: props.urgency })}
+        className={clsx('mr-2 text-2xl', props.urgency ? 'text-red-400' : 'text-emerald-400')}
         icon={props.urgency ? faExclamationTriangle : faCheckCircle}
       />
     )
@@ -57,7 +55,7 @@ export default function UrgencyIndicator (props: Props): ReactElement {
   // show as green arc on top of red background
   // (higher urgency value means reduced size of green arc, revealing more of the red background)
   return (
-    <svg className={clsx('UrgencyIndicator', 'circular', props.className)} viewBox={`0 0 ${size} ${size}`}>
+    <svg className='mr-2 inline-block w-7 relative -top-0.5 align-middle' viewBox={`0 0 ${size} ${size}`}>
       <UrgencyIndicatorCirclePath stroke='#f05353' size={size} strokeWidth={strokeWidth} fraction={1} />
       <UrgencyIndicatorCirclePath stroke='#61Cd7d' size={size} strokeWidth={strokeWidth} fraction={1 - props.urgency} />
     </svg>

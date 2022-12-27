@@ -6,6 +6,7 @@ import SettingsBox from '../components/settings/SettingsBox'
 import BasicDropdown from '../components/forms/BasicDropdown'
 import SettingsItem from '../components/settings/SettingsItem'
 import SettingsInfo from '../components/settings/SettingsInfo'
+import Rule from '../components/settings/Rule'
 
 function useLanguageFormatter (): (lang: string) => string {
   const { t } = useTranslation()
@@ -31,7 +32,7 @@ export default function SettingsPage (): ReactElement {
       <Title title={t('settings.title')} />
       <SettingsBox>
         <SettingsInfo>{t('settings.onlyThisBrowserInfo')}</SettingsInfo>
-        <hr />
+        <Rule />
         <SettingsItem label={t('settings.language')}>
           <BasicDropdown
             options={languages}

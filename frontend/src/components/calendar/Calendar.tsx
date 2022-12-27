@@ -134,7 +134,7 @@ export default function Calendar (props: Props): ReactElement {
   }, [month])
 
   return (
-    <div className='text-base p-3 rounded bg-white shadow-md overflow-x-auto'>
+    <div className='text-base p-3 rounded bg-white shadow-lg overflow-x-auto'>
       {/* month selection */}
       <div className='text-xl mb-4 text-center whitespace-nowrap'>
         <CalendarHeadButton icon={faAngleLeft} onClick={previousMonth} />
