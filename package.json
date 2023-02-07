@@ -33,7 +33,7 @@
   "homepage": "https://github.com/meyfa/wg-system#readme",
   "devDependencies": {
     "@meyfa/eslint-config": "2.1.2",
-    "@types/node": "16.18.3",
+    "@types/node": "18.13.0",
     "@types/ws": "8.5.3",
     "eslint": "8.28.0",
     "rimraf": "3.0.2",
