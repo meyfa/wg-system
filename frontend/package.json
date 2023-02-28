@@ -15,7 +15,7 @@
     "@reduxjs/toolkit": "1.9.2",
     "body-scroll-lock": "4.0.0-beta.0",
     "clsx": "1.2.1",
-    "i18next": "22.4.9",
+    "i18next": "22.4.10",
     "i18next-browser-languagedetector": "7.0.0",
     "luxon": "3.2.1",
     "ms": "2.1.3",
