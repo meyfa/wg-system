@@ -35,7 +35,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY backend/package*.json ./backend/
 COPY frontend/package*.json ./frontend/
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev \
+  && apk add --no-cache tini
 
 # - add the already compiled code
 COPY --from=build /usr/src/app/backend/build ./backend/build
@@ -48,6 +49,6 @@ EXPOSE 8080
 # - run as non-root user
 USER node
 
-# start the server (this is similar to "npm run production", but NPM does not
-# forward signals correctly, while Node does)
+# use tini as init process since Node.js isn't designed to be run as PID 1
+ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["node", "build/server.js"]
