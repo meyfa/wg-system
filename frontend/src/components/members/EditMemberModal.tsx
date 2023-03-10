@@ -85,6 +85,13 @@ export default function EditMemberModal (props: Props): ReactElement {
       <FormRow label={t('members.fields.group')}>
         <UserGroupSelect editor={editor} />
       </FormRow>
+      <FormRow label={t('members.fields.scoreboardMultiplier')}>
+        <TextField
+          numeric
+          value={editor.value.scoreboardMultiplier ?? 1}
+          onChange={({ target }) => editor.update({ scoreboardMultiplier: target.valueAsNumber })}
+        />
+      </FormRow>
       <FormRow label={t('members.fields.active')}>
         <BasicCheckbox
           checked={editor.value.active}

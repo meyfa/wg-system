@@ -75,6 +75,7 @@
       "name": "Name",
       "color": "Color",
       "group": "Group",
+      "scoreboardMultiplier": "Scoreboard multiplier",
       "active": "Current member"
     }
   },

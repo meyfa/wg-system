@@ -12,20 +12,21 @@ import { DateTime } from 'luxon'
 import UrgencyIndicator from './UrgencyIndicator'
 
 /**
- * Increase the score of a specific member on the given scoreboard by 1.
+ * Increase the score of a specific member on the given scoreboard by 1 times the member's scoreboard multiplier.
  *
  * @param scoreboard The scoreboard.
- * @param memberId The member whose score to increment.
+ * @param member The member whose score to increment.
  * @returns A cloned Scoreboard with the relevant score added or modified.
  */
-function incrementScore (scoreboard: Scoreboard, memberId: string): Scoreboard {
-  const index = scoreboard.scores.findIndex(score => score.memberId === memberId)
+function incrementScore (scoreboard: Scoreboard, member: Member): Scoreboard {
+  const increment = member.scoreboardMultiplier ?? 1
+  const index = scoreboard.scores.findIndex(score => score.memberId === member._id)
   // if score exists, simply increment
   if (index >= 0) {
     return {
       ...scoreboard,
       scores: scoreboard.scores.map((item, i) => {
-        return i === index ? { ...item, score: item.score + 1 } : item
+        return i === index ? { ...item, score: item.score + increment } : item
       })
     }
   }
@@ -36,7 +37,7 @@ function incrementScore (scoreboard: Scoreboard, memberId: string): Scoreboard {
     ...scoreboard,
     scores: [
       ...scoreboard.scores,
-      { memberId, offset: maxExistingScore, score: 1 }
+      { memberId: member._id, offset: maxExistingScore, score: increment }
     ]
   }
 }
@@ -53,7 +54,7 @@ function useDueState (chore: ManualChore): [boolean, () => Promise<void>, (membe
   const markDone = useCallback(async (member?: Member) => {
     await api.manualChores.update({ ...chore, dueSince: 0 })
     if (choreScoreboard != null && member != null) {
-      await api.scoreboards.update(incrementScore(choreScoreboard, member._id))
+      await api.scoreboards.update(incrementScore(choreScoreboard, member))
     }
   }, [chore, choreScoreboard])
 
