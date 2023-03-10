@@ -9,6 +9,7 @@ export interface Member {
   name: string
   color: string
   active: boolean
+  scoreboardMultiplier?: number
   groups: mongoose.Types.ObjectId[]
 }
 
@@ -28,6 +29,10 @@ export const memberSchema = new mongoose.Schema<Member>({
     type: Boolean,
     required: true
   },
+  scoreboardMultiplier: {
+    type: Number,
+    default: 1
+  },
   groups: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -41,5 +46,6 @@ export const memberValidator = Joi.object({
   name: Joi.string().trim().required(),
   color: Joi.string().pattern(HEX_COLOR_REGEXP).lowercase().required(),
   active: Joi.boolean().required(),
+  scoreboardMultiplier: Joi.number().integer().min(1).max(100).default(1),
   groups: Joi.array().items(idValidator).required()
 }).required()

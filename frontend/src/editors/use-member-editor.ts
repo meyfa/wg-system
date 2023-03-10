@@ -6,6 +6,7 @@ const DEFAULT: Member = {
   name: '',
   color: '#000000',
   active: true,
+  scoreboardMultiplier: 1,
   groups: []
 }
 
@@ -14,7 +15,9 @@ export function useMemberEditor (value?: Member): Editor<Member> {
     value,
     default: DEFAULT,
     validate: entity => {
-      return entity.name.trim().length > 0 && /^#[0-9a-fA-F]{6}$/.test(entity.color)
+      return entity.name.trim().length > 0 &&
+        /^#[0-9a-fA-F]{6}$/.test(entity.color) &&
+        (entity.scoreboardMultiplier == null || (Number.isSafeInteger(entity.scoreboardMultiplier) && entity.scoreboardMultiplier >= 1))
     }
   })
 }

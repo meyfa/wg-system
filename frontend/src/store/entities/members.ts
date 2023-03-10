@@ -7,6 +7,7 @@ export interface Member extends Entity {
   readonly name: string
   readonly color: string
   readonly active: boolean
+  readonly scoreboardMultiplier?: number
   readonly groups: readonly string[]
 }
 

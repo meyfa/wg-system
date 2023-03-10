@@ -75,6 +75,7 @@
       "name": "Name",
       "color": "Farbe",
       "group": "Gruppe",
+      "scoreboardMultiplier": "Punkte-Multiplikator",
       "active": "Aktueller Mitbewohner"
     }
   },
