@@ -39,7 +39,7 @@
     "typescript": "4.9.5"
   },
   "dependencies": {
-    "@fastify/static": "6.9.0",
+    "@fastify/static": "6.10.0",
     "@fastify/websocket": "7.1.2",
     "fastify": "4.15.0",
     "omniwheel": "0.4.0",
