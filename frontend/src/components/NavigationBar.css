@@ -64,7 +64,7 @@
   @apply hidden;
 }
 
-@media (max-height: 20rem) or (max-width: 35rem) {
+@media (height <= 20rem) or (width <= 35rem) {
   .NavigationBar:not(.active) {
     @apply w-screen h-[var(--nav-thickness)] leading-[var(--nav-thickness)];
   }

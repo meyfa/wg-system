@@ -2,7 +2,7 @@
   @apply ml-[var(--nav-thickness)] p-4;
 }
 
-@media (max-height: 20rem) or (max-width: 35rem) {
+@media (height <= 20rem) or (width <= 35rem) {
   .NavigationBarLayout {
     @apply ml-0 mt-[var(--nav-thickness)];
   }
