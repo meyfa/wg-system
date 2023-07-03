@@ -33,7 +33,7 @@
   "homepage": "https://github.com/meyfa/wg-system#readme",
   "devDependencies": {
     "@meyfa/eslint-config": "3.0.1",
-    "@types/node": "18.16.18",
+    "@types/node": "18.16.19",
     "@types/ws": "8.5.4",
     "eslint": "8.43.0",
     "typescript": "5.1.3"
