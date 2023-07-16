@@ -31,7 +31,7 @@
     "@types/ms": "0.7.31",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
-    "@vitejs/plugin-react": "4.0.1",
+    "@vitejs/plugin-react": "4.0.3",
     "autoprefixer": "10.4.14",
     "eslint-config-react-app": "7.0.1",
     "eslint-plugin-react": "7.32.2",
