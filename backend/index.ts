@@ -11,7 +11,7 @@ import { ScoreboardController } from './controllers/scoreboard-controller.js'
 import { ManualChoreController } from './controllers/manual-chore-controller.js'
 import { PeriodicChoreController } from './controllers/periodic-chore-controller.js'
 
-export { Environment } from './environment.js'
+export type { Environment } from './environment.js'
 
 export interface Backend {
   readonly createApiRouter: () => FastifyPluginAsync
