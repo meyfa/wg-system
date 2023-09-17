@@ -1,5 +1,4 @@
 import { PeriodicChore } from '../../store/entities/periodic-chores'
-import { useMostRecent } from './use-most-recent'
 import { DateTime } from 'luxon'
 import ms from 'ms'
 import { useIntervalMemo } from '../use-interval-memo'
@@ -16,7 +15,7 @@ const UPDATE_PERIOD = ms('1 hour')
  * @returns The number of days that have passed.
  */
 export function useDaysSinceLast (chore: PeriodicChore): number | undefined {
-  const last = useMostRecent(chore.entries)
+  const last = chore.entries.at(-1)
 
   return useIntervalMemo(UPDATE_PERIOD, () => {
     if (last == null) {

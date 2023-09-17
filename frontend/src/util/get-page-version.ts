@@ -28,5 +28,5 @@ export function getPageVersion (): string | undefined {
       hashes.push(hash)
     }
   })
-  return hashes.length > 0 ? hashes.sort().join() : undefined
+  return hashes.length > 0 ? hashes.sort().join(',') : undefined
 }

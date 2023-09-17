@@ -3,7 +3,6 @@ import { useAppSelector } from '../../store/store'
 import { Member, selectMembers } from '../../store/entities/members'
 import { useMemo } from 'react'
 import { DateTime } from 'luxon'
-import { useMostRecent } from './use-most-recent'
 import ms from 'ms'
 import { useIntervalMemo } from '../use-interval-memo'
 
@@ -63,7 +62,7 @@ function usePreferredMember (chore: PeriodicChore): Member | undefined {
  * @returns The upcoming completion information.
  */
 export function usePlannedEntry (chore: PeriodicChore): PlannedEntry | undefined {
-  const last = useMostRecent(chore.entries)
+  const last = chore.entries.at(-1)
   const member = usePreferredMember(chore)
 
   return useIntervalMemo(UPDATE_PERIOD, () => {

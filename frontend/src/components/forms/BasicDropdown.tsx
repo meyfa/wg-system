@@ -20,7 +20,7 @@ export default function BasicDropdown<V> (props: Props<V>): ReactElement {
   const invalidSelection = valueIndex < 0
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = useCallback((event) => {
-    const index = parseInt(event.target.value, 10)
+    const index = Number.parseInt(event.target.value, 10)
     if (index >= 0 && index < options.length && onSelect != null) {
       onSelect(options[index])
     }
