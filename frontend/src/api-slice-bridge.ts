@@ -2,7 +2,7 @@ import { Entity } from './store/entity'
 import { useCallback, useEffect } from 'react'
 import { EntitySliceActions } from './store/create-entity-slice'
 import { useAppDispatch } from './store/store'
-import { EVENT_MESSAGE, Message, socket } from './websocket/socket'
+import { MessageEvent, socket } from './websocket/socket'
 import { CrudRoute } from './api/crud-route'
 import { useConnectionStatus } from './hooks/use-connection-status'
 
@@ -29,7 +29,8 @@ function useEntityFetch<T extends Entity> (sliceActions: EntitySliceActions<T>, 
 function useEntitySocketEvents<T extends Entity> (sliceActions: EntitySliceActions<T>, type: string): void {
   const dispatch = useAppDispatch()
 
-  const listener = useCallback((msg: Message): void => {
+  const listener = useCallback((event: MessageEvent): void => {
+    const msg = event.data
     switch (msg.event) {
       case `add/${type}`:
         dispatch(sliceActions.createEntity(msg.data))
@@ -44,9 +45,9 @@ function useEntitySocketEvents<T extends Entity> (sliceActions: EntitySliceActio
   }, [type, dispatch, sliceActions])
 
   useEffect(() => {
-    socket.on(EVENT_MESSAGE, listener)
+    socket.addEventListener('message', listener)
     return () => {
-      socket.off(EVENT_MESSAGE, listener)
+      socket.removeEventListener('message', listener)
     }
   }, [listener, sliceActions])
 }

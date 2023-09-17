@@ -1,13 +1,46 @@
-import { EventEmitter } from 'events'
+const EVENT_CONNECT = 'connect'
+const EVENT_DISCONNECT = 'disconnect'
+const EVENT_MESSAGE = 'message'
+const EVENT_PAGE_VERSION = 'pageVersion'
 
-export const EVENT_CONNECT = 'connect'
-export const EVENT_DISCONNECT = 'disconnect'
-export const EVENT_MESSAGE = 'message'
-export const EVENT_PAGE_VERSION = 'pageVersion'
+export class ConnectEvent extends Event {
+  constructor () {
+    super(EVENT_CONNECT)
+  }
+}
+
+export class DisconnectEvent extends Event {
+  constructor () {
+    super(EVENT_DISCONNECT)
+  }
+}
+
+export class MessageEvent extends Event {
+  constructor (
+    public readonly data: Message
+  ) {
+    super(EVENT_MESSAGE)
+  }
+}
+
+export class PageVersionEvent extends Event {
+  constructor (
+    public readonly version: string | undefined
+  ) {
+    super(EVENT_PAGE_VERSION)
+  }
+}
 
 export interface Message {
   event: string
   data: any
+}
+
+interface SocketEventMap {
+  [EVENT_CONNECT]: ConnectEvent
+  [EVENT_DISCONNECT]: DisconnectEvent
+  [EVENT_MESSAGE]: MessageEvent
+  [EVENT_PAGE_VERSION]: PageVersionEvent
 }
 
 /**
@@ -15,7 +48,7 @@ export interface Message {
  * It will handle connecting and reconnecting internally and only provides a method for
  * creating subscriptions.
  */
-export class Socket extends EventEmitter {
+export class Socket extends EventTarget {
   private readonly url: string
   private readonly reconnectDelay: number
 
@@ -32,6 +65,22 @@ export class Socket extends EventEmitter {
     super()
     this.url = url
     this.reconnectDelay = reconnectDelay
+  }
+
+  addEventListener<K extends keyof SocketEventMap> (
+    type: K,
+    callback: (event: SocketEventMap[K]) => void,
+    options?: EventListenerOptions | boolean
+  ): void {
+    super.addEventListener(type, callback as EventListener, options)
+  }
+
+  removeEventListener<K extends keyof SocketEventMap> (
+    type: K,
+    callback: (event: SocketEventMap[K]) => void,
+    options?: EventListenerOptions | boolean
+  ): void {
+    super.removeEventListener(type, callback as EventListener, options)
   }
 
   /**
@@ -54,7 +103,7 @@ export class Socket extends EventEmitter {
     ws.addEventListener('open', () => this.handleOpen(ws))
     ws.addEventListener('error', () => this.handleClose(ws))
     ws.addEventListener('close', () => this.handleClose(ws))
-    ws.addEventListener('message', (event) => this.handleMessage(ws, event))
+    ws.addEventListener('message', (event) => this.handleMessage(ws, event.data))
   }
 
   private handleOpen (source: WebSocket): void {
@@ -62,7 +111,7 @@ export class Socket extends EventEmitter {
     if (source !== this.ws) {
       return
     }
-    this.emit(EVENT_CONNECT)
+    this.dispatchEvent(new ConnectEvent())
   }
 
   private handleClose (source: WebSocket): void {
@@ -71,24 +120,24 @@ export class Socket extends EventEmitter {
       return
     }
     this.ws = undefined
-    this.emit(EVENT_DISCONNECT)
+    this.dispatchEvent(new DisconnectEvent())
     if (this.reconnectDelay >= 0) {
       setTimeout(() => this.connect(), this.reconnectDelay)
     }
   }
 
-  private handleMessage (source: WebSocket, event: MessageEvent<string>): void {
+  private handleMessage (source: WebSocket, data: string): void {
     // This check prevents event handling for WebSocket instances that are no longer in use.
     if (source !== this.ws) {
       return
     }
-    const parsed = JSON.parse(event.data)
+    const parsed = JSON.parse(data)
     if (parsed != null && parsed.event === 'pageVersion') {
       this._reportedPageVersion = typeof parsed.data === 'string' ? parsed.data : undefined
-      this.emit(EVENT_PAGE_VERSION, this._reportedPageVersion)
+      this.dispatchEvent(new PageVersionEvent(this._reportedPageVersion))
       return
     }
-    this.emit(EVENT_MESSAGE, parsed)
+    this.dispatchEvent(new MessageEvent(parsed))
   }
 
   /**
@@ -96,7 +145,7 @@ export class Socket extends EventEmitter {
    * an event will be emitted.
    *
    * @returns The previously reported page version, if any.
-   * @see EVENT_PAGE_VERSION
+   * @see PageVersionEvent
    */
   get reportedPageVersion (): string | undefined {
     return this._reportedPageVersion
