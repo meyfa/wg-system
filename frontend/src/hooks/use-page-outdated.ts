@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { getPageVersion } from '../util/get-page-version'
-import { EVENT_PAGE_VERSION, socket } from '../websocket/socket'
+import { PageVersionEvent, socket } from '../websocket/socket'
 
 function useRemotePageVersion (): string | undefined {
   const [version, setVersion] = useState(socket.reportedPageVersion)
 
   useEffect(() => {
-    const listener = (version: string | undefined): void => setVersion(version)
-    socket.on(EVENT_PAGE_VERSION, listener)
+    const listener = (event: PageVersionEvent): void => setVersion(event.version)
+    socket.addEventListener('pageVersion', listener)
     setVersion(socket.reportedPageVersion)
     return () => {
-      socket.off(EVENT_PAGE_VERSION, listener)
+      socket.removeEventListener('pageVersion', listener)
     }
   }, [])
 

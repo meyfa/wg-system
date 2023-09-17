@@ -12,12 +12,12 @@ export function useConnectionStatus (): boolean {
   useEffect(() => {
     const connectListener = (): void => setConnected(true)
     const disconnectListener = (): void => setConnected(false)
-    socket.on('connect', connectListener)
-    socket.on('disconnect', disconnectListener)
+    socket.addEventListener('connect', connectListener)
+    socket.addEventListener('disconnect', disconnectListener)
     setConnected(socket.connected)
     return () => {
-      socket.off('connect', connectListener)
-      socket.off('disconnect', disconnectListener)
+      socket.removeEventListener('connect', connectListener)
+      socket.removeEventListener('disconnect', disconnectListener)
     }
   }, [])
 
