@@ -10,7 +10,6 @@ import { SelectMemberModal } from './SelectMemberModal'
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { DateTime } from 'luxon'
 import UrgencyIndicator from './UrgencyIndicator'
-import { useMostRecent } from '../../hooks/periodic-chores/use-most-recent'
 import { useUrgency } from '../../hooks/periodic-chores/use-urgency'
 import { usePlannedEntry } from '../../hooks/periodic-chores/use-planned-entry'
 import ChoreDetailButton from './ChoreDetailButton'
@@ -27,11 +26,11 @@ const URGENCY_THRESHOLD = 0.75
  * @returns The formatted string, containing member name and date of completion.
  */
 function useRecentlyCompletedString (chore: PeriodicChore): string {
-  const last = useMostRecent(chore.entries)
+  const last = chore.entries.at(-1)
 
   const lastMember = useEntityById(selectMembers, last?.memberId)
   // get only date part from ISO date-time string
-  const lastDate = last != null && last.date.length >= 10 ? last.date.substring(0, 10) : '???'
+  const lastDate = last != null && last.date.length >= 10 ? last.date.slice(0, 10) : '???'
 
   return last != null && lastMember != null ? `${lastMember.name}, ${lastDate}` : '--'
 }

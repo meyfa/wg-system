@@ -24,7 +24,7 @@ const PROJECT_ROOT = path.join(__dirname, '..')
 async function getPageVersion (): Promise<string | undefined> {
   const html = await fs.promises.readFile(path.join(PROJECT_ROOT, './frontend/build/index.html'), 'utf8')
   const hashes = Array.from(html.matchAll(/[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/g), m => m[1])
-  return hashes.length > 0 ? hashes.sort().join() : undefined
+  return hashes.length > 0 ? hashes.sort().join(',') : undefined
 }
 
 async function createBackend (): Promise<Backend> {
