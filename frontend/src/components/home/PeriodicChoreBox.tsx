@@ -26,7 +26,7 @@ const URGENCY_THRESHOLD = 0.75
  * @returns The formatted string, containing member name and date of completion.
  */
 function useRecentlyCompletedString (chore: PeriodicChore): string {
-  const last = chore.entries.at(-1)
+  const last = chore.entries[chore.entries.length - 1]
 
   const lastMember = useEntityById(selectMembers, last?.memberId)
   // get only date part from ISO date-time string
