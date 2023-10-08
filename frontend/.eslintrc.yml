@@ -23,3 +23,5 @@ rules:
   'react/prop-types': [error, {
     ignore: [children]
   }]
+  # not supported by older Chrome versions
+  'unicorn/prefer-at': [off]
