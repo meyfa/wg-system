@@ -1,10 +1,10 @@
-const plugin = require('tailwindcss/plugin')
+import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}"
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     extend: {}
@@ -15,4 +15,4 @@ module.exports = {
       addVariant('hocus', ['&:hover', '&:focus'])
     })
   ]
-}
+} satisfies Config

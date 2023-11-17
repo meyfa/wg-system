@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "lint": "tsc --noEmit -p tsconfig.lint.json && eslint --ignore-path .gitignore . && stylelint --ignore-path .gitignore \"**/*.css\"",
     "lint-fix": "tsc --noEmit -p tsconfig.lint.json && eslint --fix --ignore-path .gitignore . && stylelint --fix --ignore-path .gitignore \"**/*.css\"",
