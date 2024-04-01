@@ -35,7 +35,7 @@
     "@vitejs/plugin-react": "4.2.1",
     "autoprefixer": "10.4.17",
     "eslint-config-react-app": "7.0.1",
-    "eslint-plugin-react": "7.34.0",
+    "eslint-plugin-react": "7.34.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "http-proxy-middleware": "2.0.6",
     "postcss": "8.4.35",
