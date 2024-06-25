@@ -2,9 +2,9 @@ import { onTermination } from 'omniwheel'
 import { fastify, FastifyInstance } from 'fastify'
 import fastifyStatic from '@fastify/static'
 import fastifyWebSocket from '@fastify/websocket'
-import { fileURLToPath } from 'url'
-import path from 'path'
-import fs from 'fs'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
+import fs from 'node:fs'
 
 // this works because 'backend' is listed as a workspace in package.json
 import { init, Environment, Backend } from 'backend'
@@ -61,8 +61,8 @@ async function setupWebSockets (server: FastifyInstance, backend: Backend): Prom
     }
   })
 
-  app.get('/websocket', { websocket: true }, ({ socket }) => backend.webSocketHandler(socket, pageVersion))
-  app.get('/websocket/', { websocket: true }, ({ socket }) => backend.webSocketHandler(socket, pageVersion))
+  app.get('/websocket', { websocket: true }, (socket) => backend.webSocketHandler(socket, pageVersion))
+  app.get('/websocket/', { websocket: true }, (socket) => backend.webSocketHandler(socket, pageVersion))
 
   onTermination(() => {
     for (const client of app.websocketServer.clients) {
