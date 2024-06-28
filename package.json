@@ -35,7 +35,7 @@
     "@meyfa/eslint-config": "5.1.0",
     "@types/node": "20.12.2",
     "@types/ws": "8.5.10",
-    "eslint": "8.57.0",
+    "eslint": "9.6.0",
     "typescript": "5.5.2"
   },
   "dependencies": {
