@@ -38,7 +38,7 @@
     "eslint-plugin-react": "7.34.3",
     "eslint-plugin-react-hooks": "4.6.2",
     "http-proxy-middleware": "2.0.6",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "stylelint": "15.11.0",
     "stylelint-config-standard": "34.0.0",
     "tailwindcss": "3.4.4",
