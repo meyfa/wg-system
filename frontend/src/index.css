@@ -13,10 +13,8 @@
 }
 
 body {
-  @apply min-h-screen;
+  @apply min-h-screen antialiased;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background: #f8f8f8;
   background: linear-gradient(to top right, #ffdef7, #eeece4, #c7e4ff);
 }
