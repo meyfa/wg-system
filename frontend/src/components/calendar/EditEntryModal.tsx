@@ -58,7 +58,7 @@ export default function EditEntryModal (props: Props): ReactElement {
 
   useEffect(() => {
     if (props.entry == null && props.createForDate != null) {
-      editor.update({ date: props.createForDate.toISO() })
+      editor.update({ date: props.createForDate.toISO() ?? undefined })
     }
   }, [editor, props.entry, props.createForDate])
 
