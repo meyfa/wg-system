@@ -14,7 +14,7 @@ export function defaultComparer (a: Entity | Draft<Entity>, b: Entity | Draft<En
   return a._id.localeCompare(b._id)
 }
 
-export interface EntitySliceReducers<T extends Entity> extends SliceCaseReducers<T[]> {
+export type EntitySliceReducers<T extends Entity> = SliceCaseReducers<T[]> & {
   setEntities: CaseReducer<T[], PayloadAction<T[]>>
   createEntity: CaseReducer<T[], PayloadAction<T>>
   updateEntity: CaseReducer<T[], PayloadAction<T>>
