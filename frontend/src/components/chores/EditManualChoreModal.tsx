@@ -44,13 +44,15 @@ export default function EditManualChoreModal (props: Props): ReactElement {
   const scoreboardValue = useEntityById(selectScoreboards, editor.value.scoreboardId)
 
   return (
-    <EditModal title={props.chore != null ? t('manual.edit') : t('manual.create')}
-               active={props.active}
-               isValid={editor.isValid}
-               itemDescriptor={props.chore?.name}
-               onSave={save}
-               onCancel={props.onCancel}
-               onDelete={doDelete}>
+    <EditModal
+      title={props.chore != null ? t('manual.edit') : t('manual.create')}
+      active={props.active}
+      isValid={editor.isValid}
+      itemDescriptor={props.chore?.name}
+      onSave={save}
+      onCancel={props.onCancel}
+      onDelete={doDelete}
+    >
       <FormRow label={t('manual.fields.name')}>
         <TextField
           value={editor.value.name}

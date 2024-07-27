@@ -69,12 +69,14 @@ export default function EditEntryModal (props: Props): ReactElement {
   const memberValue = useEntityById(selectMembers, editor.value.memberId)
 
   return (
-    <EditModal active={props.active}
-               title={props.entry == null ? t('calendar.create') : t('calendar.edit')}
-               isValid={editor.isValid}
-               onDelete={props.onDelete}
-               onSave={save}
-               onCancel={props.onCancel}>
+    <EditModal
+      active={props.active}
+      title={props.entry == null ? t('calendar.create') : t('calendar.edit')}
+      isValid={editor.isValid}
+      onDelete={props.onDelete}
+      onSave={save}
+      onCancel={props.onCancel}
+    >
       <FormRow label={t('calendar.fields.date')}>
         <TextField disabled value={formatDate(editor.value.date)} />
       </FormRow>

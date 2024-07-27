@@ -1,27 +1,37 @@
 extends:
   - '@meyfa/eslint-config'
-  - react-app
   - plugin:react/recommended
   - plugin:react/jsx-runtime
+  - plugin:react-hooks/recommended
+
+plugins:
+  - react
+  - react-hooks
 
 parserOptions:
   project: './tsconfig.lint.json'
+  ecmaFeatures:
+    jsx: true
 
-ignorePatterns:
-  - 'src/react-app-env.d.ts'
+settings:
+  react:
+    version: 'detect'
 
 rules:
   'import/extensions': [error, never, { json: always }]
-  jsx-quotes: [error, prefer-single]
-  'react/jsx-indent': [error, 2]
-  'react/jsx-wrap-multilines': [warn, {
-    return: parens-new-line,
-    arrow: parens-new-line
-  }]
-  'react/void-dom-elements-no-children': [error]
-  'react/no-unstable-nested-components': [error]
-  'react/prop-types': [error, {
-    ignore: [children]
-  }]
-  # not supported by older Chrome versions
-  'unicorn/prefer-at': [off]
+  react/jsx-pascal-case: ['warn', { allowAllCaps: true, ignore: [] }]
+  react/no-typos: ['error']
+  react/style-prop-object: ['warn']
+  jsx-quotes: ['error', 'prefer-single']
+  react/jsx-indent: ['error', 2]
+  react/jsx-indent-props: ['error', 2]
+  react/jsx-first-prop-new-line: ['error']
+  react/jsx-closing-bracket-location: ['error']
+  react/jsx-max-props-per-line: ['error', { maximum: 1, when: 'multiline' }]
+  react/jsx-props-no-multi-spaces: ['error']
+  react/jsx-tag-spacing: ['error']
+  react/jsx-equals-spacing: ['error', 'never']
+  react/jsx-wrap-multilines: ['warn', { return: 'parens-new-line', arrow: 'parens-new-line' }]
+  react/void-dom-elements-no-children: ['error']
+  react/no-unstable-nested-components: ['error']
+  react/prop-types: ['error', { ignore: ['children'] }]

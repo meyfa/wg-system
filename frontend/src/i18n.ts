@@ -4,8 +4,8 @@ import { initReactI18next } from 'react-i18next'
 import translationEN from './locales/en.json'
 import translationDE from './locales/de.json'
 
-export const defaultNS = 'translation' as const
-export const fallbackLng = 'en' as const
+export const defaultNS = 'translation'
+export const fallbackLng = 'en'
 
 export const resources = {
   en: {

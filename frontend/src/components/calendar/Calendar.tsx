@@ -86,17 +86,20 @@ function CalendarCell (props: { spec?: CalendarDaySpec, onClick?: CellClickHandl
   }, [onClick, spec])
 
   const today = useCurrentDay()
-  const isToday = useMemo(() => spec?.date != null && spec.date.hasSame(today, 'day'), [spec, today])
+  const isToday = useMemo(() => spec?.date.hasSame(today, 'day') === true, [spec, today])
   const isInactive = spec == null
   const isClickable = spec != null && onClick != null
 
   return (
-    <td className={clsx(
-      'h-16 py-1 text-center align-top border-2 border-gray-200 outline outline-2 outline-transparent -outline-offset-2',
-      isInactive && 'bg-gray-100',
-      isToday && 'outline-gray-500',
-      isClickable && 'cursor-pointer hocus:bg-[#f4f9ff] hocus:outline-[#81a4f5]'
-    )} onClick={handleClick}>
+    <td
+      className={clsx(
+        'h-16 py-1 text-center align-top border-2 border-gray-200 outline outline-2 outline-transparent -outline-offset-2',
+        isInactive && 'bg-gray-100',
+        isToday && 'outline-gray-500',
+        isClickable && 'cursor-pointer hocus:bg-[#f4f9ff] hocus:outline-[#81a4f5]'
+      )}
+      onClick={handleClick}
+    >
       {spec?.date.day}
       {spec?.children}
     </td>
