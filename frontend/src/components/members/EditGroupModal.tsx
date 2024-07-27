@@ -29,13 +29,15 @@ export default function EditGroupModal (props: Props): ReactElement {
   }, [props.onDelete, props.group])
 
   return (
-    <EditModal title={props.group != null ? t('groups.edit') : t('groups.create')}
-               active={props.active}
-               isValid={editor.isValid}
-               itemDescriptor={props.group?.name}
-               onSave={save}
-               onCancel={props.onCancel}
-               onDelete={doDelete}>
+    <EditModal
+      title={props.group != null ? t('groups.edit') : t('groups.create')}
+      active={props.active}
+      isValid={editor.isValid}
+      itemDescriptor={props.group?.name}
+      onSave={save}
+      onCancel={props.onCancel}
+      onDelete={doDelete}
+    >
       <FormRow label={t('groups.fields.name')}>
         <TextField
           value={editor.value.name}

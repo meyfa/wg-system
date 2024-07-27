@@ -63,13 +63,15 @@ export default function EditMemberModal (props: Props): ReactElement {
   }, [props.onDelete, props.member])
 
   return (
-    <EditModal title={props.member != null ? t('members.edit') : t('members.create')}
-               active={props.active}
-               isValid={editor.isValid}
-               itemDescriptor={props.member?.name}
-               onSave={save}
-               onCancel={props.onCancel}
-               onDelete={doDelete}>
+    <EditModal
+      title={props.member != null ? t('members.edit') : t('members.create')}
+      active={props.active}
+      isValid={editor.isValid}
+      itemDescriptor={props.member?.name}
+      onSave={save}
+      onCancel={props.onCancel}
+      onDelete={doDelete}
+    >
       <FormRow label={t('members.fields.name')}>
         <TextField
           value={editor.value.name}

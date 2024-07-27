@@ -62,7 +62,7 @@ function usePreferredMember (chore: PeriodicChore): Member | undefined {
  * @returns The upcoming completion information.
  */
 export function usePlannedEntry (chore: PeriodicChore): PlannedEntry | undefined {
-  const last = chore.entries[chore.entries.length - 1]
+  const last = chore.entries.at(-1)
   const member = usePreferredMember(chore)
 
   return useIntervalMemo(UPDATE_PERIOD, () => {

@@ -1,5 +1,3 @@
-extends:
-  - '@meyfa/eslint-config'
-
+extends: '@meyfa/eslint-config'
 parserOptions:
   project: './tsconfig.json'
