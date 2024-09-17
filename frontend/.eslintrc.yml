@@ -35,3 +35,5 @@ rules:
   react/void-dom-elements-no-children: ['error']
   react/no-unstable-nested-components: ['error']
   react/prop-types: ['error', { ignore: ['children'] }]
+  # not supported by older Chrome versions
+  unicorn/prefer-at: ['off']
