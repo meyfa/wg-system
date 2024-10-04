@@ -1,5 +1,5 @@
 # dependencies
-FROM node:20.17.0-alpine as dependencies
+FROM node:20.18.0-alpine as dependencies
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -28,7 +28,7 @@ COPY tsconfig.json ./
 RUN npm run build
 
 # execution
-FROM node:20.17.0-alpine
+FROM node:20.18.0-alpine
 WORKDIR /usr/src/app
 
 # - install PRODUCTION dependencies
