@@ -13,7 +13,7 @@ function useCounter (period: number): number {
 
   const [count, setCount] = useState(0)
   useEffect(() => {
-    const interval = setInterval(() => setCount(c => c + 1), period)
+    const interval = setInterval(() => setCount((c) => c + 1), period)
     return () => clearInterval(interval)
   }, [period])
 

@@ -13,7 +13,7 @@ export function usePeriodicChoreEditor (value?: PeriodicChore): Editor<PeriodicC
   return useEditor({
     value,
     default: DEFAULT,
-    validate: entity => {
+    validate: (entity) => {
       return entity.name.trim().length > 0 && Number.isSafeInteger(entity.period) && entity.period > 0
     }
   })

@@ -31,7 +31,7 @@ export class BadRequestError extends ApiError {
  * An ApiError to be thrown in case something could not be found (status code 404).
  */
 export class NotFoundError extends ApiError {
-  constructor (object: string = 'resource') {
+  constructor (object = 'resource') {
     super(HttpStatus.NOT_FOUND, `${object} not found`)
     this.name = 'NotFoundError'
   }

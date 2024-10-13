@@ -9,9 +9,9 @@ function subscribe (ws: WebSocket, controllerName: string, controller: Controlle
     }))
   }
 
-  const onCreated: ControllerListener<unknown> = item => sendEvent('add', item)
-  const onUpdated: ControllerListener<unknown> = item => sendEvent('update', item)
-  const onDeleted: ControllerListener<unknown> = item => sendEvent('remove', item)
+  const onCreated: ControllerListener<unknown> = (item) => sendEvent('add', item)
+  const onUpdated: ControllerListener<unknown> = (item) => sendEvent('update', item)
+  const onDeleted: ControllerListener<unknown> = (item) => sendEvent('remove', item)
 
   controller.on('created', onCreated)
   controller.on('updated', onUpdated)

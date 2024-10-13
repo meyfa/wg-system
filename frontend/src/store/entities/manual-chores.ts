@@ -12,6 +12,6 @@ export interface ManualChore extends Entity {
 const manualChoresSlice = createEntitySlice<ManualChore>('manual-chores')
 
 export const manualChoresActions = manualChoresSlice.actions
-export const selectManualChores: Selector<RootState, ManualChore[]> = state => state.manualChores
+export const selectManualChores: Selector<RootState, ManualChore[]> = (state) => state.manualChores
 
 export default manualChoresSlice.reducer

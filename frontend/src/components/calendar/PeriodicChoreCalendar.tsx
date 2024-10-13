@@ -68,7 +68,7 @@ function PeriodicChoreCalendarEntry (props: { chore: PeriodicChore, entryIndex: 
   const member = useEntityById(selectMembers, entry.memberId)
 
   const [editing, setEditing] = useState(false)
-  const startEditing: MouseEventHandler = useCallback(event => {
+  const startEditing: MouseEventHandler = useCallback((event) => {
     event.stopPropagation()
     setEditing(true)
   }, [])
@@ -124,7 +124,7 @@ function PeriodicChoreCalendarEntryButton (
 }
 
 function useCellRenderer (chore: PeriodicChore, map: EntryMap, planned?: PlannedEntry): CellRenderFn {
-  return useCallback(date => {
+  return useCallback((date) => {
     if (planned?.dueDate != null && date.hasSame(planned.dueDate, 'day')) {
       return <PeriodicChoreCalendarEntryButton member={planned.member} isPlanned />
     }
@@ -155,7 +155,7 @@ export default function PeriodicChoreCalendar (props: Props): ReactElement {
     void insertEntry(props.chore, entry)
   }, [props.chore])
 
-  const onClickCell: CellClickHandler = useCallback(date => {
+  const onClickCell: CellClickHandler = useCallback((date) => {
     const entryIndices = map.get(formatDate(date))
     // only allow creation if no entry currently exists
     if (entryIndices == null || entryIndices.length === 0) {

@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, ReactElement } from 'react'
 import clsx from 'clsx'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   disabled?: boolean
 }
 
-export default function TextField (props: Props): JSX.Element {
+export default function TextField (props: Props): ReactElement {
   return (
     <input
       type={props.numeric === true ? 'number' : 'text'}

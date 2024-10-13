@@ -11,7 +11,7 @@ export function useScoreboardEditor (value?: Scoreboard): Editor<Scoreboard> {
   return useEditor({
     value,
     default: DEFAULT,
-    validate: entity => {
+    validate: (entity) => {
       return entity.name.trim().length > 0
     }
   })

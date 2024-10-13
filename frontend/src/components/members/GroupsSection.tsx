@@ -26,7 +26,7 @@ export default function GroupsSection (): ReactElement {
   return (
     <Section icon={faUserTag} title={t('members.groups')} renderCreateModal={renderCreateModal}>
       {groups.length === 0 && <Empty message={t('groups.empty')} />}
-      {groups.map(group => <GroupItem key={group._id} group={group} />)}
+      {groups.map((group) => <GroupItem key={group._id} group={group} />)}
     </Section>
   )
 }

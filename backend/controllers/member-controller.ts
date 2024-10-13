@@ -7,7 +7,7 @@ function removeObjectId<T extends mongoose.Types.ObjectId> (ids: readonly T[], r
   // this is to avoid a linter error, because for some reason typescript-eslint thinks that
   // id.equals does not result in a boolean if its parameter is of type 'any', which,
   // again for some reason unknown to me, other._id seems to be (Mongoose, what did you do?)
-  return ids.filter(id => !id.equals(remove))
+  return ids.filter((id) => !id.equals(remove))
 }
 
 export interface MemberDependencies {

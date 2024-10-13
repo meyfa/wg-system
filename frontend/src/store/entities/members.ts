@@ -14,6 +14,6 @@ export interface Member extends Entity {
 const membersSlice = createEntitySlice<Member>('members')
 
 export const membersActions = membersSlice.actions
-export const selectMembers: Selector<RootState, Member[]> = state => state.members
+export const selectMembers: Selector<RootState, Member[]> = (state) => state.members
 
 export default membersSlice.reducer

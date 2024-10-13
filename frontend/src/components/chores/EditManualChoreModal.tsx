@@ -13,7 +13,7 @@ import { useParametrized } from '../../hooks/use-parametrized'
 
 function useScoreboardFormatter (): (item: Scoreboard | undefined) => string {
   const { t } = useTranslation()
-  return item => item == null ? t('noneOption') : item.name
+  return (item) => item == null ? t('noneOption') : item.name
 }
 
 interface Props {
@@ -64,7 +64,7 @@ export default function EditManualChoreModal (props: Props): ReactElement {
           options={scoreboardOptions}
           formatter={scoreboardFormatter}
           value={scoreboardValue}
-          onSelect={option => editor.update({ scoreboardId: option?._id ?? null })}
+          onSelect={(option) => editor.update({ scoreboardId: option?._id ?? null })}
         />
       </FormRow>
     </EditModal>

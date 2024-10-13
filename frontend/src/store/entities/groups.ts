@@ -10,6 +10,6 @@ export interface Group extends Entity {
 const groupsSlice = createEntitySlice<Group>('groups')
 
 export const groupsActions = groupsSlice.actions
-export const selectGroups: Selector<RootState, Group[]> = state => state.groups
+export const selectGroups: Selector<RootState, Group[]> = (state) => state.groups
 
 export default groupsSlice.reducer

@@ -20,7 +20,7 @@ import UrgencyIndicator from './UrgencyIndicator'
  */
 function incrementScore (scoreboard: Scoreboard, member: Member): Scoreboard {
   const increment = member.scoreboardMultiplier ?? 1
-  const index = scoreboard.scores.findIndex(score => score.memberId === member._id)
+  const index = scoreboard.scores.findIndex((score) => score.memberId === member._id)
   // if score exists, simply increment
   if (index >= 0) {
     return {
@@ -45,7 +45,7 @@ function incrementScore (scoreboard: Scoreboard, member: Member): Scoreboard {
 function useDueState (chore: ManualChore): [boolean, () => Promise<void>, (member?: Member) => Promise<void>] {
   const choreScoreboard = useEntityById(selectScoreboards, chore.scoreboardId)
 
-  const isDue = chore.dueSince != null && chore.dueSince > 0
+  const isDue = chore.dueSince > 0
 
   const markDue = useCallback(async () => {
     await api.manualChores.update({ ...chore, dueSince: DateTime.now().toUTC().toMillis() })

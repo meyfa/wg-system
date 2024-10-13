@@ -26,7 +26,7 @@ export default function ScoreboardsSection (): ReactElement {
   return (
     <Section icon={faSortAmountUp} title={t('scoreboards.title')} renderCreateModal={renderCreateModal}>
       {scoreboards.length === 0 ? <Empty message={t('scoreboards.empty')} /> : undefined}
-      {scoreboards.map(scoreboard => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
+      {scoreboards.map((scoreboard) => <ScoreboardItem key={scoreboard._id} scoreboard={scoreboard} />)}
     </Section>
   )
 }

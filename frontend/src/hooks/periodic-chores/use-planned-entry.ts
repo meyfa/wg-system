@@ -21,12 +21,12 @@ function useActiveGroupMembers (groupIds: readonly string[]): Member[] {
   const members = useAppSelector(selectMembers)
 
   return useMemo(() => {
-    return members.filter(member => {
+    return members.filter((member) => {
       if (!member.active) {
         return false
       }
       // if groupIds is empty, any active member is okay, otherwise there needs to be a common subset of groups
-      return groupIds.length === 0 || member.groups.some(id => groupIds.includes(id))
+      return groupIds.length === 0 || member.groups.some((id) => groupIds.includes(id))
     })
   }, [members, groupIds])
 }
@@ -43,7 +43,7 @@ function usePreferredMember (chore: PeriodicChore): Member | undefined {
     // move backwards through time, eliminating members until there is at most one left
     const remaining = activeMembers.slice(0)
     for (let i = chore.entries.length - 1; i >= 0 && remaining.length > 1; --i) {
-      const index = remaining.findIndex(item => item._id === chore.entries[i].memberId)
+      const index = remaining.findIndex((item) => item._id === chore.entries[i].memberId)
       if (index >= 0) {
         remaining.splice(index, 1)
       }
@@ -62,7 +62,7 @@ function usePreferredMember (chore: PeriodicChore): Member | undefined {
  * @returns The upcoming completion information.
  */
 export function usePlannedEntry (chore: PeriodicChore): PlannedEntry | undefined {
-  const last = chore.entries[chore.entries.length - 1]
+  const last = chore.entries.length > 0 ? chore.entries[chore.entries.length - 1] : undefined
   const member = usePreferredMember(chore)
 
   return useIntervalMemo(UPDATE_PERIOD, () => {

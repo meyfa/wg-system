@@ -18,6 +18,6 @@ export function useEntityById<T extends Entity> (selector: Selector<RootState, T
     if (id == null || id === '') {
       return undefined
     }
-    return entities.find(item => item._id === id)
+    return entities.find((item) => item._id === id)
   }, [entities, id])
 }

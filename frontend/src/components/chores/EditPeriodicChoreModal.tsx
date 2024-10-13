@@ -13,7 +13,7 @@ import BasicDropdown from '../forms/BasicDropdown'
 
 function useGroupFormatter (): (item: Group | undefined) => string {
   const { t } = useTranslation()
-  return item => item == null ? t('noneOption') : item.name
+  return (item) => item == null ? t('noneOption') : item.name
 }
 
 function ChoreGroupSelect (props: { editor: Editor<PeriodicChore> }): ReactElement {
@@ -25,7 +25,7 @@ function ChoreGroupSelect (props: { editor: Editor<PeriodicChore> }): ReactEleme
   const groupFormatter = useGroupFormatter()
   const groupValue = useMemo(() => {
     return editor.value.groups.length !== 0
-      ? groups.find(item => item._id === editor.value.groups[0])
+      ? groups.find((item) => item._id === editor.value.groups[0])
       : undefined
   }, [groups, editor.value.groups])
 
@@ -34,7 +34,7 @@ function ChoreGroupSelect (props: { editor: Editor<PeriodicChore> }): ReactEleme
       options={groupOptions}
       formatter={groupFormatter}
       value={groupValue}
-      onSelect={group => editor.update({ groups: group != null ? [group._id] : [] })}
+      onSelect={(group) => editor.update({ groups: group != null ? [group._id] : [] })}
     />
   )
 }

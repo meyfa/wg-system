@@ -14,7 +14,7 @@ export function useMemberEditor (value?: Member): Editor<Member> {
   return useEditor({
     value,
     default: DEFAULT,
-    validate: entity => {
+    validate: (entity) => {
       return entity.name.trim().length > 0 &&
         /^#[0-9a-fA-F]{6}$/.test(entity.color) &&
         (entity.scoreboardMultiplier == null || (Number.isSafeInteger(entity.scoreboardMultiplier) && entity.scoreboardMultiplier >= 1))

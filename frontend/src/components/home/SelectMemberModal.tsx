@@ -16,7 +16,7 @@ export function SelectMemberModal (props: Props): ReactElement {
   const { t } = useTranslation()
 
   const members = useAppSelector(selectMembers)
-  const activeMembers = useMemo(() => members.filter(item => item.active), [members])
+  const activeMembers = useMemo(() => members.filter((item) => item.active), [members])
 
   return (
     <Modal active={props.active}>
@@ -24,7 +24,7 @@ export function SelectMemberModal (props: Props): ReactElement {
         {t('home.selectMember')}
       </div>
       <div className='grid max-w-4xl my-4 gap-2 grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]'>
-        {activeMembers.map(item => <SelectMemberButton key={item._id} member={item} onSelect={props.onSelect} />)}
+        {activeMembers.map((item) => <SelectMemberButton key={item._id} member={item} onSelect={props.onSelect} />)}
       </div>
       <div className='mt-6 text-center'>
         <BasicButton onClick={props.onCancel}>

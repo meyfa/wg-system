@@ -40,7 +40,7 @@ export function useEditor<T> (options: EditorOptions<T>): Editor<T> {
   const initial = options.value ?? options.default
   const [storedValue, setStoredValue] = useState<T>(initial)
 
-  const update: Dispatch<UpdateStateAction<T>> = (value) => setStoredValue(previous => {
+  const update: Dispatch<UpdateStateAction<T>> = (value) => setStoredValue((previous) => {
     const partial = value instanceof Function ? value(previous) : value
     return { ...previous, ...partial }
   })

@@ -23,7 +23,7 @@ function CalendarHeader (): ReactElement {
   return (
     <thead>
       <tr>
-        {WEEKDAYS.map(weekday => (
+        {WEEKDAYS.map((weekday) => (
           <th key={weekday} className='pt-1 pb-2 text-xl text-center font-normal'>
             {t(`calendar.week.${weekday}`)}
           </th>
@@ -126,8 +126,8 @@ export default function Calendar (props: Props): ReactElement {
   // first day of month
   const [month, setMonth] = useState(() => DateTime.now().startOf('month'))
 
-  const previousMonth = useCallback(() => setMonth(m => m.minus({ months: 1 })), [])
-  const nextMonth = useCallback(() => setMonth(m => m.plus({ months: 1 })), [])
+  const previousMonth = useCallback(() => setMonth((m) => m.minus({ months: 1 })), [])
+  const nextMonth = useCallback(() => setMonth((m) => m.plus({ months: 1 })), [])
 
   const monthName = useMemo(() => {
     return month.toLocaleString({

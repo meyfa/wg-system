@@ -15,7 +15,7 @@ const UPDATE_PERIOD = ms('1 hour')
  * @returns The number of days that have passed.
  */
 export function useDaysSinceLast (chore: PeriodicChore): number | undefined {
-  const last = chore.entries[chore.entries.length - 1]
+  const last = chore.entries.length > 0 ? chore.entries[chore.entries.length - 1] : undefined
 
   return useIntervalMemo(UPDATE_PERIOD, () => {
     if (last == null) {

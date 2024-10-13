@@ -26,7 +26,7 @@ export default function ManualChoresSection (): ReactElement {
   return (
     <Section icon={faTasks} title={t('manual.title')} renderCreateModal={renderCreateModal}>
       {manualChores.length === 0 ? <Empty message={t('manual.empty')} /> : undefined}
-      {manualChores.map(chore => <ManualChoreItem key={chore._id} chore={chore} />)}
+      {manualChores.map((chore) => <ManualChoreItem key={chore._id} chore={chore} />)}
     </Section>
   )
 }
