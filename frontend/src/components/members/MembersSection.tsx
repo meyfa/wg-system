@@ -33,8 +33,8 @@ export default function MembersSection (): ReactElement {
       </Section>
       {inactiveMembers.length > 0
         ? (<Section icon={faUserSlash} title={t('members.former')}>
-          {inactiveMembers.map((member) => <MemberItem key={member._id} member={member} />)}
-        </Section>)
+            {inactiveMembers.map((member) => <MemberItem key={member._id} member={member} />)}
+          </Section>)
         : undefined}
     </>
   )

@@ -6,8 +6,8 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "lint": "tsc --noEmit && eslint --ignore-path .gitignore .",
-    "lint-fix": "tsc --noEmit && eslint --fix --ignore-path .gitignore .",
+    "lint": "tsc --noEmit && eslint .",
+    "lint-fix": "tsc --noEmit && eslint --fix .",
     "build": "node -e \"fs.rmSync('./build',{force:true,recursive:true})\" && tsc"
   },
   "dependencies": {
