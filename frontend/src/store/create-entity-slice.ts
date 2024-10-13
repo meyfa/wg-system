@@ -27,7 +27,7 @@ export function createEntitySlice<T extends Entity> (name: string, comparer: Com
   const comp = comparer as Comparer<T | Draft<T>>
 
   const insertOrUpdate = (entities: Draft<T[]>, action: PayloadAction<T>): void => {
-    const index = entities.findIndex(e => e._id === action.payload._id)
+    const index = entities.findIndex((e) => e._id === action.payload._id)
     if (index < 0) {
       entities.push(action.payload as Draft<T>)
     } else {
@@ -43,7 +43,7 @@ export function createEntitySlice<T extends Entity> (name: string, comparer: Com
       setEntities: (entities, action) => [...action.payload].sort(comp),
       createEntity: insertOrUpdate,
       updateEntity: insertOrUpdate,
-      deleteEntity: (entities, action) => entities.filter(item => item._id !== action.payload)
+      deleteEntity: (entities, action) => entities.filter((item) => item._id !== action.payload)
     }
   })
 }

@@ -1,8 +1,5 @@
 function getChunkHash (src: string): string | undefined {
-  if (src == null) {
-    return undefined
-  }
-  const match = src.match(/[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/)
+  const match = /[a-zA-Z0-9]+?\.([0-9a-f]+?)\.chunk\.(?:js|css)/.exec(src)
   return match != null && match.length >= 2 ? match[1] : undefined
 }
 
@@ -16,14 +13,16 @@ function getChunkHash (src: string): string | undefined {
  */
 export function getPageVersion (): string | undefined {
   const hashes: string[] = []
-  document.querySelectorAll('script').forEach(script => {
+  document.querySelectorAll('script').forEach((script) => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     const hash = getChunkHash(script.src ?? '')
     if (hash != null) {
       hashes.push(hash)
     }
   })
-  document.querySelectorAll('link').forEach(link => {
-    const hash = getChunkHash(link.rel === 'stylesheet' ? link.href : '')
+  document.querySelectorAll('link').forEach((link) => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    const hash = getChunkHash(link.rel === 'stylesheet' && link.href != null ? link.href : '')
     if (hash != null) {
       hashes.push(hash)
     }

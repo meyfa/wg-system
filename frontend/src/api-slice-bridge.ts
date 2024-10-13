@@ -22,7 +22,7 @@ function useEntityFetch<T extends Entity> (sliceActions: EntitySliceActions<T>, 
       const initial = await crud.list()
       dispatch(sliceActions.setEntities(initial))
     }
-    fetchEntities().catch(console.error)
+    fetchEntities().catch((err: unknown) => console.error(err))
   }, [dispatch, sliceActions, crud, connected])
 }
 

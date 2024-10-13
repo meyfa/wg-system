@@ -23,9 +23,9 @@ function useEntryEditor (value?: PeriodicChoreEntry): Editor<PeriodicChoreEntry>
   return useEditor({
     value,
     default: DEFAULT_ENTRY,
-    validate: entry => {
+    validate: (entry) => {
       return entry.date !== '' && DateTime.fromISO(entry.date, { zone: 'utc' }).isValid &&
-        entry.memberId !== '' && members.some(member => member._id === entry.memberId)
+        entry.memberId !== '' && members.some((member) => member._id === entry.memberId)
     }
   })
 }
@@ -64,7 +64,7 @@ export default function EditEntryModal (props: Props): ReactElement {
 
   const members = useAppSelector(selectMembers)
   const memberOptions = useMemo(() => {
-    return members.filter(item => item.active || item._id === props.entry?.memberId)
+    return members.filter((item) => item.active || item._id === props.entry?.memberId)
   }, [members, props.entry?.memberId])
   const memberValue = useEntityById(selectMembers, editor.value.memberId)
 
@@ -85,7 +85,7 @@ export default function EditEntryModal (props: Props): ReactElement {
           options={memberOptions}
           formatter={formatMember}
           value={memberValue}
-          onSelect={member => editor.update({ memberId: member._id })}
+          onSelect={(member) => editor.update({ memberId: member._id })}
         />
       </FormRow>
     </EditModal>

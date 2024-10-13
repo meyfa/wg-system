@@ -21,7 +21,7 @@ interface Props {
 export default function ColorPicker (props: Props): ReactElement {
   return (
     <div className='inline-flex align-middle flex-wrap gap-1 p-1'>
-      {COLOR_OPTIONS.map(color => (
+      {COLOR_OPTIONS.map((color) => (
         <button
           key={color}
           className={clsx(

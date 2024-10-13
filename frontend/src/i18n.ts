@@ -24,4 +24,4 @@ i18n
     resources,
     fallbackLng
   })
-  .catch(e => console.error(e))
+  .catch((e: unknown) => console.error(e))

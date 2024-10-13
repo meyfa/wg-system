@@ -18,6 +18,6 @@ export interface PeriodicChore extends Entity {
 const periodicChoresSlice = createEntitySlice<PeriodicChore>('periodic-chores')
 
 export const periodicChoresActions = periodicChoresSlice.actions
-export const selectPeriodicChores: Selector<RootState, PeriodicChore[]> = state => state.periodicChores
+export const selectPeriodicChores: Selector<RootState, PeriodicChore[]> = (state) => state.periodicChores
 
 export default periodicChoresSlice.reducer

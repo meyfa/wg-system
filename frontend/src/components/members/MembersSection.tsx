@@ -14,8 +14,8 @@ export default function MembersSection (): ReactElement {
   const { t } = useTranslation()
 
   const members = useAppSelector(selectMembers)
-  const activeMembers = useMemo(() => members.filter(item => item.active), [members])
-  const inactiveMembers = useMemo(() => members.filter(item => !item.active), [members])
+  const activeMembers = useMemo(() => members.filter((item) => item.active), [members])
+  const inactiveMembers = useMemo(() => members.filter((item) => !item.active), [members])
 
   const renderCreateModal: EditModalRenderFn = useCallback((active, hide) => {
     const create = (entity: Member): void => {
@@ -29,11 +29,11 @@ export default function MembersSection (): ReactElement {
     <>
       <Section icon={faUser} title={t('members.active')} renderCreateModal={renderCreateModal}>
         {activeMembers.length === 0 && <Empty message={t('members.empty')} />}
-        {activeMembers.map(member => <MemberItem key={member._id} member={member} />)}
+        {activeMembers.map((member) => <MemberItem key={member._id} member={member} />)}
       </Section>
       {inactiveMembers.length > 0
         ? (<Section icon={faUserSlash} title={t('members.former')}>
-          {inactiveMembers.map(member => <MemberItem key={member._id} member={member} />)}
+          {inactiveMembers.map((member) => <MemberItem key={member._id} member={member} />)}
         </Section>)
         : undefined}
     </>

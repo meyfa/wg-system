@@ -25,10 +25,10 @@ export default function NavigationBar (): ReactElement {
 
   const [active, setActive] = useState(false)
 
-  const toggle = useCallback(() => setActive(state => !state), [])
+  const toggle = useCallback(() => setActive((state) => !state), [])
   const close = useCallback(() => setActive(false), [])
 
-  const handleClickInner: MouseEventHandler = useCallback(event => event.stopPropagation(), [])
+  const handleClickInner: MouseEventHandler = useCallback((event) => event.stopPropagation(), [])
 
   const navItems = useNavItems()
 

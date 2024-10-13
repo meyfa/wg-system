@@ -26,8 +26,7 @@ export default function Modal (props: PropsWithChildren<Props>): ReactElement {
     <div
       ref={ref}
       className={clsx(
-        'w-screen h-screen fixed top-0 left-0 bg-black/30 pt-6 px-3 md:px-6 pb-16 overflow-y-auto',
-        props.active ? 'flex' : 'hidden',
+        'w-screen h-screen fixed top-0 left-0 bg-black/30 pt-6 px-3 md:px-6 pb-16 overflow-y-auto flex',
         props.important === true ? 'z-50' : 'z-40'
       )}
       onClick={preventBubbling}

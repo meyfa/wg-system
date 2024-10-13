@@ -11,7 +11,7 @@ import Rule from '../components/settings/Rule'
 function useLanguageFormatter (): (lang: string) => string {
   const { t } = useTranslation()
 
-  return useCallback(lang => t('language', { lng: lang }), [t])
+  return useCallback((lang) => t('language', { lng: lang }), [t])
 }
 
 export default function SettingsPage (): ReactElement {

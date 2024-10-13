@@ -24,9 +24,9 @@ export default function HomePage (): ReactElement {
     <NavigationBarLayout centered={empty}>
       {empty ? <Empty message={t('home.empty')} /> : undefined}
       <ChoreGrid>
-        {periodicChores.map(chore => <PeriodicChoreBox key={chore._id} chore={chore} />)}
-        {scoreboards.map(scoreboard => <ScoreboardBox key={scoreboard._id} scoreboard={scoreboard} />)}
-        {manualChores.map(chore => <ManualChoreBox key={chore._id} chore={chore} />)}
+        {periodicChores.map((chore) => <PeriodicChoreBox key={chore._id} chore={chore} />)}
+        {scoreboards.map((scoreboard) => <ScoreboardBox key={scoreboard._id} scoreboard={scoreboard} />)}
+        {manualChores.map((chore) => <ManualChoreBox key={chore._id} chore={chore} />)}
       </ChoreGrid>
     </NavigationBarLayout>
   )

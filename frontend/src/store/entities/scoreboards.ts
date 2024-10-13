@@ -17,6 +17,6 @@ export interface Scoreboard extends Entity {
 const scoreboardsSlice = createEntitySlice<Scoreboard>('scoreboards')
 
 export const scoreboardsActions = scoreboardsSlice.actions
-export const selectScoreboards: Selector<RootState, Scoreboard[]> = state => state.scoreboards
+export const selectScoreboards: Selector<RootState, Scoreboard[]> = (state) => state.scoreboards
 
 export default scoreboardsSlice.reducer

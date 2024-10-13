@@ -19,13 +19,13 @@ import ChoreDetailButton from './ChoreDetailButton'
 function useActiveScores (scores: readonly ScoreboardScore[]): ScoreboardScore[] {
   const members = useAppSelector(selectMembers)
   const activeMemberIds = useMemo(() => {
-    const ids = members.filter(item => item.active).map(item => item._id)
+    const ids = members.filter((item) => item.active).map((item) => item._id)
     return new Set(ids)
   }, [members])
 
   return useMemo(() => {
-    return Array.from(activeMemberIds).map(id => {
-      return scores.find(item => item.memberId === id) ?? { memberId: id, offset: 0, score: Number.NEGATIVE_INFINITY }
+    return Array.from(activeMemberIds).map((id) => {
+      return scores.find((item) => item.memberId === id) ?? { memberId: id, offset: 0, score: Number.NEGATIVE_INFINITY }
     })
   }, [scores, activeMemberIds])
 }
@@ -44,7 +44,7 @@ interface RelativeScore {
 function useRelativeScores (scores: readonly ScoreboardScore[]): RelativeScore[] {
   return useMemo(() => {
     const max = scores.reduce((v, item) => Math.max(v, item.score + item.offset), 0)
-    const entries = scores.map(item => ({
+    const entries = scores.map((item) => ({
       memberId: item.memberId,
       relativeScore: item.score + item.offset - max
     }))
@@ -63,7 +63,7 @@ export default function ScoreboardBox (props: Props): ReactElement {
   const relativeScores = useRelativeScores(activeScores)
 
   const lowestScore = useMemo(() => {
-    return relativeScores.reduce((v, item) => Math.min(v, item.relativeScore ?? 0), 0)
+    return relativeScores.reduce((v, item) => Math.min(v, item.relativeScore), 0)
   }, [relativeScores])
 
   const [isInfoActive, setInfoActive] = useState(false)

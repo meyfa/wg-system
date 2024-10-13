@@ -26,7 +26,7 @@ export default function PeriodicChoresSection (): ReactElement {
   return (
     <Section icon={faCalendarCheck} title={t('periodic.title')} renderCreateModal={renderCreateModal}>
       {periodicChores.length === 0 ? <Empty message={t('periodic.empty')} /> : undefined}
-      {periodicChores.map(chore => <PeriodicChoreItem key={chore._id} chore={chore} />)}
+      {periodicChores.map((chore) => <PeriodicChoreItem key={chore._id} chore={chore} />)}
     </Section>
   )
 }
