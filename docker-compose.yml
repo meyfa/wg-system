@@ -13,7 +13,7 @@ volumes:
 services:
 
   mongodb:
-    image: mongo:7
+    image: mongo:8
     container_name: wg_mongodb
     networks:
       - internal
