@@ -34,7 +34,7 @@ volumes:
 services:
 
   mongodb:
-    image: mongo:5
+    image: mongo:8
     container_name: wg_mongodb
     restart: unless-stopped
     networks:

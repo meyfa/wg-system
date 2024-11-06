@@ -1,8 +1,6 @@
 # FOR DEVELOPMENT ONLY (building from source)
 # Use the compose file specified in README.md for regular deployments.
 
-version: '3.1'
-
 networks:
   internal:
 
