@@ -8,6 +8,7 @@
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
+    "inlineSourceMap": true,
     "outDir": "./build"
   },
   "exclude": [

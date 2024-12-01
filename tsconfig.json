@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "moduleResolution": "Node",
     "strict": true,
+    "inlineSourceMap": true,
     "outDir": "./build"
   },
   "include": [
