@@ -53,4 +53,4 @@ USER node
 
 # use tini as init process since Node.js isn't designed to be run as PID 1
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["node", "build/server.js"]
+CMD ["node", "--enable-source-maps", "--disable-proto=delete", "build/server.js"]
