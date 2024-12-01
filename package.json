@@ -34,9 +34,9 @@
   "devDependencies": {
     "@eslint/compat": "1.2.3",
     "@meyfa/eslint-config": "8.0.1",
-    "@types/node": "22.9.3",
+    "@types/node": "22.10.1",
     "@types/ws": "8.5.13",
-    "eslint": "9.15.0",
+    "eslint": "9.16.0",
     "eslint-plugin-react": "7.37.2",
     "eslint-plugin-react-hooks": "5.0.0",
     "typescript": "5.7.2"
