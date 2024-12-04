@@ -1,5 +1,5 @@
 # dependencies
-FROM node:22.11.0-alpine as dependencies
+FROM node:22.12.0-alpine as dependencies
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -28,7 +28,7 @@ COPY tsconfig.json ./
 RUN npm run build
 
 # execution
-FROM node:22.11.0-alpine
+FROM node:22.12.0-alpine
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache tini
