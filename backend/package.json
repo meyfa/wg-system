@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "joi": "17.13.3",
-    "mongoose": "8.8.4",
+    "mongoose": "8.9.0",
     "tiny-typed-emitter": "2.1.0"
   }
 }
