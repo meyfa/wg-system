@@ -11,7 +11,7 @@ import {
 } from 'react'
 import clsx from 'clsx'
 
-function useOffsetHeight<E extends HTMLElement> (ref: RefObject<E>): number | undefined {
+function useOffsetHeight<E extends HTMLElement> (ref: RefObject<E | null>): number | undefined {
   const [height, setHeight] = useState<number | undefined>()
 
   const recompute = useCallback(() => {
