@@ -24,7 +24,7 @@ export default function CalendarPage (): ReactElement {
 
   const navigate = useNavigate()
   const handleSelect = useCallback((item: PeriodicChore) => {
-    navigate(`/calendar/${item._id}`)
+    void navigate(`/calendar/${item._id}`)
   }, [navigate])
 
   return (
