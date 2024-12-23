@@ -5,6 +5,7 @@
     "module": "ES2022",
     "esModuleInterop": true,
     "moduleResolution": "Node",
+    "skipLibCheck": true,
     "strict": true,
     "inlineSourceMap": true,
     "outDir": "./build"

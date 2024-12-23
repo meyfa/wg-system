@@ -8,7 +8,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
  * @param ref The element ref.
  * @param active Whether the scroll lock should be active.
  */
-export function useScrollLock (ref: RefObject<HTMLElement>, active: boolean): void {
+export function useScrollLock (ref: RefObject<HTMLElement | null>, active: boolean): void {
   useEffect(() => {
     if (ref.current != null) {
       const element = ref.current
