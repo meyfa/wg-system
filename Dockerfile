@@ -1,5 +1,5 @@
 # dependencies
-FROM node:22.14.0-alpine as dependencies
+FROM node:22.14.0-alpine AS dependencies
 WORKDIR /usr/src/app
 
 COPY package*.json ./
