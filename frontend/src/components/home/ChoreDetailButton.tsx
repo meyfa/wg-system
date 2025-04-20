@@ -11,8 +11,8 @@ type Props = { icon: IconDefinition, minor?: boolean } & (
 
 export default function ChoreDetailButton (props: Props): ReactElement {
   const className = clsx(
-    'inline-block ml-3 h-6 px-1 rounded-sm cursor-pointer',
-    'opacity-70 hocus:opacity-100 hocus:outline outline-2 outline-gray-400 outline-offset-2'
+    'inline-block ml-3 h-6 px-1 rounded-xs cursor-pointer',
+    'opacity-70 hocus:opacity-100 hocus:outline-2 outline-gray-400 outline-offset-2'
   )
   const icon = <Icon icon={props.icon} className={props.minor === true ? 'text-lg' : 'text-2xl'} />
   if ('link' in props) {

@@ -93,7 +93,7 @@ function CalendarCell (props: { spec?: CalendarDaySpec, onClick?: CellClickHandl
   return (
     <td
       className={clsx(
-        'h-16 py-1 text-center align-top border-2 border-gray-200 outline outline-2 outline-transparent -outline-offset-2',
+        'h-16 py-1 text-center align-top border-2 border-gray-200 outline-2 outline-transparent -outline-offset-2',
         isInactive && 'bg-gray-100',
         isToday && 'outline-gray-500',
         isClickable && 'cursor-pointer hocus:bg-[#f4f9ff] hocus:outline-[#81a4f5]'
@@ -111,7 +111,7 @@ function CalendarHeadButton (props: {
   icon: IconDefinition
 }): ReactElement {
   return (
-    <button onClick={props.onClick} className='inline-block w-8 h-8 border-2 border-transparent rounded-full cursor-pointer outline-none hocus:border-gray-400 hocus:shadow-md'>
+    <button onClick={props.onClick} className='inline-block w-8 h-8 border-2 border-transparent rounded-full cursor-pointer outline-hidden hocus:border-gray-400 hocus:shadow-md'>
       <Icon icon={props.icon} />
     </button>
   )
@@ -137,7 +137,7 @@ export default function Calendar (props: Props): ReactElement {
   }, [month])
 
   return (
-    <div className='text-base p-3 rounded bg-white shadow-lg overflow-x-auto'>
+    <div className='text-base p-3 rounded-sm bg-white shadow-lg overflow-x-auto'>
       {/* month selection */}
       <div className='text-xl mb-4 text-center whitespace-nowrap'>
         <CalendarHeadButton icon={faAngleLeft} onClick={previousMonth} />

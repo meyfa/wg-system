@@ -45,7 +45,7 @@ export default function ChoreBox (props: PropsWithChildren<Props>): ReactElement
     <div
       ref={box}
       className={clsx(
-        'p-2 rounded shadow-lg border-t-4',
+        'p-2 rounded-sm shadow-lg border-t-4',
         props.urgent === true ? 'bg-rose-50 border-t-red-500' : 'bg-white border-t-transparent'
       )}
       style={{ gridRowEnd: height != null ? `span ${Math.ceil(height / 40)}` : 'span 1' }}

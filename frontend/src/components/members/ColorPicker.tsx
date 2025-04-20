@@ -25,8 +25,8 @@ export default function ColorPicker (props: Props): ReactElement {
         <button
           key={color}
           className={clsx(
-            'w-7 h-7 border-2 border-transparent cursor-pointer',
-            props.value === color ? 'rounded scale-100 border-black' : 'rounded-lg scale-90 hocus:rounded hocus:scale-100'
+            'w-7 h-7 border-2 cursor-pointer',
+            props.value === color ? 'rounded-sm scale-100 border-black' : 'rounded-lg scale-90 border-transparent hocus:rounded-sm hocus:scale-100'
           )}
           style={{ backgroundColor: color }}
           onClick={() => props.onPick(color)}

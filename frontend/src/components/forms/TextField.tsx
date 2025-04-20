@@ -14,7 +14,7 @@ export default function TextField (props: Props): ReactElement {
     <input
       type={props.numeric === true ? 'number' : 'text'}
       className={clsx(
-        'h-9 px-2 text-base leading-none bg-white border-2 border-gray-400 rounded-sm outline-none',
+        'h-9 px-2 text-base leading-none bg-white border-2 border-gray-400 rounded-xs outline-hidden',
         'disabled:opacity-50 disabled:pointer-events-none',
         'hover:border-gray-500 focus:border-black focus:shadow-md'
       )}

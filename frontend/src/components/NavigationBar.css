@@ -1,3 +1,5 @@
+@reference "../index.css";
+
 .NavigationBar {
   @apply fixed top-0 left-0 h-screen z-10;
 }
@@ -17,7 +19,7 @@
 /* toggle button */
 
 .NavigationBar-toggle {
-  @apply flex items-center justify-center w-full h-10 mb-4 px-4 outline-none cursor-pointer;
+  @apply flex items-center justify-center w-full h-10 mb-4 px-4 outline-hidden cursor-pointer;
 }
 
 .NavigationBar-toggle:hover {
@@ -52,7 +54,9 @@
   @apply w-[var(--nav-thickness)] shrink-0 text-center;
 }
 
-.NavigationBar:not(.active) .NavigationBar-link:not(.active) .NavigationBar-link-icon {
+.NavigationBar:not(.active)
+  .NavigationBar-link:not(.active)
+  .NavigationBar-link-icon {
   @apply opacity-60;
 }
 

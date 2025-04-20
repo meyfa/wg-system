@@ -29,7 +29,7 @@ export default function BasicDropdown<V> (props: Props<V>): ReactElement {
   return (
     <select
       className={clsx(
-        'inline-block h-9 px-3 leading-none font-semibold bg-white border border-gray-400 rounded-lg shadow-md cursor-pointer outline-none',
+        'inline-block h-9 px-3 leading-none font-semibold bg-white border border-gray-400 rounded-lg shadow-md cursor-pointer outline-hidden',
         'disabled:opacity-50 disabled:pointer-events-none',
         'hover:border-gray-500 focus:border-black hover:ring-1 ring-gray-400'
       )}

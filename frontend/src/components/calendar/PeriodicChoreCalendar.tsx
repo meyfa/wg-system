@@ -110,7 +110,7 @@ function PeriodicChoreCalendarEntryButton (
       type='button'
       onClick={props.onClick}
       className={clsx(
-        'block mx-auto w-[calc(100%-0.5rem)] p-1 font-bold bg-gray-100 border-2 border-transparent outline-none',
+        'block mx-auto w-[calc(100%-0.5rem)] p-1 font-bold bg-gray-100 border-2 border-transparent outline-hidden',
         props.isPlanned === true ? 'opacity-50 italic pointer-events-none' : 'cursor-pointer hocus:border-gray-600'
       )}
       style={{

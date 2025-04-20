@@ -6,8 +6,6 @@
   "include": [
     "src",
     "vite.config.ts",
-    "tailwind.config.ts",
-    "postcss.config.js",
     "eslint.config.js"
   ]
 }
