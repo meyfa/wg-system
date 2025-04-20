@@ -31,7 +31,7 @@ export default function Modal (props: PropsWithChildren<Props>): ReactElement {
       )}
       onClick={preventBubbling}
     >
-      <div className='relative max-w-full m-auto p-4 md:p-8 bg-white shadow-2xl rounded'>
+      <div className='relative max-w-full m-auto p-4 md:p-8 bg-white shadow-2xl rounded-sm'>
         {props.children}
       </div>
     </div>

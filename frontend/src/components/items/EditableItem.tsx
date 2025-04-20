@@ -7,7 +7,7 @@ interface Props {
 
 export default function EditableItem (props: PropsWithChildren<Props>): ReactElement {
   return (
-    <div className='flex my-2 p-3 items-center bg-white rounded shadow-lg'>
+    <div className='flex my-2 p-3 items-center bg-white rounded-sm shadow-lg'>
       <div className='grow text-xl align-middle'>
         {props.children}
       </div>

@@ -26,7 +26,7 @@ export default function MemberItem (props: Props): ReactElement {
   return (
     <EditableItem renderModal={renderModal}>
       <span
-        className='inline-block w-8 h-8 mr-4 rounded align-middle'
+        className='inline-block w-8 h-8 mr-4 rounded-sm align-middle'
         style={{ background: props.member.active ? props.member.color : '#d0d0d0' }}
       />
       <span className={props.member.active ? '' : 'text-gray-400'}>

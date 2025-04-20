@@ -16,7 +16,7 @@ export default function ItemTag (props: Props): ReactElement {
     return <></>
   }
   return (
-    <div className='block md:inline-block w-fit md:w-auto md:ml-4 mt-1.5 md:mt-0 text-base px-3 py-1 bg-gray-200 rounded'>
+    <div className='block md:inline-block w-fit md:w-auto md:ml-4 mt-1.5 md:mt-0 text-base px-3 py-1 bg-gray-200 rounded-sm'>
       <Icon icon={props.icon} /> {props.text}
     </div>
   )

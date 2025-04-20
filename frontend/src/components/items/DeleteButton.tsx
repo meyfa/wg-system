@@ -31,7 +31,7 @@ export default function DeleteButton (props: Props): ReactElement {
           {t('deleteConfirm')}
         </div>
         {props.itemDescriptor != null && (
-          <div className='max-w-[15rem] mb-8 p-2 bg-gray-200 rounded text-center font-bold break-words'>
+          <div className='max-w-[15rem] mb-8 p-2 bg-gray-200 rounded-sm text-center font-bold break-words'>
             {props.itemDescriptor}
           </div>
         )}
